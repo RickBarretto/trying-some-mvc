@@ -18,7 +18,7 @@ reception = ReceptionMenu(
     [
         (session_manager.register_session, "Registrar nova sessão."),
         (session_manager.list_sessions, "Listar sessões registradas."),
-        (session_manager.find_session, "Procurar sessão por data."),
+        (session_manager.find, "Procurar sessão por data."),
         (current_session_manager.start_current_session, "Iniciar sessão atual."),
         (patient_manager.register, "Registrar novo paciente."),
         (patient_manager.book_schedule, "Agendar sessão para paciente."),
