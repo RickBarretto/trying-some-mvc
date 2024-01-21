@@ -39,9 +39,9 @@ def find(clinic: Clinic):
     session = clinic.session_by_date(date)
 
     if session:
-        WarningScreen(["Sessão encontrada.", str(session)]).render()
+        WarningScreen([f"Sessão encontrada para o dia {date}.", str(session)]).render()
     else:
         # TODO: pergunta se deseja registrar
-        WarningScreen("Sessão não encontrada.").render()
+        WarningScreen(f"Sessão não encontrada para o dia {date}.").render()
 
     return status.Ok
