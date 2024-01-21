@@ -10,7 +10,7 @@ def list_all(clinic: ClinicController):
         * Lista de sessões. (data, id e status)
         * Se há ou não alguma registrada.
         """
-        sessions = clinic.get_sessions()
+        sessions = clinic.model.sessions
         
         data = sessions if sessions else ["Não há sessões registradas."]
         ListScreen("Sessões registradas:", data).render()

@@ -45,12 +45,6 @@ class ClinicController:
 
         self.model.current_session = self.register_session(date)
 
-    def get_sessions(self) -> list[str]:
-        """Retorna uma lista com dados formatados das sessões disponíveis"""
-        sessions = self.model.sessions
-        formated_sessions = self.view.display_sessions(sessions)
-        return formated_sessions
-
     def find_session(self, date: int) -> SessionModel | None:
         """Retorna uma sessão existente na data ``date``.
 
