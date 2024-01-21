@@ -5,6 +5,7 @@ from .patient import PatientModel
 class ClinicModel:
     def __init__(self) -> None:
         self.current_session: SessionModel | None = None
+        self.waiting_queue: list[int] = []
 
         self.sessions: list[SessionModel] = []
         self.patients: list[PatientModel] = []
@@ -13,6 +14,12 @@ class ClinicModel:
         self.last_patient_id = 0
 
     @property
+    def current_patient_id(self) -> int | None:
+        if self.waiting_queue:
+            return self.waiting_queue[0]
+
+        return None
+
     @property
     def new_session_id(self):
         return self.last_session_id + 1
@@ -155,12 +162,12 @@ class ClinicController:
         if not (patient := self.find_patient(cpf)):
             return False
 
-        self.model.current_session.waiting_queue.append(patient.uid)
+        self.model.waiting_queue.append(patient.uid)
         return True
 
     def shift_queue(self) -> bool:
-        if len(self.model.current_session.waiting_queue) < 2:
+        if len(self.model.waiting_queue) < 2:
             return False
 
-        self.model.current_session.waiting_queue.pop(0)
+        self.model.waiting_queue.pop(0)
         return True

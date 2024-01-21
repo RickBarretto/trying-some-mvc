@@ -19,16 +19,6 @@ class SessionModel:
     date: int
     status: SessionStatus = SessionStatus.UNBEGUN
 
-    def __post_init__(self):
-        self.waiting_queue: list[int] = []
-
-    @property
-    def current_patient_id(self) -> int | None:
-        if self.waiting_queue:
-            return self.waiting_queue[0]
-
-        return None
-
     @property
     def formated_date(self) -> str:
         date_str = str(self.date)

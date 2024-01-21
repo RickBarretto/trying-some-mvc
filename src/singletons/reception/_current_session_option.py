@@ -29,7 +29,7 @@ class CurrentSessionOptions:
 
     @staticmethod
     def show_next_patient(clinic: clinic.ClinicController):
-        if len(patients_ids := clinic.model.current_session.waiting_queue) < 2:
+        if len(patients_ids := clinic.model.waiting_queue) < 2:
             screen.WarningScreen("Não há paciente na fila de espera.").render()
             return
         
