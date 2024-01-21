@@ -4,12 +4,10 @@ from .reception import reception
 
 __all__ = ["reception"]
 
-
-class ControllerPlaceholder:
+class SomeModel:
     pass
 
-
-def start_reception(controller: ControllerPlaceholder):
+def start_reception(model: SomeModel):
     try:
         date = tui.Prompt.get_date("Insira a data da sessão atual.")
     except ValueError as e:
@@ -21,5 +19,5 @@ def start_reception(controller: ControllerPlaceholder):
 
 
 startup = tui.MainMenu(
-    ControllerPlaceholder(), [(start_reception, "Iniciar como recepção.")]
+    SomeModel(), [(start_reception, "Iniciar como recepção.")]
 )

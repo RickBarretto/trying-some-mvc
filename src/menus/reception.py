@@ -10,7 +10,7 @@ podendo assim ser usado por outros módulos.
 
 
 from tui.main_menu import MainMenu
-from entities.clinic import ClinicController, ClinicModel, ClinicView
+from entities.clinic import ClinicModel
 
 from .options import current_session_manager
 from .options import patient_manager
@@ -31,8 +31,6 @@ options = [
     (current_session_manager.show_next_patient, "Mostrar próximo paciente."),
 ]
 
-controller = ClinicController(ClinicModel(), ClinicView())
-
-reception = MainMenu(controller,options)
+reception = MainMenu(ClinicModel(), options)
 
 __all__ = ["reception"]

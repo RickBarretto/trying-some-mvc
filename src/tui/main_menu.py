@@ -4,13 +4,13 @@ from tui.choice import ChoiceScreen
 from tui.warning import WarningScreen
 
 
-class Controller(Protocol):
+class Model(Protocol):
     pass
 
 
 class MainMenu:
     def __init__(
-        self, controller: Controller, options: list[tuple[Callable, str]]
+        self, controller: Model, options: list[tuple[Callable, str]]
     ) -> None:
         self.controller = controller
         self._options: list[tuple[Callable, str]] = options
