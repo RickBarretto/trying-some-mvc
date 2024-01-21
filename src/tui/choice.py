@@ -4,8 +4,26 @@ from ._screen import Screen
 
 
 def choice(options: list[str]) -> int:
+    """Renderiza tela de escolha do usuário e retorna a escolha.
+    
+    Example
+    -------
+    >>> SplashScreen(["Opção 1", "Opção 2", "Opção 3", "Opção 4"]).render()
+    +-------------------------------------------------------+
+    |                                                       |
+    |    1 - Opção 1                                        |
+    |    2 - Opção 2                                        |
+    |    3 - Opção 3                                        |
+    |    4 - Opção 4                                        |
+    |                                                       |
+    |                                                       |
+    +-------------------------------------------------------+
+    """
+
+    # Declaração de funções internas
 
     def prefix_option(index: int, content: str) -> str:
+        """Prefixa cada linha do conteúdo com uma numeração."""
         TEMPLATE = "{tabs}{index:<2} - {content}"
 
         return TEMPLATE.format(
@@ -15,9 +33,17 @@ def choice(options: list[str]) -> int:
         )
     
     def format_data(options: list[str]) -> list[str]:
+        """Adiciona prefixos para cada linha"""
         return [prefix_option(i, opt) for i, opt in enumerate(options)]
     
     def user_choice(stop_index: int) -> int:
+        """Escolhe uma opção.
+        
+        Raises
+        ------
+        ``ValueError`` caso o valor não possa ser convertido
+        ``IndexError`` caso o valor escolhido esteja fora dos índices do menu.
+        """
         start_index = 1
 
         try:
@@ -30,6 +56,7 @@ def choice(options: list[str]) -> int:
         else:
             raise IndexError(f"O valor escolhido deve estar entre {start_index} e {stop_index}.")
 
+    # Início da função principal
     screen = Screen()
 
     # Formata os dados
