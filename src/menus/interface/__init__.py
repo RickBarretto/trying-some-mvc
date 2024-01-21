@@ -1,6 +1,6 @@
 from typing import Callable, Protocol
 
-from tui.choice import ChoiceScreen
+import tui
 from tui.warning import WarningScreen
 
 
@@ -21,32 +21,24 @@ class MainMenu:
     def add_option(self, option: Callable, description: str):
         self._options.append((option, description))
 
-    def show_menu(self):
-        self.screen = ChoiceScreen(self._descriptions)
-        self.screen.render()
-
-    def get_input(self) -> int:
-        try:
-            return self.screen.get_value()
-        except:
-            self.screen.warn_wrong_value()
-            return -1
-
     def run(self):
         QUIT_OPTION = len(self._options) + 1
-        choice = 0
+        user_choice = 0
 
         while True:
-            self.show_menu()
-            choice: int = self.get_input()
+            try:
+                user_choice = tui.choice(self._descriptions)
+            except (ValueError, IndexError) as e:
+                WarningScreen(e).render()
+                user_choice = -1
 
-            if choice == -1:
+            if user_choice == -1:
                 continue
 
-            if choice == QUIT_OPTION:
+            if user_choice == QUIT_OPTION:
                 break
 
-            func, desc = self._options[choice - 1]
+            func, desc = self._options[user_choice - 1]
             func(self.controller)
 
             # try:

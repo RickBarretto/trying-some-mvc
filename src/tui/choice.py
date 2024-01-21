@@ -1,53 +1,42 @@
 import os
 
-import tui
 from ._screen import Screen
 
 
-def _fix_options(index: int, line: str):
-    return "{tabs}{index:<2} - {content}".format(
-        tabs=" " * int(os.get_terminal_size().columns * 0.2),
-        index=index + 1,
-        content=line,
-    )
+def choice(options: list[str]) -> int:
 
+    def prefix_option(index: int, content: str) -> str:
+        TEMPLATE = "{tabs}{index:<2} - {content}"
 
-class ChoiceScreen(Screen):
-    def __init__(self, options: list[str]) -> None:
-        self._options = options
+        return TEMPLATE.format(
+            tabs=" " * int(os.get_terminal_size().columns * 0.2),
+            index=index + 1,
+            content=content,
+        )
+    
+    def format_data(options) -> list[str]:
+        return [prefix_option(i, opt) for i, opt in enumerate(options)]
+    
+    def user_choice(stop_index: int) -> int:
+        start_index = 1
 
-        # Post init
-        self.start = 1
-        self.stop = len(options)
+        try:
+            choosen = int(input(">>> "))
+        except:
+            raise ValueError("O valor escolhido deve ser um inteiro.") from ValueError
 
-    def render(self) -> int:
-        """Imprime a tela de escolha de usuário.
+        if start_index <= choosen <= stop_index:
+            return choosen
+        else:
+            raise IndexError(f"O valor escolhido deve estar entre {start_index} e {stop_index}.")
 
-        Retorna a quantidade de opções
-        """
-        options = [_fix_options(i, opt) for i, opt in enumerate(self._options)]
+    screen = Screen()
 
-        self.render_full_screen(options)
+    # Formata os dados
+    data = format_data(option)
+    
+    # Imprime os dados
+    screen.render_full_screen(data)
 
-    def get_value(self) -> int:
-        """captura o valor escolhido pelo usuário
-
-        Raises
-        ------
-            ``ValueError`` em caso de entrada inválida para a conversão de inteiro.
-            ``IndexError`` para uma escolha fora da amplitude apresentada ao usuário.
-        """
-        if self.start <= (inp := int(input(">>> "))) <= self.stop:
-            return inp
-
-        raise IndexError()
-
-    def warn_wrong_value(self):
-        tui.WarningScreen(
-            [
-                "Entrada inválida!",
-                "",
-                f"Sua entrada deve estar entre {self.start} e {self.stop}, sendo um inteiro.",
-                "",
-            ]
-        ).render()
+    # Retorna a escolha do usuário
+    return user_choice(len(options))

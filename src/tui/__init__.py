@@ -3,7 +3,7 @@
 As telas serão usadas pelas classes de ``src.singleton``.
 """
 
-from .choice import ChoiceScreen
+from .choice import choice
 from .list import ListScreen
 from .prompt import Prompt
 from .splash import SplashScreen
