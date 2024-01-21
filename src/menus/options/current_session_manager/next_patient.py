@@ -29,5 +29,5 @@ def show_next_patient(clinic: ClinicController):
     patient = clinic.patient_by_id(next_patient_id)
 
     # Imprime informações do paciente
-    content = ["Próximo paciente:", clinic.view.format_patient(patient)]
+    content = ["Próximo paciente:", str(patient)]
     SplashScreen(content).render()
