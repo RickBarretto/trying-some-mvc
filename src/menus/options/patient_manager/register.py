@@ -40,7 +40,7 @@ def register(clinic: ClinicController):
         return
 
     # Criação do paciente
-    new_id: int = clinic.model.new_patient_id
+    new_id: int = clinic.new_patient_id
     patient: PatientModel = PatientModel(
         uid=new_id, 
         cpf=cpf, 
@@ -49,7 +49,7 @@ def register(clinic: ClinicController):
     )
 
     # Registro do paciente
-    clinic.model.patients.append(patient)
-    clinic.model.last_patient_id_id = new_id
+    clinic.patients.append(patient)
+    clinic.last_patient_id_id = new_id
 
     WarningScreen(f"{patient.name} registrado com sucesso!").render()

@@ -40,7 +40,7 @@ def list_bookings(clinic: ClinicController):
 
     sessions_ids = patient.scheduled_sessions
     sessions = [
-        session for session in clinic.model.sessions if session.uid in sessions_ids
+        session for session in clinic.sessions if session.uid in sessions_ids
     ]
 
     data = sessions if sessions else ["Nenhuma sessão agendada"]

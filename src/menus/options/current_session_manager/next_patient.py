@@ -17,7 +17,7 @@ def show_next_patient(clinic: ClinicController):
     --------
     * Não há pacientes na fila
     """
-    waiting_queue = clinic.model.waiting_queue
+    waiting_queue = clinic.waiting_queue
 
     # Verifica se a fila de espera está vazia
     if not waiting_queue:

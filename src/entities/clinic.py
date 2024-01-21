@@ -24,10 +24,10 @@ class ClinicModel:
 
     def update_current_session(self, date: int):
         if session := self.session_by_date(date):
-            self.model.current_session = session
+            self.current_session = session
             return
 
-        self.model.current_session = self.register_session(date)
+        self.current_session = self.register_session(date)
 
     def session_by_date(self, date: int) -> SessionModel | None:
         """Retorna uma sessão existente na data ``date``.
@@ -35,7 +35,7 @@ class ClinicModel:
         Retornará ``None`` caso a sessão não exista.
         """
         return next(
-            (session for session in self.model.sessions if session.date == date), None
+            (session for session in self.sessions if session.date == date), None
         )
 
     def patient_by_cpf(self, cpf: str) -> PatientModel | None:
@@ -44,7 +44,7 @@ class ClinicModel:
         Se não encontrado, retorna ``None``.
         """
         return next(
-            (patient for patient in self.model.patiens if patient.cpf == cpf), None
+            (patient for patient in self.patiens if patient.cpf == cpf), None
         )
 
     def patient_by_id(self, uid: int) -> PatientModel | None:
@@ -53,7 +53,7 @@ class ClinicModel:
         Se não encontrado, retorna ``None``.
         """
         return next(
-            (patient for patient in self.model.patiens if patient.uid == uid), None
+            (patient for patient in self.patiens if patient.uid == uid), None
         )
 
 
@@ -65,9 +65,9 @@ class ClinicModel:
 # 
 #     Assertions
 #     ----------
-#     `model.waiting_queue` não pode estar vazia
+#     `waiting_queue` não pode estar vazia
 #     """
-#     assert self.model.waiting_queue
+#     assert self.waiting_queue
 # 
-#     patient_id = self.model.waiting_queue.pop(0)
+#     patient_id = self.waiting_queue.pop(0)
 #     self.current_patient = self.patient_by_id(patient_id)

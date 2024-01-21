@@ -34,7 +34,7 @@ def check_current_booking(clinic: ClinicController):
         return WarningScreen("Paciente não registrado.").render()
 
     # Verifica se paciente está marcado para a sessão atual
-    is_booked = clinic.model.current_session.uid in patient.scheduled_sessions
+    is_booked = clinic.current_session.uid in patient.scheduled_sessions
 
     # Imprime o feedback
     TEMPLATE_MESSAGE = "Paciente {} está marcado para a sessão atual."

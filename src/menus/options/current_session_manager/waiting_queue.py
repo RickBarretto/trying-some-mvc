@@ -27,7 +27,7 @@ def send_to_waiting_queue(clinic: ClinicController):
     """
 
     # Verifica status da sessão
-    current_session_status = clinic.model.current_session.status
+    current_session_status = clinic.current_session.status
 
     if current_session_status == SessionStatus.UNBEGUN:
         WarningScreen("A sessão nunca foi inicializada.").render()
@@ -52,11 +52,11 @@ def send_to_waiting_queue(clinic: ClinicController):
 
 
     # Verifica se o paciente já consta na fila de espera
-    waiting_queue = clinic.model.waiting_queue
+    waiting_queue = clinic.waiting_queue
     if patient.uid in waiting_queue:
         WarningScreen("Paciente já está na fila de espera.").render()
         return
 
     # Põe o paciente na fila de espera
-    clinic.model.waiting_queue.append(patient.uid)
+    clinic.waiting_queue.append(patient.uid)
     WarningScreen(f"Paciente colocado na fila de espera na posição {len(waiting_queue)}!").render()
