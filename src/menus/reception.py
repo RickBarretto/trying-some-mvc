@@ -19,25 +19,26 @@ from .use_cases import session_manager
 # Todas as opções disponíveis para a recepção
 
 options = [
-    (session_manager.register, "Registrar nova sessão."),
-    (session_manager.list_all, "Listar sessões registradas."),
-    (session_manager.find, "Procurar sessão por data."),
-    (current_session_manager.start, "Iniciar sessão atual."),
-    (patient_manager.register, "Registrar novo paciente."),
-    (patient_manager.book_schedule, "Agendar sessão para paciente."),
-    (
-        patient_manager.list_bookings,
-        "Listar sessões agendadas para paciente.",
-    ),
-    (
-        current_session_manager.check_current_booking,
-        "Verificar agendamento para sessão atual.",
-    ),
-    (
-        current_session_manager.send_to_waiting_queue,
-        "Enviar paciente para fila de espera.",
-    ),
-    (current_session_manager.show_next_patient, "Mostrar próximo paciente."),
+    ("Registrar nova sessão.", 
+        session_manager.register),
+    ("Listar sessões registradas.", 
+        session_manager.list_all),
+    ("Procurar sessão por data.",
+        session_manager.find),
+    ("Iniciar sessão atual.", 
+        current_session_manager.start),
+    ("Registrar novo paciente.", 
+        patient_manager.register),
+    ("Agendar sessão para paciente.", 
+        patient_manager.book_schedule),
+    ("Listar sessões agendadas para paciente.",
+        patient_manager.list_bookings),
+    ("Verificar agendamento para sessão atual.",
+        current_session_manager.check_current_booking),
+    ("Enviar paciente para fila de espera.",
+        current_session_manager.send_to_waiting_queue,),
+    ("Mostrar próximo paciente.", 
+        current_session_manager.show_next_patient),
 ]
 
 reception = MainMenu(Clinic(), options)

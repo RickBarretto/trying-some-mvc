@@ -9,11 +9,11 @@ class Model(Protocol):
 
 
 class MainMenu:
-    def __init__(self, model: Model, options: list[tuple[Callable, str]]) -> None:
+    def __init__(self, model: Model, options: list[tuple[str, Callable]]) -> None:
         self.model = model
-        self._options: list[tuple[Callable, str]] = options
+        self._options: list[tuple[str, Callable]] = options
 
-        self._descriptions = options = [desc for func, desc in self._options]
+        self._descriptions = options = [desc for desc, func in self._options]
         self._descriptions.append("Sair.")
 
     def add_option(self, option: Callable, description: str):
@@ -36,7 +36,7 @@ class MainMenu:
             if user_choice == QUIT_OPTION:
                 break
 
-            func, desc = self._options[user_choice - 1]
+            desc, func = self._options[user_choice - 1]
             func(self.model)
 
             # try:
