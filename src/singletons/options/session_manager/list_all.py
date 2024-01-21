@@ -2,7 +2,7 @@ from entities.clinic import ClinicController
 from screen.list import ListScreen
 
 
-def list_sessions(clinic: ClinicController):
+def list_all(clinic: ClinicController):
         """Lista todas as sessões registradas na clínica.
 
         Feedbacks
