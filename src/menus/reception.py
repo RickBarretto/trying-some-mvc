@@ -9,7 +9,7 @@ podendo assim ser usado por outros módulos.
 """
 
 
-from tui.main_menu import MainMenu
+from menus.interface import MainMenu
 from entities.clinic import ClinicModel
 
 from .options import current_session_manager
