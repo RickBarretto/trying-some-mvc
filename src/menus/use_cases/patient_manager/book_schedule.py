@@ -2,8 +2,10 @@ from entities.clinic import Clinic
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
+from menus.use_cases import status
 
-def book_schedule(clinic: Clinic):
+
+def book_schedule(clinic: Clinic) -> bool:
     """Agenda uma sessão para um paciente.
 
     Questions
@@ -23,6 +25,12 @@ def book_schedule(clinic: Clinic):
     * Sessão não registrada
     * Sessão já finalizada
     * Paciente já estava agendado
+
+    Return
+    ------
+    bool:
+        Retorna o status da função, que pode ser `status.Ok` (`True`)
+        ou `status.MayBeRepeated` (`False`).
     """
 
     # Valida entradas
@@ -31,7 +39,7 @@ def book_schedule(clinic: Clinic):
         session_date = Prompt.get_date()
     except ValueError as e:
         WarningScreen(e).render()
-        return
+        return status.MayBeRepeated
 
     patient = clinic.patient_by_cpf(patient_cpf)
     session = clinic.session_by_date(session_date)
@@ -39,11 +47,11 @@ def book_schedule(clinic: Clinic):
     # Valida registros
     if not patient:
         WarningScreen("Paciente não registrado.").render()
-        return
+        return status.Ok
 
     if not session:
         WarningScreen("Sessão não registrada.").render()
-        return
+        return status.Ok
 
     # Verifica o agendamento
     if session.uid in patient.scheduled_sessions:
@@ -51,8 +59,9 @@ def book_schedule(clinic: Clinic):
             f"Paciente {patient.name} já está "
             f"registrado para a sessão {session.formated_date}."
         ).render()
-        return
+        return status.Ok
 
     # Agenda sessão para paciente
     patient.scheduled_sessions.append(session.uid)
     WarningScreen("Paciente agendado com sucesso!").render()
+    return status.Ok

@@ -1,13 +1,13 @@
 from entities.clinic import Clinic
 from entities.session import Session
-from menus.use_cases import current_session_manager
+from menus.use_cases import current_session_manager, status
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
 
 def register(
     clinic: Clinic, dry_run: bool = False, should_update: bool = False
-) -> bool | None:
+) -> bool:
     """Registra uma nova sessão no banco de dados.
 
     Arguments
@@ -30,6 +30,12 @@ def register(
     --------
     * Formato de data inválido
     * Sessão já registrada
+
+    Return
+    ------
+    bool:
+        Retorna o status da função, que pode ser `status.Ok` (`True`)
+        ou `status.MayBeRepeated` (`False`).
     """
 
     # Valida entrada
@@ -37,18 +43,18 @@ def register(
         date = Prompt.get_date()
     except ValueError as e:
         WarningScreen(e).render()
-        return
+        return status.MayBeRepeated
 
     # Verifica registro
     session = clinic.session_by_date(date)
 
     if session and dry_run:
         WarningScreen("Entrando na sessão novamente.").render()
-        return True
+        return status.Ok
 
     if session:
         WarningScreen("Sessão já foi registrada.").render()
-        return
+        return status.Ok
 
     # Criação da sessão
     new_id: int = clinic.new_session_id()
@@ -64,4 +70,4 @@ def register(
     if should_update:
         current_session_manager.update(clinic, session)
 
-    return True
+    return status.OK

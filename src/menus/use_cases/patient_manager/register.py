@@ -3,8 +3,10 @@ from entities.patient import Patient
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
+from menus.use_cases import status
 
-def register(clinic: Clinic):
+
+def register(clinic: Clinic) -> bool:
     """Registra paciente no banco de dados.
 
     Questions
@@ -23,6 +25,12 @@ def register(clinic: Clinic):
     * TODO: Nome não deve conter números ou símbolos
     * TODO: Nome deve conter pelo menos nome e sobrenome
     * Paciente já registrado
+
+    Return
+    ------
+    bool:
+        Retorna o status da função, que pode ser `status.Ok` (`True`)
+        ou `status.MayBeRepeated` (`False`).
     """
 
     # Valida entradas
@@ -32,12 +40,12 @@ def register(clinic: Clinic):
         extra: str = Prompt.multiline("Insira informações extra.")
     except ValueError as e:
         WarningScreen(e).render()
-        return
+        return status.MayBeRepeated
 
     # Verifica se paciente já está registrado
     if clinic.patient_by_cpf(cpf):
         WarningScreen("Paciente já foi registrado.").render()
-        return
+        return status.Ok
 
     # Criação do paciente
     new_id: int = clinic.new_patient_id()
@@ -48,3 +56,4 @@ def register(clinic: Clinic):
     clinic.last_patient_id_id = new_id
 
     WarningScreen(f"{patient.name} registrado com sucesso!").render()
+    return status.Ok

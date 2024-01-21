@@ -22,6 +22,4 @@ def start_reception(model: SomeModel):
     reception.run()
 
 
-startup = MainMenu(SomeModel(), [
-    ("Iniciar como recepção.", start_reception)
-])
+startup = MainMenu(SomeModel(), [("Iniciar como recepção.", start_reception)])
