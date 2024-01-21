@@ -4,7 +4,7 @@ import screen
 
 class SessionOptions:
     @staticmethod
-    def add_session(clinic: clinic.ClinicController):
+    def register_session(clinic: clinic.ClinicController):
         try:
             date = screen.Prompt.get_date()
         except ValueError as e:

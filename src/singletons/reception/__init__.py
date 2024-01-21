@@ -18,7 +18,7 @@ class ReceptionMenu(MainMenu):
 reception = ReceptionMenu(
     clinic.ClinicController(clinic.ClinicModel(), clinic.ClinicView()),
     [
-        (ReceptionOptions.add_session, "Registrar nova sessão."),
+        (ReceptionOptions.register_session, "Registrar nova sessão."),
         (ReceptionOptions.list_sessions, "Listar sessões registradas."),
         (ReceptionOptions.find_session, "Procurar sessão por data."),
         (current_session_manager.start_current_session, "Iniciar sessão atual."),
