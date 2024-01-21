@@ -24,13 +24,7 @@ class ClinicModel:
 
 
 class ClinicView:
-
-    def format_patient(self, patient: PatientModel) -> str:
-        uid = patient.uid
-        cpf = patient.cpf
-        name = patient.name
-
-        return f"{name} - CPF: {cpf} (ID: {uid})"
+    pass
 
 
 class ClinicController:
