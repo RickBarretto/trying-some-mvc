@@ -43,13 +43,17 @@ class CurrentSessionOptions:
 
     @staticmethod
     def show_next_patient(clinic: clinic.ClinicController):
+
+        # Verifica se há dois pacientes na fila de espera
         if len(patients_ids := clinic.model.waiting_queue) < 2:
             screen.WarningScreen("Não há paciente na fila de espera.").render()
             return
         
+        # Procura a instância do paciente
         for patient in clinic.model.patients:
             if patient.uid == patients_ids[1]:
                 break
 
+        # Imprime informações do paciente
         content = ["Próximo paciente:", clinic.view.format_patient(patient)]
         screen.SplashScreen(content).render()
