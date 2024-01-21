@@ -50,9 +50,8 @@ def check_current_booking(clinic: Clinic) -> bool:
 
     # Imprime o feedback
     
-    # TODO: adicionar o nome do paciente no feedback
-    TEMPLATE_MESSAGE = "Paciente{}está marcado para a sessão atual."
-    message = TEMPLATE_MESSAGE.format(" " if is_booked else " não ")
+    TEMPLATE_MESSAGE = "Paciente {}{}está marcado para a sessão atual."
+    message = TEMPLATE_MESSAGE.format(patient.name, " " if is_booked else " não ")
 
     SplashScreen([message]).render()
     return status.Ok
