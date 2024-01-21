@@ -5,7 +5,7 @@ import screen
 class SessionOptions:
     @staticmethod
     def register_session(clinic: clinic.ClinicController):
-        """Agenda uma sessão para um paciente.
+        """Registra uma nova sessão no banco de dados.
 
         Questions
         ---------
