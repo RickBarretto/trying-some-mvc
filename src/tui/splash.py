@@ -1,4 +1,4 @@
-from screen._screen import Screen
+from tui._screen import Screen
 
 
 class SplashScreen(Screen):

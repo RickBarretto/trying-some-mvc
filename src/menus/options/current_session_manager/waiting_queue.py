@@ -1,8 +1,8 @@
 from entities.clinic import ClinicController
 from entities.session import SessionStatus
 
-from screen.prompt import Prompt
-from screen.warning import WarningScreen
+from tui.prompt import Prompt
+from tui.warning import WarningScreen
 
 
 def send_to_waiting_queue(clinic: ClinicController):

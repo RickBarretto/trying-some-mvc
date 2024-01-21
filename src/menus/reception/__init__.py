@@ -1,5 +1,5 @@
 from typing import Callable
-from screen.main_menu import Controller, MainMenu
+from tui.main_menu import Controller, MainMenu
 from entities import clinic
 
 from singletons.options import current_session_manager

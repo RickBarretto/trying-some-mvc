@@ -1,7 +1,7 @@
 
 from entities.clinic import ClinicController
-from screen.prompt import Prompt
-from screen.warning import WarningScreen
+from tui.prompt import Prompt
+from tui.warning import WarningScreen
 
 
 def book_schedule(clinic: ClinicController):

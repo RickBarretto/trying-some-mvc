@@ -1,5 +1,5 @@
-from screen._utils import render_rule, render_content, render_vertical_space
-from screen._screen import Screen
+from tui._utils import render_rule, render_content, render_vertical_space
+from tui._screen import Screen
 
 
 class ListScreen(Screen):

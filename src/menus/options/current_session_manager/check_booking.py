@@ -1,8 +1,8 @@
 from entities.clinic import ClinicController
 
-from screen.prompt import Prompt
-from screen.splash import SplashScreen
-from screen.warning import WarningScreen
+from tui.prompt import Prompt
+from tui.splash import SplashScreen
+from tui.warning import WarningScreen
 
 
 def check_current_booking(clinic: ClinicController):

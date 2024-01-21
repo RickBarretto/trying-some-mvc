@@ -2,7 +2,7 @@
 
 from entities.clinic import ClinicController
 from entities.session import SessionStatus
-from screen.warning import WarningScreen
+from tui.warning import WarningScreen
 
 
 def start_current_session(clinic: ClinicController):

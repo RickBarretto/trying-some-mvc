@@ -1,6 +1,6 @@
 import os
 
-from screen._utils import (
+from tui._utils import (
     clear_screen,
     render_content,
     render_rule,

@@ -1,5 +1,5 @@
 from entities.clinic import ClinicController
-from screen.list import ListScreen
+from tui.list import ListScreen
 
 
 def list_all(clinic: ClinicController):

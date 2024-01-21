@@ -1,7 +1,7 @@
 from typing import Callable, Protocol
 
-from screen.choice import ChoiceScreen
-from screen.warning import WarningScreen
+from tui.choice import ChoiceScreen
+from tui.warning import WarningScreen
 
 
 class Controller(Protocol):

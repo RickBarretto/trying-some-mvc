@@ -1,6 +1,6 @@
 import os
 
-import screen
+import tui
 from ._screen import Screen
 
 
@@ -43,7 +43,7 @@ class ChoiceScreen(Screen):
         raise IndexError()
 
     def warn_wrong_value(self):
-        screen.WarningScreen(
+        tui.WarningScreen(
             [
                 "Entrada inválida!",
                 "",

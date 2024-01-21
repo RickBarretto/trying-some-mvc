@@ -1,7 +1,7 @@
 from entities.clinic import ClinicController
-from screen.list import ListScreen
-from screen.prompt import Prompt
-from screen.warning import WarningScreen
+from tui.list import ListScreen
+from tui.prompt import Prompt
+from tui.warning import WarningScreen
 
 
 def list_bookings(clinic: ClinicController):

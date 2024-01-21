@@ -1,5 +1,5 @@
 from entities.clinic import ClinicController
-from screen import WarningScreen, SplashScreen
+from tui import WarningScreen, SplashScreen
 
 
 def show_next_patient(clinic: ClinicController):
