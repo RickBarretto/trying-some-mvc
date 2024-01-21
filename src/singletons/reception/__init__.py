@@ -6,6 +6,7 @@ from entities import clinic
 from .options import ReceptionOptions
 
 from singletons.options import current_session_manager
+from singletons.options import patient_manager
 
 __all__ = ["reception"]
 
@@ -21,10 +22,10 @@ reception = ReceptionMenu(
         (ReceptionOptions.list_sessions, "Listar sessões registradas."),
         (ReceptionOptions.find_session, "Procurar sessão por data."),
         (current_session_manager.start_current_session, "Iniciar sessão atual."),
-        (ReceptionOptions.register_patient, "Registrar novo paciente."),
-        (ReceptionOptions.book_schedule, "Agendar sessão para paciente."),
+        (patient_manager.register_patient, "Registrar novo paciente."),
+        (patient_manager.book_schedule, "Agendar sessão para paciente."),
         (
-            ReceptionOptions.list_patient_bookings,
+            patient_manager.list_patient_bookings,
             "Listar sessões agendadas para paciente.",
         ),
         (
