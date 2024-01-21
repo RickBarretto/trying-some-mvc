@@ -44,6 +44,12 @@ class CurrentSessionOptions:
     @staticmethod
     def show_next_patient(clinic: clinic.ClinicController):
 
+        # TODO: atualizar a forma que temos o paciente atual e o próximo
+        # Se temos apenas um paciente na fila, e nenhum em atendimento,
+        # quem seria o próximo?
+        #
+        # Portanto, adicionar ``current_patient``  em ``ClinicalModel``  
+
         # Verifica se há dois pacientes na fila de espera
         if len(patients_ids := clinic.model.waiting_queue) < 2:
             screen.WarningScreen("Não há paciente na fila de espera.").render()
