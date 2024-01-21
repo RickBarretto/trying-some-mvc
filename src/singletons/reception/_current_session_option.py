@@ -61,6 +61,20 @@ class CurrentSessionOptions:
 
     @staticmethod
     def show_next_patient(clinic: clinic.ClinicController):
+        """Mostra novo paciente
+        
+        Questions
+        ---------
+        * Nenhuma
+
+        Feedbacks
+        ---------
+        * Informações básicas do paciente
+
+        Error Reports
+        -------------
+        * Se não houver pacientes na fila
+        """
         waiting_queue = clinic.model.waiting_queue
 
         # Verifica se a fila de espera está vazia 
