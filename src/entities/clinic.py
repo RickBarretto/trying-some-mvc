@@ -13,11 +13,12 @@ class ClinicModel:
         self.last_patient_id = 0
 
     @property
-    def next_session_id(self):
+    @property
+    def new_session_id(self):
         return self.last_session_id + 1
 
     @property
-    def next_patient_id(self):
+    def new_patient_id(self):
         return self.last_patient_id + 1
 
 
@@ -63,7 +64,7 @@ class ClinicController:
             return None
 
         # Declaração de variáveis
-        new_id: int = self.model.next_session_id
+        new_id: int = self.model.new_session_id
         session: SessionModel = SessionModel(uid=new_id, date=date)
 
         # Registro da nova sessão
@@ -108,7 +109,7 @@ class ClinicController:
                 return None
 
         # Declaração de variáveis
-        new_id: int = self.model.next_patient_id
+        new_id: int = self.model.new_patient_id
         patient: PatientModel = PatientModel(
             uid=new_id, cpf=cpf, name=name, extra_info=extra_info
         )
