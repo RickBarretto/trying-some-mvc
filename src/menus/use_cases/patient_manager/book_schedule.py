@@ -68,5 +68,5 @@ def book_schedule(clinic: Clinic) -> bool:
     patient.scheduled_sessions.append(session.uid)
 
     # TODO: usar InfoScreen
-    WarningScreen("Paciente agendado com sucesso!").render()
+    WarningScreen(f"{patient.name} agendado para o dia {session.date}!").render()
     return status.Ok
