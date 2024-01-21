@@ -74,18 +74,40 @@ class PatientOptions:
 
     @staticmethod
     def list_patient_bookings(clinic: clinic.ClinicController):
+        """Lista os agendamentos de um paciente.
+        
+        Questions
+        ---------
+        * CPF do paciente
+
+        Feedbacks
+        ---------
+        * Lista de agendamentos
+        * Nenhum agendamento
+
+        Warnings
+        --------
+        * Formato de CPF inválido
+        * Paciente não registrado
+        """
+
+        # Valida entrada
         try:
             cpf = screen.Prompt.get_cpf()
-
-            if (patient := clinic.find_patient(cpf)) is None:
-                screen.WarningScreen("Paciente não registrado.").render()
-                return
-
-            if sessions := clinic.get_patient_bookings(patient):
-                screen.ListScreen("Sessões agendadas", sessions).render()
-            else:
-                screen.WarningScreen("Paciente não possui sessões agendadas.").render()
-
         except ValueError as e:
             screen.WarningScreen(e).render()
             return
+        
+        patient = clinic.find_patient(cpf)
+
+        # Verifica registro
+        if patient is None:
+            screen.WarningScreen("Paciente não registrado.").render()
+            return
+        
+        # Lista sessões agendadas
+        booked_sessions = clinic.get_patient_bookings(patient)
+        data = booked_sessions if booked_sessions else ["Nenhuma sessão agendada"]
+
+        screen.ListScreen("Sessões agendadas", data).render()
+
