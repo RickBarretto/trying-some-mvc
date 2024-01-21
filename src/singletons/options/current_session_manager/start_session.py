@@ -6,6 +6,17 @@ from screen.warning import WarningScreen
 
 
 def start_current_session(clinic: ClinicController):
+    """Inicia a sessão atual.
+
+    Feedbacks
+    ---------
+    * Sessão inicializada
+
+    Warnings
+    --------
+    * Sessão já inicializada
+    * Sessão já finalizada
+    """
 
     status = clinic.model.current_session.status
 
