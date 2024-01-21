@@ -22,7 +22,7 @@ options = [
     (session_manager.register, "Registrar nova sessão."),
     (session_manager.list_all, "Listar sessões registradas."),
     (session_manager.find, "Procurar sessão por data."),
-    (current_session_manager.start_current_session, "Iniciar sessão atual."),
+    (current_session_manager.start, "Iniciar sessão atual."),
     (patient_manager.register, "Registrar novo paciente."),
     (patient_manager.book_schedule, "Agendar sessão para paciente."),
     (patient_manager.list_bookings,"Listar sessões agendadas para paciente.",),

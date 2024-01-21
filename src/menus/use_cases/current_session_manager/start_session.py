@@ -5,7 +5,7 @@ from entities.session import SessionStatus
 from tui.warning import WarningScreen
 
 
-def start_current_session(clinic: Clinic):
+def start(clinic: Clinic):
     """Inicia a sessão atual.
 
     Feedbacks
