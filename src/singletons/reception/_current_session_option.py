@@ -1,4 +1,5 @@
 from entities import clinic
+from entities.session import SessionStatus
 import screen
 
 
@@ -29,17 +30,34 @@ class CurrentSessionOptions:
     @staticmethod
     def send_to_waiting_queue(clinic: clinic.ClinicController):
         
-        # Entrada do CPF
+        # Valida a entrada do CPF
         try:
             cpf = screen.Prompt.get_cpf()
         except ValueError as e:
             screen.WarningScreen(e).render()
+
+        # Verifica o status da sessão atual
+        if clinic.model.current_session.status == SessionStatus.UNBEGUN:
+            screen.WarningScreen("A sessão atual nunca foi inicializada.").render()
+            return
         
-        # Coloca paciente na fila
-        if status := clinic.push_to_queue(cpf):
-            screen.WarningScreen("Fila atualizada.").render()
-        else:
-            screen.WarningScreen("Não há paciente na fila de espera.").render()
+        if clinic.model.current_session.status == SessionStatus.UNBEGUN:
+            screen.WarningScreen("A sessão atual já foi finalizada.").render()
+            return
+
+        # Verifica se o paciente é registrado
+        if (patient := clinic.find_patient(cpf)) is None:
+            screen.WarningScreen("Paciente não registrado.").render()
+            return
+
+        # Verifica se o paciente já consta na fila de espera
+        if patient in clinic.model.waiting_queue:
+            screen.WarningScreen("Paciente já está na fila de espera.").render()
+            return
+
+        # Põe o paciente na fila de espera
+        clinic.push_to_waiting_queue(patient)
+        screen.WarningScreen("Paciente colocado na fila de espera com sucesso!").render()
 
     @staticmethod
     def show_next_patient(clinic: clinic.ClinicController):

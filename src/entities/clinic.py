@@ -159,14 +159,17 @@ class ClinicController:
 
         return self.view.display_sessions(sessions)
 
-    def push_to_queue(self, cpf: str) -> bool:
-        if not (patient := self.find_patient(cpf)):
-            return False
-
+    def push_to_waiting_queue(self, patient: PatientModel) -> None:
+        """Coloca paciente na fila de espera.
+        
+        Assertions
+        ----------
+        `patiend.uid` não pode já estar dentro de `model.waiting_queue`
+        """
+        assert patient.uid not in self.model.waiting_queue
         self.model.waiting_queue.append(patient.uid)
-        return True
 
-    def attend_next_patient(self) -> None:
+    def attend_next_patient(self) -> bool:
         """Atende o próximo paciente da fila de espera.
 
         Raises
