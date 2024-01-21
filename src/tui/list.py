@@ -3,7 +3,7 @@ from tui._screen import Screen
 
 
 class ListScreen(Screen):
-    def __init__(self, title: str, items: list[str]) -> None:
+    def __init__(self, title: str, items: list) -> None:
         self.title = title
         self.items = items
 
