@@ -64,10 +64,10 @@ def register(
     clinic.sessions.append(session)
     clinic.last_session_id = new_id
 
-    WarningScreen(f"Sessão registrada na data {session.formated_date}.").render()
+    WarningScreen(f"Sessão registrada na data {session.date}.").render()
 
     # Atualiza a sessão caso a função seja chamada por fora
     if should_update:
         current_session_manager.update(clinic, session)
 
-    return status.OK
+    return status.Ok

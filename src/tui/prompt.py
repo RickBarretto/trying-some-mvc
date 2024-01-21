@@ -5,7 +5,7 @@ class Prompt:
         return input(">>> ")
 
     @staticmethod
-    def get_date(custom_message: str = "Insira uma data.") -> int:
+    def get_date(custom_message: str = "Insira uma data.") -> str:
         date = Prompt.prompt(custom_message)
         date_slots = date.split("/")
 
@@ -18,9 +18,7 @@ class Prompt:
             if len(date_slots[i]) != length:
                 raise ValueError(*ERROR_MESSAGE)
 
-        date_parsed = int(date_slots[2] + date_slots[1] + date_slots[0])
-
-        return date_parsed
+        return date
 
     @staticmethod
     def get_cpf(custom_message: str = "Insira o CPF.") -> str:

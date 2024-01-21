@@ -20,7 +20,7 @@ class Clinic:
     def new_patient_id(self):
         return self.last_patient_id + 1
 
-    def session_by_date(self, date: int) -> Session | None:
+    def session_by_date(self, date: str) -> Session | None:
         """Retorna uma sessão existente na data ``date``.
 
         Retornará ``None`` caso a sessão não exista.

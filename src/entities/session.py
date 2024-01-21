@@ -16,19 +16,8 @@ class SessionStatus(enum.Enum):
 @dataclass
 class Session:
     uid: int
-    date: int   # TODO: usar string
+    date: str
     status: SessionStatus = SessionStatus.UNBEGUN
-
-    # TODO: remove this
-    @property
-    def formated_date(self) -> str:
-        date_str = str(self.date)
-
-        day = date_str[-2:]
-        month = date_str[-4:-2]
-        year = date_str[:-4]
-
-        return f"{day}/{month}/{year}"
 
     def __str__(self) -> str:
         return f"{self.date}: {self.status} (ID: {self.uid})"

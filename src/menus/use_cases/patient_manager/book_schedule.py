@@ -60,7 +60,7 @@ def book_schedule(clinic: Clinic) -> bool:
     if session.uid in patient.scheduled_sessions:
         WarningScreen(
             f"Paciente {patient.name} já está "
-            f"registrado para a sessão {session.formated_date}."
+            f"registrado para a sessão {session.date}."
         ).render()
         return status.Ok
 
