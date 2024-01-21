@@ -101,6 +101,15 @@ class ClinicController:
         self, cpf: str, name: str, extra_info: list[str]
     ) -> PatientModel:
         """Cria e registra novo paciente o retornando.
+
+        Arguments
+        ---------
+        cpf: str
+            CPF do paciente
+        name: str
+            Nome do paciente
+        extra_info: list[str]
+            Informações abirtrárias sobre o paciente
         
         Assertions
         ----------
