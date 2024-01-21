@@ -159,7 +159,7 @@ class ClinicController:
 
         return self.view.display_sessions(sessions)
 
-    def push_to_queue(self, cpf: str):
+    def push_to_queue(self, cpf: str) -> bool:
         if not (patient := self.find_patient(cpf)):
             return False
 
