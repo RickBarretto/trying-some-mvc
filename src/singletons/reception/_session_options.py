@@ -40,11 +40,17 @@ class SessionOptions:
 
     @staticmethod
     def list_sessions(clinic: clinic.ClinicController):
+        """Lista todas as sessões registradas na clínica.
+
+        Feedbacks
+        ---------
+        * Lista de sessões. (data, id e status)
+        * Se há ou não alguma registrada.
+        """
         sessions = clinic.get_sessions()
-        if not sessions:
-            screen.WarningScreen("Não há sessões registradas.").render()
-        else:
-            screen.ListScreen("Sessões registradas:", sessions).render()
+        
+        data = sessions if sessions else ["Não há sessões registradas."]
+        screen.ListScreen("Sessões registradas:", data).render()
 
     @staticmethod
     def find_session(clinic: clinic.ClinicController):
