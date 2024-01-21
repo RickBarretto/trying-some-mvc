@@ -54,15 +54,19 @@ class ClinicController:
 
         self.model.current_session = self.register_session(date)
 
-    def register_session(self, date: int) -> SessionModel | None:
-        """Adiciona nova sessão, retornando a sessão criada em caso de sucesso.
+    def register_session(self, date: int) -> SessionModel:
+        """Cria e registra nova sessão a retornando.
 
-        Se a sessão já existe, será retornado ``None``.
+        Arguments
+        ---------
+        date: str
+            Data da sessão
+
+        Assertions
+        ----------
+        * `session` não pode já estar registrado em `model.sessions`
         """
-
-        # Verifica se sessão já está registrado
-        if self.find_session(date):
-            return None
+        assert self.find_session(date) is None
 
         # Declaração de variáveis
         new_id: int = self.model.new_session_id
