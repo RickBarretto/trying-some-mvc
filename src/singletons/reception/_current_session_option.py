@@ -61,22 +61,16 @@ class CurrentSessionOptions:
 
     @staticmethod
     def show_next_patient(clinic: clinic.ClinicController):
+        waiting_queue = clinic.model.waiting_queue
 
-        # TODO: atualizar a forma que temos o paciente atual e o próximo
-        # Se temos apenas um paciente na fila, e nenhum em atendimento,
-        # quem seria o próximo?
-        #
-        # Portanto, adicionar ``current_patient``  em ``ClinicalModel``  
-
-        # Verifica se há dois pacientes na fila de espera
-        if len(patients_ids := clinic.model.waiting_queue) < 2:
-            screen.WarningScreen("Não há paciente na fila de espera.").render()
+        # Verifica se a fila de espera está vazia 
+        if not waiting_queue:
+            screen.WarningScreen("Não há pacientes na fila de espera.").render()
             return
-        
-        # Procura a instância do paciente
-        for patient in clinic.model.patients:
-            if patient.uid == patients_ids[1]:
-                break
+
+        # Pega a instância do próximo paciente
+        next_patient_id = waiting_queue[0]
+        patient = clinic.get_patient(next_patient_id)
 
         # Imprime informações do paciente
         content = ["Próximo paciente:", clinic.view.format_patient(patient)]
