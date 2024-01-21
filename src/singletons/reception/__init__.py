@@ -25,7 +25,7 @@ reception = ReceptionMenu(
         (patient_manager.register, "Registrar novo paciente."),
         (patient_manager.book_schedule, "Agendar sessão para paciente."),
         (
-            patient_manager.list_patient_bookings,
+            patient_manager.list_bookings,
             "Listar sessões agendadas para paciente.",
         ),
         (

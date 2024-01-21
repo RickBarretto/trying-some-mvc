@@ -4,7 +4,7 @@ from screen.prompt import Prompt
 from screen.warning import WarningScreen
 
 
-def list_patient_bookings(clinic: ClinicController):
+def list_bookings(clinic: ClinicController):
     """Lista os agendamentos de um paciente.
 
     Questions
