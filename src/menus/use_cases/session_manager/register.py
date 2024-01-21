@@ -1,6 +1,6 @@
 from entities.clinic import Clinic
 from entities.session import Session
-from menus.options import current_session_manager
+from menus.use_cases import current_session_manager
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 

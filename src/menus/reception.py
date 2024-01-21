@@ -12,9 +12,9 @@ podendo assim ser usado por outros módulos.
 from menus.interface import MainMenu
 from entities.clinic import Clinic
 
-from .options import current_session_manager
-from .options import patient_manager
-from .options import session_manager
+from .use_cases import current_session_manager
+from .use_cases import patient_manager
+from .use_cases import session_manager
 
 # Todas as opções disponíveis para a recepção
 
