@@ -53,5 +53,5 @@ def list_bookings(clinic: Clinic):
 
     data = sessions if sessions else ["Nenhuma sessão agendada"]
 
-    ListScreen("Sessões agendadas", data).render()
+    ListScreen(f"Sessões agendadas de {patient.name}:", data).render()
     return status.Ok
