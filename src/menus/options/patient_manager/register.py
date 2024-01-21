@@ -1,4 +1,5 @@
 from entities.clinic import ClinicController
+from entities.patient import PatientModel
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
@@ -38,6 +39,17 @@ def register(clinic: ClinicController):
         WarningScreen("Paciente já foi registrado.").render()
         return
 
-    # Registra paciente
-    patient = clinic.register_patient(cpf, name, extra)
+    # Criação do paciente
+    new_id: int = clinic.model.new_patient_id
+    patient: PatientModel = PatientModel(
+        uid=new_id, 
+        cpf=cpf, 
+        name=name, 
+        extra_info=extra
+    )
+
+    # Registro do paciente
+    clinic.model.patients.append(patient)
+    clinic.model.last_patient_id_id = new_id
+
     WarningScreen(f"{patient.name} registrado com sucesso!").render()

@@ -100,38 +100,6 @@ class ClinicController:
         self.model.current_session.status = SessionStatus.BEGUN
         return True
 
-    def register_patient(
-        self, cpf: str, name: str, extra_info: list[str]
-    ) -> PatientModel:
-        """Cria e registra novo paciente o retornando.
-
-        Arguments
-        ---------
-        cpf: str
-            CPF do paciente
-        name: str
-            Nome do paciente
-        extra_info: list[str]
-            Informações abirtrárias sobre o paciente
-
-        Assertions
-        ----------
-        * `patient` não pode já estar registrado em `model.patients`
-        """
-        assert self.patient_by_cpf(cpf) is None
-
-        # Criação do novo paciente
-        new_id: int = self.model.new_patient_id
-        patient: PatientModel = PatientModel(
-            uid=new_id, cpf=cpf, name=name, extra_info=extra_info
-        )
-
-        # Registro do novo paciente
-        self.model.patients.append(patient)
-        self.model.last_patient_id = new_id
-
-        return patient
-
     def patient_by_cpf(self, cpf: str) -> PatientModel | None:
         """Procura paciente pelo ``cpf``.
 
