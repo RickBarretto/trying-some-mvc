@@ -14,9 +14,12 @@ class CurrentSessionOptions:
 
         # Verifica se paciente existe no banco de dados
         if (patient := clinic.find_patient(cpf)) is None:
-            screen.WarningScreen("Paciente não registrado.").render()
+            return screen.WarningScreen("Paciente não registrado.").render()
 
-        if clinic.get_patient_bookings(patient):
+        # Verifica se paciente está marcado para a sessão atual
+        bookings = clinic.get_patient_bookings(patient)
+        
+        if bookings:
             screen.SplashScreen("Paciente está marcado para a sessão atual.").render()
         else:
             screen.SplashScreen(
