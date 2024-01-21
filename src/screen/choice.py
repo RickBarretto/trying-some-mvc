@@ -32,10 +32,10 @@ class ChoiceScreen(Screen):
     def get_value(self) -> int:
         """captura o valor escolhido pelo usuário
 
-        Raises:
-            Pode emitir `ValueError` em caso de entrada inválida para a conversão
-            de inteiro, assim como `IndexError` para uma escolha fora da amplitude
-            apresentada ao usuário.
+        Raises
+        ------
+            ``ValueError`` em caso de entrada inválida para a conversão de inteiro.
+            ``IndexError`` para uma escolha fora da amplitude apresentada ao usuário.
         """
         if self.start <= (inp := int(input(">>> "))) <= self.stop:
             return inp
