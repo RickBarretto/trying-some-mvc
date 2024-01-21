@@ -72,16 +72,6 @@ class ClinicController:
             (patient for patient in self.model.patiens if patient.uid == uid), None
         )
 
-    def push_to_waiting_queue(self, patient: PatientModel) -> None:
-        """Coloca paciente na fila de espera.
-
-        Assertions
-        ----------
-        `patiend.uid` não pode já estar dentro de `model.waiting_queue`
-        """
-        assert patient.uid not in self.model.waiting_queue
-        self.model.waiting_queue.append(patient.uid)
-
     def attend_next_patient(self) -> bool:
         """Atende o próximo paciente da fila de espera.
 

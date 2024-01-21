@@ -58,5 +58,5 @@ def send_to_waiting_queue(clinic: ClinicController):
         return
 
     # Põe o paciente na fila de espera
-    clinic.push_to_waiting_queue(patient)
+    clinic.model.waiting_queue.append(patient.uid)
     WarningScreen(f"Paciente colocado na fila de espera na posição {len(waiting_queue)}!").render()
