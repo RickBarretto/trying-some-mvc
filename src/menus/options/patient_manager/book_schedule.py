@@ -1,10 +1,10 @@
 
-from entities.clinic import ClinicController
+from entities.clinic import ClinicModel
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
 
-def book_schedule(clinic: ClinicController):
+def book_schedule(clinic: ClinicModel):
     """Agenda uma sessão para um paciente.
 
     Questions

@@ -1,10 +1,10 @@
-from entities.clinic import ClinicController
+from entities.clinic import ClinicModel
 from tui.list import ListScreen
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
 
-def list_bookings(clinic: ClinicController):
+def list_bookings(clinic: ClinicModel):
     """Lista os agendamentos de um paciente.
 
     Questions

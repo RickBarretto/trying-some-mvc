@@ -1,11 +1,11 @@
-from entities.clinic import ClinicController
+from entities.clinic import ClinicModel
 
 from tui.prompt import Prompt
 from tui.splash import SplashScreen
 from tui.warning import WarningScreen
 
 
-def check_current_booking(clinic: ClinicController):
+def check_current_booking(clinic: ClinicModel):
     """Verifica se paciente está agendado para a sessão atual.
 
     Questions
@@ -40,4 +40,4 @@ def check_current_booking(clinic: ClinicController):
     TEMPLATE_MESSAGE = "Paciente {} está marcado para a sessão atual."
     message = TEMPLATE_MESSAGE.format("" if is_booked else "não")
 
-    SplashScreen(message).render()
+    SplashScreen([message]).render()

@@ -1,8 +1,8 @@
-from entities.clinic import ClinicController
+from entities.clinic import ClinicModel
 from tui import WarningScreen, SplashScreen
 
 
-def show_next_patient(clinic: ClinicController):
+def show_next_patient(clinic: ClinicModel):
     """Mostra novo paciente
 
     Questions

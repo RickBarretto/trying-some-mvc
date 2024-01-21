@@ -1,10 +1,10 @@
-from entities.clinic import ClinicController
+from entities.clinic import ClinicModel
 from entities.patient import PatientModel
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
 
-def register(clinic: ClinicController):
+def register(clinic: ClinicModel):
     """Registra paciente no banco de dados.
 
     Questions

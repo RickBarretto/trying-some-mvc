@@ -1,11 +1,20 @@
-from entities.clinic import ClinicController
+from entities.clinic import ClinicModel
 from entities.session import SessionModel
+from menus.options import current_session_manager
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
 
-def register(clinic: ClinicController):
+def register(clinic: ClinicModel, dry_run: bool = False, should_update: bool = False) -> bool | None:
     """Registra uma nova sessão no banco de dados.
+
+    Arguments
+    ---------
+    dry_run: bool = False
+        Não emite mensagem de erro em caso de sessão já existente.
+
+    should_update: bool = False
+        Define se a função deve atualizar a sessão atual.
 
     Questions
     ---------
@@ -30,6 +39,11 @@ def register(clinic: ClinicController):
     
     # Verifica registro
     session = clinic.session_by_date(date)
+
+    if session and dry_run:
+        WarningScreen("Entrando na sessão novamente.").render()
+        return True
+
     if session:
         WarningScreen("Sessão já foi registrada.").render()
         return
@@ -42,6 +56,10 @@ def register(clinic: ClinicController):
     clinic.sessions.append(session)
     clinic.last_session_id = new_id
 
-    # Registra sessão
-    session = clinic.register_session(date)
     WarningScreen(f"Sessão registrada na data {session.formated_date}.").render()
+
+    # Atualiza a sessão caso a função seja chamada por fora
+    if should_update:
+        current_session_manager.update(clinic, session)
+
+    return True

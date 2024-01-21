@@ -1,11 +1,11 @@
 
 
-from entities.clinic import ClinicController
+from entities.clinic import ClinicModel
 from entities.session import SessionStatus
 from tui.warning import WarningScreen
 
 
-def start_current_session(clinic: ClinicController):
+def start_current_session(clinic: ClinicModel):
     """Inicia a sessão atual.
 
     Feedbacks

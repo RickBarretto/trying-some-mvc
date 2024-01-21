@@ -42,7 +42,7 @@ class ClinicModel:
         Se não encontrado, retorna ``None``.
         """
         return next(
-            (patient for patient in self.patiens if patient.cpf == cpf), None
+            (patient for patient in self.patients if patient.cpf == cpf), None
         )
 
     def patient_by_id(self, uid: int) -> PatientModel | None:
@@ -51,7 +51,7 @@ class ClinicModel:
         Se não encontrado, retorna ``None``.
         """
         return next(
-            (patient for patient in self.patiens if patient.uid == uid), None
+            (patient for patient in self.patients if patient.uid == uid), None
         )
 
 

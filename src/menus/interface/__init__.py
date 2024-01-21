@@ -10,9 +10,9 @@ class Model(Protocol):
 
 class MainMenu:
     def __init__(
-        self, controller: Model, options: list[tuple[Callable, str]]
+        self, model: Model, options: list[tuple[Callable, str]]
     ) -> None:
-        self.controller = controller
+        self.model = model
         self._options: list[tuple[Callable, str]] = options
 
         self._descriptions = options = [desc for func, desc in self._options]
@@ -39,9 +39,9 @@ class MainMenu:
                 break
 
             func, desc = self._options[user_choice - 1]
-            func(self.controller)
+            func(self.model)
 
             # try:
-            #     func(self.controller)
+            #     func(self.model)
             # except:
             #     WarningScreen("Função não implementada").render()
