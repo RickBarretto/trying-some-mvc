@@ -1,4 +1,5 @@
 from entities.clinic import ClinicController
+from entities.session import SessionModel
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
@@ -32,6 +33,14 @@ def register(clinic: ClinicController):
     if session:
         WarningScreen("Sessão já foi registrada.").render()
         return
+    
+    # Criação da sessão
+    new_id: int = clinic.model.new_session_id
+    session: SessionModel = SessionModel(uid=new_id, date=date)
+
+    # Registro da nova sessão
+    clinic.model.sessions.append(session)
+    clinic.model.last_session_id = new_id
 
     # Registra sessão
     session = clinic.register_session(date)

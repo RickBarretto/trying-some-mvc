@@ -54,30 +54,6 @@ class ClinicController:
 
         self.model.current_session = self.register_session(date)
 
-    def register_session(self, date: int) -> SessionModel:
-        """Cria e registra nova sessão a retornando.
-
-        Arguments
-        ---------
-        date: str
-            Data da sessão
-
-        Assertions
-        ----------
-        * `session` não pode já estar registrado em `model.sessions`
-        """
-        assert self.find_session(date) is None
-
-        # Declaração de variáveis
-        new_id: int = self.model.new_session_id
-        session: SessionModel = SessionModel(uid=new_id, date=date)
-
-        # Registro da nova sessão
-        self.model.sessions.append(session)
-        self.model.last_session_id = new_id
-
-        return session
-
     def get_sessions(self) -> list[str]:
         """Retorna uma lista com dados formatados das sessões disponíveis"""
         sessions = self.model.sessions
