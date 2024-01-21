@@ -24,15 +24,6 @@ class ClinicModel:
 
 
 class ClinicView:
-    def display_sessions(self, sessions: list[SessionModel]) -> list[str]:
-        return [self.format_session(session) for session in sessions]
-
-    def format_session(self, session: SessionModel) -> str:
-        uid = session.uid
-        date = session.formated_date
-        status = session.status
-
-        return f"{date}: {status} (ID: {uid})"
 
     def format_patient(self, patient: PatientModel) -> str:
         uid = patient.uid

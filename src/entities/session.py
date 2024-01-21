@@ -28,3 +28,6 @@ class SessionModel:
         year = date_str[:-4]
 
         return f"{day}/{month}/{year}"
+
+    def __str__(self) -> str:
+        return f"{self.date}: {self.status} (ID: {self.uid})"
