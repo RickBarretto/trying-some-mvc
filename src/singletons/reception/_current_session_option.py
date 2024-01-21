@@ -1,5 +1,4 @@
 from entities import clinic
-from entities.session import SessionStatus
 import screen
 
 
