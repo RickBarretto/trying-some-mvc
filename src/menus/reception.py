@@ -8,12 +8,7 @@ from .options import session_manager
 
 __all__ = ["reception"]
 
-
-class ReceptionMenu(MainMenu):
-    pass
-
-
-reception = ReceptionMenu(
+reception = MainMenu(
     clinic.ClinicController(clinic.ClinicModel(), clinic.ClinicView()),
     [
         (session_manager.register, "Registrar nova sessão."),
