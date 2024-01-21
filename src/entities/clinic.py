@@ -100,21 +100,21 @@ class ClinicController:
     def register_patient(
         self, cpf: str, name: str, extra_info: list[str]
     ) -> PatientModel:
-        """Adiciona nova paciente, retornando o paciente criado.
-
-        Se o paciente já existe, será retornado ``None``.
+        """Cria e registra novo paciente o retornando.
+        
+        Assertions
+        ----------
+        * `patient` não pode já estar registrado em `model.patients`
         """
-        # Verifica se paciente já está registrado
-        if (patient := self.find_patient(cpf)) is None:
-            return None
+        assert self.find_patient(cpf) is None
 
-        # Declaração de variáveis
+        # Criação do novo paciente
         new_id: int = self.model.new_patient_id
         patient: PatientModel = PatientModel(
             uid=new_id, cpf=cpf, name=name, extra_info=extra_info
         )
 
-        # Registro da nova sessão
+        # Registro do novo paciente
         self.model.patients.append(patient)
         self.model.last_patient_id = new_id
 
