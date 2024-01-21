@@ -31,6 +31,6 @@ def find(clinic: ClinicController):
     session = clinic.find_session(date)
 
     if session:
-        WarningScreen(["Sessão encontrada.", session.formated_date, str(session.status)]).render()
+        WarningScreen(["Sessão encontrada.", str(session)]).render()
     else:
         WarningScreen("Sessão não encontrada.").render()
