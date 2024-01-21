@@ -172,7 +172,6 @@ class ClinicController:
         Raises
         ------
         ``IndexError`` quando não tiver mais pacientes na fila de espera.
-        ``ValueError`` quando o paciente não estiver registrado.
         """
         patient_id = self.model.waiting_queue.pop(0)
         self.current_patient = self.get_patient(patient_id)
