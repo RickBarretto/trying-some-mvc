@@ -39,13 +39,13 @@ class ClinicController:
         self.view = view
 
     def update_current_session(self, date: int):
-        if session := self.find_session(date):
+        if session := self.session_by_date(date):
             self.model.current_session = session
             return
 
         self.model.current_session = self.register_session(date)
 
-    def find_session(self, date: int) -> SessionModel | None:
+    def session_by_date(self, date: int) -> SessionModel | None:
         """Retorna uma sessão existente na data ``date``.
 
         Retornará ``None`` caso a sessão não exista.

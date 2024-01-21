@@ -35,7 +35,7 @@ def book_schedule(clinic: ClinicController):
         return
 
     patient = clinic.patient_by_cpf(patient_cpf)
-    session = clinic.find_session(session_date)
+    session = clinic.session_by_date(session_date)
 
     # Valida registros
     if not patient:

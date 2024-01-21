@@ -28,7 +28,7 @@ def find(clinic: ClinicController):
         return
     
     # Valida entrada
-    session = clinic.find_session(date)
+    session = clinic.session_by_date(date)
 
     if session:
         WarningScreen(["Sessão encontrada.", str(session)]).render()

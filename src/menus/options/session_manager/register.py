@@ -29,7 +29,7 @@ def register(clinic: ClinicController):
         return
     
     # Verifica registro
-    session = clinic.find_session(date)
+    session = clinic.session_by_date(date)
     if session:
         WarningScreen("Sessão já foi registrada.").render()
         return
