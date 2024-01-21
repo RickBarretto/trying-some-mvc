@@ -3,7 +3,7 @@ from screen.prompt import Prompt
 from screen.warning import WarningScreen
 
 
-def register_session(clinic: ClinicController):
+def register(clinic: ClinicController):
     """Registra uma nova sessão no banco de dados.
 
     Questions
