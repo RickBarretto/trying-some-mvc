@@ -55,5 +55,5 @@ def book_schedule(clinic: ClinicController):
         return
 
     # Agenda sessão para paciente
-    clinic.book_schedule(patient, session)
+    patient.scheduled_sessions.append(session.uid)
     WarningScreen("Paciente agendado com sucesso!").render()

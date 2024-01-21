@@ -94,21 +94,6 @@ class ClinicController:
             (patient for patient in self.model.patiens if patient.uid == uid), None
         )
 
-    def book_schedule(self, patient: PatientModel, session: SessionModel) -> None:
-        """Agenda paciente para uma sessão.
-
-        Assertions
-        ----------
-        * `patient` deve estar registrado
-        * `session` deve estar registrada
-        * `session.uid` não pode estar agendada em `patient.scheduled_sessions`
-        """
-        assert patient in self.model.patients
-        assert session in self.model.sessions
-        assert session.uid not in patient.scheduled_sessions
-
-        patient.scheduled_sessions.append(session.uid)
-
     def get_patient_bookings(self, patient: PatientModel) -> list[str]:
         """Retorna uma lista com os agendamentos feito pelo paciente."""
         sessions_ids = patient.scheduled_sessions
