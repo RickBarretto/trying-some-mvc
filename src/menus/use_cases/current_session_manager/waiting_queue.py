@@ -74,7 +74,7 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
 
     # TODO: Usar InfoScreen
     WarningScreen(
-        f"Paciente colocado na fila de espera na posição {len(waiting_queue)}!"
+        f"{patient.name} colocado na fila de espera na posição {len(waiting_queue)}!"
     ).render()
 
     return status.Ok
