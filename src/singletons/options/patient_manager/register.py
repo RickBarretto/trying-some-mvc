@@ -3,7 +3,7 @@ from screen.prompt import Prompt
 from screen.warning import WarningScreen
 
 
-def register_patient(clinic: ClinicController):
+def register(clinic: ClinicController):
     """Registra paciente no banco de dados.
 
     Questions
