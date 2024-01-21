@@ -1,4 +1,4 @@
-from .session import SessionModel, SessionStatus
+from .session import SessionModel
 from .patient import PatientModel
 
 
@@ -21,16 +21,6 @@ class ClinicModel:
     @property
     def new_patient_id(self):
         return self.last_patient_id + 1
-
-
-class ClinicView:
-    pass
-
-
-class ClinicController:
-    def __init__(self, model: ClinicModel, view: ClinicView) -> None:
-        self.model = model
-        self.view = view
 
     def update_current_session(self, date: int):
         if session := self.session_by_date(date):
