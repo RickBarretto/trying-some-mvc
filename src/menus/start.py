@@ -1,6 +1,6 @@
-from singletons.reception import reception
 import tui
 
+from .reception import reception
 
 __all__ = ["reception"]
 
