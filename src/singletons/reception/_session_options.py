@@ -36,10 +36,3 @@ class SessionOptions:
             screen.WarningScreen("Sessão encontrada.").render()
         else:
             screen.WarningScreen("Sessão não encontrada.").render()
-
-    @staticmethod
-    def start_session(clinic: clinic.ClinicController):
-        if clinic.start_session():
-            screen.WarningScreen("Sessão iniciada!").render()
-        else:
-            screen.WarningScreen("Sessão já foi iniciada ou finalizada.").render()

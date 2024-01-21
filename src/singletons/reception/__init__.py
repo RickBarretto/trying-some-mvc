@@ -20,7 +20,7 @@ reception = ReceptionMenu(
         (ReceptionOptions.add_session, "Registrar nova sessão."),
         (ReceptionOptions.list_sessions, "Listar sessões registradas."),
         (ReceptionOptions.find_session, "Procurar sessão por data."),
-        (ReceptionOptions.start_session, "Iniciar sessão atual."),
+        (current_session_manager.start_current_session, "Iniciar sessão atual."),
         (ReceptionOptions.register_patient, "Registrar novo paciente."),
         (ReceptionOptions.book_schedule, "Agendar sessão para paciente."),
         (
