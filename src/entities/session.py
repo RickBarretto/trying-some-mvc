@@ -16,9 +16,10 @@ class SessionStatus(enum.Enum):
 @dataclass
 class Session:
     uid: int
-    date: int
+    date: int   # TODO: usar string
     status: SessionStatus = SessionStatus.UNBEGUN
 
+    # TODO: remove this
     @property
     def formated_date(self) -> str:
         date_str = str(self.date)

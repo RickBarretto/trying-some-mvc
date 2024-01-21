@@ -37,6 +37,7 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
     # Verifica status da sessão
     current_session_status = clinic.current_session.status
 
+    # TODO: perguntar se deseja iniciar
     if current_session_status == SessionStatus.UNBEGUN:
         WarningScreen("A sessão nunca foi inicializada.").render()
         return status.Ok
@@ -54,6 +55,8 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
 
     # Verifica se o paciente é registrado
     patient = clinic.patient_by_cpf(cpf)
+
+    # TODO: perguntar se deseja registrar
     if not patient:
         WarningScreen("Paciente não registrado.").render()
         return status.Ok
@@ -68,6 +71,8 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
     clinic.waiting_queue.append(patient.uid)
 
     # Feedback
+
+    # TODO: Usar InfoScreen
     WarningScreen(
         f"Paciente colocado na fila de espera na posição {len(waiting_queue)}!"
     ).render()

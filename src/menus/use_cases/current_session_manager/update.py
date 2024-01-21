@@ -26,5 +26,7 @@ def update(clinic: Clinic, session: Session) -> bool:
 
     # Atualiza a sessão atual
     clinic.current_session = session
+
+    # TODO: Usar InfoScreen
     WarningScreen(f"Sessão atual atualizada para o dia {session.date}!").render()
     return status.Ok

@@ -45,10 +45,13 @@ def book_schedule(clinic: Clinic) -> bool:
     session = clinic.session_by_date(session_date)
 
     # Valida registros
+
+    # TODO: perguntar se deseja registar
     if not patient:
         WarningScreen("Paciente não registrado.").render()
         return status.Ok
 
+    # TODO: perguntar se deseja registar
     if not session:
         WarningScreen("Sessão não registrada.").render()
         return status.Ok
@@ -63,5 +66,7 @@ def book_schedule(clinic: Clinic) -> bool:
 
     # Agenda sessão para paciente
     patient.scheduled_sessions.append(session.uid)
+
+    # TODO: usar InfoScreen
     WarningScreen("Paciente agendado com sucesso!").render()
     return status.Ok

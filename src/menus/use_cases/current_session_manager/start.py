@@ -37,5 +37,7 @@ def start(clinic: Clinic) -> bool:
 
     # Ativa a sessão atual
     clinic.current_session.status = SessionStatus.BEGUN
+
+    # TODO: Usar InfoScreen
     WarningScreen("Sessão iniciada!").render()
     return status.Ok

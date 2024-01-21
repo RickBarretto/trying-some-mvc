@@ -28,6 +28,8 @@ def show_next_patient(clinic: Clinic) -> bool:
     waiting_queue = clinic.waiting_queue
 
     # Verifica se a fila de espera está vazia
+
+    # TODO: perguntar se deseja adicionar
     if not waiting_queue:
         WarningScreen("Não há pacientes na fila de espera.").render()
         return status.Ok

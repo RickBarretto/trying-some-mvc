@@ -39,6 +39,8 @@ def check_current_booking(clinic: Clinic) -> bool:
     patient = clinic.patient_by_cpf(cpf)
 
     # Verifica se paciente existe no banco de dados
+
+    # TODO: registrar paciente caso necessário
     if not patient:
         WarningScreen("Paciente não registrado.").render()
         return status.Ok
@@ -47,6 +49,8 @@ def check_current_booking(clinic: Clinic) -> bool:
     is_booked = clinic.current_session.uid in patient.scheduled_sessions
 
     # Imprime o feedback
+    
+    # TODO: adicionar o nome do paciente no feedback
     TEMPLATE_MESSAGE = "Paciente{}está marcado para a sessão atual."
     message = TEMPLATE_MESSAGE.format(" " if is_booked else " não ")
 

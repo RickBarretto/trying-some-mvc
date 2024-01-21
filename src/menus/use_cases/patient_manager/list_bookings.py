@@ -40,6 +40,8 @@ def list_bookings(clinic: Clinic):
     patient = clinic.patient_by_cpf(cpf)
 
     # Verifica registro
+
+    # TODO: perguntar se deseja registrar
     if patient is None:
         WarningScreen("Paciente não registrado.").render()
         return status.Ok

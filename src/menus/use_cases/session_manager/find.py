@@ -41,6 +41,7 @@ def find(clinic: Clinic):
     if session:
         WarningScreen(["Sessão encontrada.", str(session)]).render()
     else:
+        # TODO: pergunta se deseja registrar
         WarningScreen("Sessão não encontrada.").render()
 
     return status.Ok
