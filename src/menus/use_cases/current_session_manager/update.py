@@ -1,5 +1,3 @@
-
-
 from entities.clinic import Clinic
 from entities.session import Session, SessionStatus
 from tui.warning import WarningScreen
@@ -10,7 +8,7 @@ def update(clinic: Clinic, session: Session):
 
     Note
     ----
-    Essa função em específica deve ser chamada pelo sistema em certas circunstâncias, 
+    Essa função em específica deve ser chamada pelo sistema em certas circunstâncias,
     e nunca pelo usuário.
 
     Feedbacks

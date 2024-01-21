@@ -26,7 +26,7 @@ def find(clinic: Clinic):
     except ValueError as e:
         WarningScreen(e).render()
         return
-    
+
     # Valida entrada
     session = clinic.session_by_date(date)
 

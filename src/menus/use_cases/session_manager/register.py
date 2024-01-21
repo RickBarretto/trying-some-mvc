@@ -5,7 +5,9 @@ from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
 
-def register(clinic: Clinic, dry_run: bool = False, should_update: bool = False) -> bool | None:
+def register(
+    clinic: Clinic, dry_run: bool = False, should_update: bool = False
+) -> bool | None:
     """Registra uma nova sessão no banco de dados.
 
     Arguments
@@ -36,7 +38,7 @@ def register(clinic: Clinic, dry_run: bool = False, should_update: bool = False)
     except ValueError as e:
         WarningScreen(e).render()
         return
-    
+
     # Verifica registro
     session = clinic.session_by_date(date)
 
@@ -47,7 +49,7 @@ def register(clinic: Clinic, dry_run: bool = False, should_update: bool = False)
     if session:
         WarningScreen("Sessão já foi registrada.").render()
         return
-    
+
     # Criação da sessão
     new_id: int = clinic.new_session_id()
     session: Session = Session(uid=new_id, date=date)

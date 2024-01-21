@@ -39,9 +39,7 @@ def list_bookings(clinic: Clinic):
     # Lista sessões agendadas
 
     sessions_ids = patient.scheduled_sessions
-    sessions = [
-        session for session in clinic.sessions if session.uid in sessions_ids
-    ]
+    sessions = [session for session in clinic.sessions if session.uid in sessions_ids]
 
     data = sessions if sessions else ["Nenhuma sessão agendada"]
 

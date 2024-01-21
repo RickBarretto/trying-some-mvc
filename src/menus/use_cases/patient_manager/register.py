@@ -41,12 +41,7 @@ def register(clinic: Clinic):
 
     # Criação do paciente
     new_id: int = clinic.new_patient_id()
-    patient: Patient = Patient(
-        uid=new_id, 
-        cpf=cpf, 
-        name=name, 
-        extra_info=extra
-    )
+    patient: Patient = Patient(uid=new_id, cpf=cpf, name=name, extra_info=extra)
 
     # Registro do paciente
     clinic.patients.append(patient)

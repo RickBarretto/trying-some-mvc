@@ -9,9 +9,7 @@ class Model(Protocol):
 
 
 class MainMenu:
-    def __init__(
-        self, model: Model, options: list[tuple[Callable, str]]
-    ) -> None:
+    def __init__(self, model: Model, options: list[tuple[Callable, str]]) -> None:
         self.model = model
         self._options: list[tuple[Callable, str]] = options
 

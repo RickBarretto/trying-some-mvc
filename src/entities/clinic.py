@@ -34,18 +34,14 @@ class Clinic:
 
         Se não encontrado, retorna ``None``.
         """
-        return next(
-            (patient for patient in self.patients if patient.cpf == cpf), None
-        )
+        return next((patient for patient in self.patients if patient.cpf == cpf), None)
 
     def patient_by_id(self, uid: int) -> Patient | None:
         """Procura paciente pelo ``uid``.
 
         Se não encontrado, retorna ``None``.
         """
-        return next(
-            (patient for patient in self.patients if patient.uid == uid), None
-        )
+        return next((patient for patient in self.patients if patient.uid == uid), None)
 
 
 # I'm here as a reference
@@ -53,12 +49,12 @@ class Clinic:
 #
 # def attend_next_patient(self) -> bool:
 #     """Atende o próximo paciente da fila de espera.
-# 
+#
 #     Assertions
 #     ----------
 #     `waiting_queue` não pode estar vazia
 #     """
 #     assert self.waiting_queue
-# 
+#
 #     patient_id = self.waiting_queue.pop(0)
 #     self.current_patient = self.patient_by_id(patient_id)

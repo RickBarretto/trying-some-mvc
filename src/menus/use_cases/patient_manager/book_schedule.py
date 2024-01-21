@@ -1,4 +1,3 @@
-
 from entities.clinic import Clinic
 from tui.prompt import Prompt
 from tui.warning import WarningScreen

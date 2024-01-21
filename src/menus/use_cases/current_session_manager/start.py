@@ -1,5 +1,3 @@
-
-
 from entities.clinic import Clinic
 from entities.session import SessionStatus
 from tui.warning import WarningScreen
@@ -24,7 +22,7 @@ def start(clinic: Clinic):
     if status == SessionStatus.BEGUN:
         WarningScreen("Sessão já foi iniciada.").render()
         return
-    
+
     if status == SessionStatus.FINISHED:
         WarningScreen("Sessão já foi finalizada.").render()
         return

@@ -7,16 +7,19 @@ from .reception import reception
 
 __all__ = ["reception"]
 
+
 class SomeModel:
     pass
 
+
 def start_reception(model: SomeModel):
-    while session_manager.register(reception.model, dry_run=True, should_update=True) is None:
+    while (
+        session_manager.register(reception.model, dry_run=True, should_update=True)
+        is None
+    ):
         pass
 
     reception.run()
 
 
-startup = MainMenu(
-    SomeModel(), [(start_reception, "Iniciar como recepção.")]
-)
+startup = MainMenu(SomeModel(), [(start_reception, "Iniciar como recepção.")])

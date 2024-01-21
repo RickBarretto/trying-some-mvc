@@ -32,7 +32,7 @@ def send_to_waiting_queue(clinic: Clinic):
     if current_session_status == SessionStatus.UNBEGUN:
         WarningScreen("A sessão nunca foi inicializada.").render()
         return
-    
+
     if current_session_status == SessionStatus.FINISHED:
         WarningScreen("A sessão ja foi finalizada.").render()
         return
@@ -43,13 +43,11 @@ def send_to_waiting_queue(clinic: Clinic):
     except ValueError as e:
         WarningScreen(e).render()
 
-
     # Verifica se o paciente é registrado
-    patient = clinic.patient_by_cpf(cpf) 
+    patient = clinic.patient_by_cpf(cpf)
     if not patient:
         WarningScreen("Paciente não registrado.").render()
         return
-
 
     # Verifica se o paciente já consta na fila de espera
     waiting_queue = clinic.waiting_queue
@@ -59,4 +57,6 @@ def send_to_waiting_queue(clinic: Clinic):
 
     # Põe o paciente na fila de espera
     clinic.waiting_queue.append(patient.uid)
-    WarningScreen(f"Paciente colocado na fila de espera na posição {len(waiting_queue)}!").render()
+    WarningScreen(
+        f"Paciente colocado na fila de espera na posição {len(waiting_queue)}!"
+    ).render()

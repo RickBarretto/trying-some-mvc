@@ -25,9 +25,18 @@ options = [
     (current_session_manager.start, "Iniciar sessão atual."),
     (patient_manager.register, "Registrar novo paciente."),
     (patient_manager.book_schedule, "Agendar sessão para paciente."),
-    (patient_manager.list_bookings,"Listar sessões agendadas para paciente.",),
-    (current_session_manager.check_current_booking, "Verificar agendamento para sessão atual.",),
-    (current_session_manager.send_to_waiting_queue,"Enviar paciente para fila de espera.",),
+    (
+        patient_manager.list_bookings,
+        "Listar sessões agendadas para paciente.",
+    ),
+    (
+        current_session_manager.check_current_booking,
+        "Verificar agendamento para sessão atual.",
+    ),
+    (
+        current_session_manager.send_to_waiting_queue,
+        "Enviar paciente para fila de espera.",
+    ),
     (current_session_manager.show_next_patient, "Mostrar próximo paciente."),
 ]
 
