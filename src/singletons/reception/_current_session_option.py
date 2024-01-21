@@ -6,6 +6,20 @@ import screen
 class CurrentSessionOptions:
     @staticmethod
     def check_current_booking(clinic: clinic.ClinicController):
+        """Verifica se paciente está agendado para a sessão atual.
+        
+        Questions
+        ---------
+        * CPF do paciente
+
+        Feedbacks
+        ---------
+        * Status do agendamento
+
+        Warnings
+        --------
+        * Paciente não registrado
+        """
 
         # Entrada do CPF
         try:
@@ -13,16 +27,17 @@ class CurrentSessionOptions:
         except ValueError as e:
             return screen.WarningScreen(e).render()
 
+        patient = clinic.find_patient(cpf)
+
         # Verifica se paciente existe no banco de dados
-        if (patient := clinic.find_patient(cpf)) is None:
+        if not patient:
             return screen.WarningScreen("Paciente não registrado.").render()
 
         # Verifica se paciente está marcado para a sessão atual
-        bookings = clinic.get_patient_bookings(patient)
-        
-        if bookings:
-            screen.SplashScreen("Paciente está marcado para a sessão atual.").render()
-        else:
-            screen.SplashScreen(
-                "Paciente não está marcado para a sessão atual."
-            ).render()
+        is_booked = clinic.model.current_session.uid in patient.scheduled_sessions
+
+        # Imprime o feedback
+        TEMPLATE_MESSAGE = "Paciente {} está marcado para a sessão atual."
+        message = TEMPLATE_MESSAGE.format("" if is_booked else "não")
+
+        screen.SplashScreen(message).render()
