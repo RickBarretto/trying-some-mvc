@@ -35,7 +35,7 @@ def register(clinic: ClinicController):
         return
     
     # Criação da sessão
-    new_id: int = clinic.new_session_id
+    new_id: int = clinic.new_session_id()
     session: SessionModel = SessionModel(uid=new_id, date=date)
 
     # Registro da nova sessão

@@ -14,11 +14,9 @@ class ClinicModel:
         self.last_session_id = 0
         self.last_patient_id = 0
 
-    @property
     def new_session_id(self):
         return self.last_session_id + 1
 
-    @property
     def new_patient_id(self):
         return self.last_patient_id + 1
 

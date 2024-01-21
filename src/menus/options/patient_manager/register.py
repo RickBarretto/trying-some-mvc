@@ -40,7 +40,7 @@ def register(clinic: ClinicController):
         return
 
     # Criação do paciente
-    new_id: int = clinic.new_patient_id
+    new_id: int = clinic.new_patient_id()
     patient: PatientModel = PatientModel(
         uid=new_id, 
         cpf=cpf, 
