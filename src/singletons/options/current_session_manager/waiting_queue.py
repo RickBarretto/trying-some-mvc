@@ -6,31 +6,57 @@ from screen.warning import WarningScreen
 
 
 def send_to_waiting_queue(clinic: ClinicController):
+    """Envia um paciente para a fila de espera.
+
+    Questions
+    ---------
+    * CPF do paciente
+
+    Feedbacks
+    ---------
+    * Paciente posto na fila de espera
+    * Posição na fila de espera
+
+    Warnings
+    --------
+    * Sessão não inicializada
+    * Sessão já foi finalizada
+    * Formato de CPF inválido
+    * Paciente não registrado
+    * Paciente já está na fila de espera
+    """
+
+    # Verifica status da sessão
+    current_session_status = clinic.model.current_session.status
+
+    if current_session_status == SessionStatus.UNBEGUN:
+        WarningScreen("A sessão nunca foi inicializada.").render()
+        return
+    
+    if current_session_status == SessionStatus.FINISHED:
+        WarningScreen("A sessão ja foi finalizada.").render()
+        return
+
     # Valida a entrada do CPF
     try:
         cpf = Prompt.get_cpf()
     except ValueError as e:
         WarningScreen(e).render()
 
-    # Verifica o status da sessão atual
-    if clinic.model.current_session.status == SessionStatus.UNBEGUN:
-        WarningScreen("A sessão atual nunca foi inicializada.").render()
-        return
-
-    if clinic.model.current_session.status == SessionStatus.UNBEGUN:
-        WarningScreen("A sessão atual já foi finalizada.").render()
-        return
 
     # Verifica se o paciente é registrado
-    if (patient := clinic.find_patient(cpf)) is None:
+    patient = clinic.find_patient(cpf) 
+    if not patient:
         WarningScreen("Paciente não registrado.").render()
         return
 
+
     # Verifica se o paciente já consta na fila de espera
-    if patient in clinic.model.waiting_queue:
+    waiting_queue = clinic.model.waiting_queue
+    if patient.uid in waiting_queue:
         WarningScreen("Paciente já está na fila de espera.").render()
         return
 
     # Põe o paciente na fila de espera
     clinic.push_to_waiting_queue(patient)
-    WarningScreen("Paciente colocado na fila de espera com sucesso!").render()
+    WarningScreen(f"Paciente colocado na fila de espera na posição {len(waiting_queue)}!").render()
