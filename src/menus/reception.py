@@ -2,9 +2,9 @@ from typing import Callable
 from tui.main_menu import Controller, MainMenu
 from entities import clinic
 
-from singletons.options import current_session_manager
-from singletons.options import patient_manager
-from singletons.options import session_manager
+from .options import current_session_manager
+from .options import patient_manager
+from .options import session_manager
 
 __all__ = ["reception"]
 
