@@ -2,11 +2,9 @@ from typing import Callable
 from screen.main_menu import Controller, MainMenu
 from entities import clinic
 
-
-from .options import ReceptionOptions
-
 from singletons.options import current_session_manager
 from singletons.options import patient_manager
+from singletons.options import session_manager
 
 __all__ = ["reception"]
 
@@ -18,9 +16,9 @@ class ReceptionMenu(MainMenu):
 reception = ReceptionMenu(
     clinic.ClinicController(clinic.ClinicModel(), clinic.ClinicView()),
     [
-        (ReceptionOptions.register_session, "Registrar nova sessão."),
-        (ReceptionOptions.list_sessions, "Listar sessões registradas."),
-        (ReceptionOptions.find_session, "Procurar sessão por data."),
+        (session_manager.register_session, "Registrar nova sessão."),
+        (session_manager.list_sessions, "Listar sessões registradas."),
+        (session_manager.find_session, "Procurar sessão por data."),
         (current_session_manager.start_current_session, "Iniciar sessão atual."),
         (patient_manager.register, "Registrar novo paciente."),
         (patient_manager.book_schedule, "Agendar sessão para paciente."),
