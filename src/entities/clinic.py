@@ -20,13 +20,6 @@ class Clinic:
     def new_patient_id(self):
         return self.last_patient_id + 1
 
-    def update_current_session(self, date: int):
-        if session := self.session_by_date(date):
-            self.current_session = session
-            return
-
-        self.current_session = self.register_session(date)
-
     def session_by_date(self, date: int) -> Session | None:
         """Retorna uma sessão existente na data ``date``.
 
