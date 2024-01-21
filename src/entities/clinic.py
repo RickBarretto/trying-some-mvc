@@ -104,11 +104,9 @@ class ClinicController:
 
         Se o paciente já existe, será retornado ``None``.
         """
-
-        # Verifica se sessão já está registrado
-        for patient in self.model.patients:
-            if patient.cpf == cpf:
-                return None
+        # Verifica se paciente já está registrado
+        if (patient := self.find_patient(cpf)) is None:
+            return None
 
         # Declaração de variáveis
         new_id: int = self.model.new_patient_id
@@ -175,7 +173,7 @@ class ClinicController:
 
     def attend_next_patient(self) -> None:
         """Atende o próximo paciente da fila de espera.
-        
+
         Raises
         ------
         ``IndexError`` quando não tiver mais pacientes na fila de espera.
