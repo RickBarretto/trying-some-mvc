@@ -3,45 +3,6 @@ import screen
 
 
 class PatientOptions:
-    @staticmethod
-    def register_patient(clinic: clinic.ClinicController):
-        """Registra paciente no banco de dados.
-
-        Questions
-        ---------
-        * CPF do paciente
-        * Nome do paciente
-        * Informações extras
-
-        Feedbacks
-        ---------
-        * Registro foi um sucesso
-
-        Warnings
-        --------
-        * Formato de CPF inválido
-        * TODO: Nome não deve conter números ou símbolos
-        * TODO: Nome deve conter pelo menos nome e sobrenome
-        * Paciente já registrado
-        """
-
-        # Valida entradas
-        try:
-            cpf: str = screen.Prompt.get_cpf()
-            name: str = screen.Prompt.prompt("Insira o nome do paciente.")
-            extra: str = screen.Prompt.multiline("Insira informações extra.")
-        except ValueError as e:
-            screen.WarningScreen(e).render()
-            return
-
-        # Verifica se paciente já está registrado
-        if clinic.find_patient(cpf):
-            screen.WarningScreen("Paciente já foi registrado.").render()
-            return
-
-        # Registra paciente
-        patient = clinic.register_patient(cpf, name, extra)
-        screen.WarningScreen(f"{patient.name} registrado com sucesso!").render()
 
     @staticmethod
     def book_schedule(clinic: clinic.ClinicController):
