@@ -28,12 +28,15 @@ class CurrentSessionOptions:
 
     @staticmethod
     def send_to_waiting_queue(clinic: clinic.ClinicController):
+        
+        # Entrada do CPF
         try:
             cpf = screen.Prompt.get_cpf()
         except ValueError as e:
             screen.WarningScreen(e).render()
         
-        if clinic.push_to_queue(cpf):
+        # Coloca paciente na fila
+        if status := clinic.push_to_queue(cpf):
             screen.WarningScreen("Fila atualizada.").render()
         else:
             screen.WarningScreen("Não há paciente na fila de espera.").render()
