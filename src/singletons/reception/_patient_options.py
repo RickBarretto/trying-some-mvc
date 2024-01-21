@@ -40,8 +40,8 @@ class PatientOptions:
             return
 
         # Registra paciente
-        clinic.register_patient(cpf, name, extra)
-        screen.WarningScreen("Paciente registrado com sucesso!").render()
+        patient = clinic.register_patient(cpf, name, extra)
+        screen.WarningScreen(f"{patient.name} registrado com sucesso!").render()
 
     @staticmethod
     def book_schedule(clinic: clinic.ClinicController):
