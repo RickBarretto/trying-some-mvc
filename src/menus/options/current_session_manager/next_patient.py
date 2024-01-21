@@ -26,7 +26,7 @@ def show_next_patient(clinic: ClinicController):
 
     # Pega a instância do próximo paciente
     next_patient_id = waiting_queue[0]
-    patient = clinic.get_patient(next_patient_id)
+    patient = clinic.patient_by_id(next_patient_id)
 
     # Imprime informações do paciente
     content = ["Próximo paciente:", clinic.view.format_patient(patient)]

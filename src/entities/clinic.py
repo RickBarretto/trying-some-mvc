@@ -141,7 +141,7 @@ class ClinicController:
             (patient for patient in self.model.patiens if patient.cpf == cpf), None
         )
 
-    def get_patient(self, uid: int) -> PatientModel | None:
+    def patient_by_id(self, uid: int) -> PatientModel | None:
         """Procura paciente pelo ``uid``.
 
         Se não encontrado, retorna ``None``.
@@ -194,4 +194,4 @@ class ClinicController:
         assert self.model.waiting_queue
 
         patient_id = self.model.waiting_queue.pop(0)
-        self.current_patient = self.get_patient(patient_id)
+        self.current_patient = self.patient_by_id(patient_id)
