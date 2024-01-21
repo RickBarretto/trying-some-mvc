@@ -12,4 +12,4 @@ class PatientModel:
         self.scheduled_sessions: list[int] = []
 
     def __str__(self) -> str:
-        f"{self.name} - CPF: {self.cpf} (ID: {self.uid})"
+        return f"{self.name} - CPF: {self.cpf} (ID: {self.uid})"
