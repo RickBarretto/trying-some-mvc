@@ -1,15 +1,15 @@
 from .session import SessionModel
-from .patient import PatientModel
+from .patient import Patient
 
 
 class ClinicModel:
     def __init__(self) -> None:
         self.current_session: SessionModel | None = None
-        self.current_patient: PatientModel | None = None
+        self.current_patient: Patient | None = None
         self.waiting_queue: list[int] = []
 
         self.sessions: list[SessionModel] = []
-        self.patients: list[PatientModel] = []
+        self.patients: list[Patient] = []
 
         self.last_session_id = 0
         self.last_patient_id = 0
@@ -36,7 +36,7 @@ class ClinicModel:
             (session for session in self.sessions if session.date == date), None
         )
 
-    def patient_by_cpf(self, cpf: str) -> PatientModel | None:
+    def patient_by_cpf(self, cpf: str) -> Patient | None:
         """Procura paciente pelo ``cpf``.
 
         Se não encontrado, retorna ``None``.
@@ -45,7 +45,7 @@ class ClinicModel:
             (patient for patient in self.patients if patient.cpf == cpf), None
         )
 
-    def patient_by_id(self, uid: int) -> PatientModel | None:
+    def patient_by_id(self, uid: int) -> Patient | None:
         """Procura paciente pelo ``uid``.
 
         Se não encontrado, retorna ``None``.

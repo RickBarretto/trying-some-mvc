@@ -1,5 +1,5 @@
 from entities.clinic import ClinicModel
-from entities.patient import PatientModel
+from entities.patient import Patient
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
@@ -41,7 +41,7 @@ def register(clinic: ClinicModel):
 
     # Criação do paciente
     new_id: int = clinic.new_patient_id()
-    patient: PatientModel = PatientModel(
+    patient: Patient = Patient(
         uid=new_id, 
         cpf=cpf, 
         name=name, 

@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 
 @dataclass
-class PatientModel:
+class Patient:
     uid: int
     cpf: str
     name: str
