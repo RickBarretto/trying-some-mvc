@@ -94,15 +94,6 @@ class ClinicController:
             (patient for patient in self.model.patiens if patient.uid == uid), None
         )
 
-    def get_patient_bookings(self, patient: PatientModel) -> list[str]:
-        """Retorna uma lista com os agendamentos feito pelo paciente."""
-        sessions_ids = patient.scheduled_sessions
-        sessions = [
-            session for session in self.model.sessions if session.uid in sessions_ids
-        ]
-
-        return self.view.display_sessions(sessions)
-
     def push_to_waiting_queue(self, patient: PatientModel) -> None:
         """Coloca paciente na fila de espera.
 

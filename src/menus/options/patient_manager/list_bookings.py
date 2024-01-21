@@ -37,7 +37,12 @@ def list_bookings(clinic: ClinicController):
         return
 
     # Lista sessões agendadas
-    booked_sessions = clinic.get_patient_bookings(patient)
-    data = booked_sessions if booked_sessions else ["Nenhuma sessão agendada"]
+
+    sessions_ids = patient.scheduled_sessions
+    sessions = [
+        session for session in clinic.model.sessions if session.uid in sessions_ids
+    ]
+
+    data = sessions if sessions else ["Nenhuma sessão agendada"]
 
     ListScreen("Sessões agendadas", data).render()
