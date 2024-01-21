@@ -14,9 +14,9 @@ def show_next_patient(clinic: ClinicController):
     ---------
     * Informações básicas do paciente
 
-    Error Reports
-    -------------
-    * Se não houver pacientes na fila
+    Warnings
+    --------
+    * Não há pacientes na fila
     """
     waiting_queue = clinic.model.waiting_queue
 
