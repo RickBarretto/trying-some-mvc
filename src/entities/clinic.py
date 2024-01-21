@@ -81,13 +81,14 @@ class ClinicController:
         return formated_sessions
 
     def find_session(self, date: int) -> SessionModel | None:
-        """Retorna uma sessão existente na data ``date``."""
-
-        for session in self.model.sessions:
-            if session.date == date:
-                return session
-
-        return None
+        """Retorna uma sessão existente na data ``date``.
+        
+        Retornará ``None`` caso a sessão não exista.
+        """
+        return next(
+            (session for session in self.model.sessions if session.date == date), 
+            None
+        )
 
     def start_session(self) -> bool:
         if self.model.current_session.status != SessionStatus.UNBEGUN:
