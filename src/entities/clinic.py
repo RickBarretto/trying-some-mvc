@@ -82,12 +82,11 @@ class ClinicController:
 
     def find_session(self, date: int) -> SessionModel | None:
         """Retorna uma sessão existente na data ``date``.
-        
+
         Retornará ``None`` caso a sessão não exista.
         """
         return next(
-            (session for session in self.model.sessions if session.date == date), 
-            None
+            (session for session in self.model.sessions if session.date == date), None
         )
 
     def start_session(self) -> bool:
@@ -110,7 +109,7 @@ class ClinicController:
             Nome do paciente
         extra_info: list[str]
             Informações abirtrárias sobre o paciente
-        
+
         Assertions
         ----------
         * `patient` não pode já estar registrado em `model.patients`
@@ -135,18 +134,16 @@ class ClinicController:
         Se não encontrado, retorna ``None``.
         """
         return next(
-            (patient for patient in self.model.patiens if patient.cpf == cpf),
-            None
+            (patient for patient in self.model.patiens if patient.cpf == cpf), None
         )
-    
+
     def get_patient(self, uid: int) -> PatientModel | None:
         """Procura paciente pelo ``uid``.
 
         Se não encontrado, retorna ``None``.
         """
         return next(
-            (patient for patient in self.model.patiens if patient.uid == uid),
-            None
+            (patient for patient in self.model.patiens if patient.uid == uid), None
         )
 
     def book_schedule(self, patient: PatientModel, session: SessionModel) -> None:
@@ -175,7 +172,7 @@ class ClinicController:
 
     def push_to_waiting_queue(self, patient: PatientModel) -> None:
         """Coloca paciente na fila de espera.
-        
+
         Assertions
         ----------
         `patiend.uid` não pode já estar dentro de `model.waiting_queue`

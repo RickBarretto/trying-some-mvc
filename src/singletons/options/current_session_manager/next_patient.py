@@ -1,11 +1,10 @@
-
 from entities.clinic import ClinicController
-from screen import WarningScreen, SplashScreen 
+from screen import WarningScreen, SplashScreen
 
 
 def show_next_patient(clinic: ClinicController):
     """Mostra novo paciente
-    
+
     Questions
     ---------
     * Nenhuma
@@ -20,7 +19,7 @@ def show_next_patient(clinic: ClinicController):
     """
     waiting_queue = clinic.model.waiting_queue
 
-    # Verifica se a fila de espera está vazia 
+    # Verifica se a fila de espera está vazia
     if not waiting_queue:
         WarningScreen("Não há pacientes na fila de espera.").render()
         return

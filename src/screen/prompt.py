@@ -52,7 +52,7 @@ class Prompt:
                 "Verifique a presença de letras ou outros símbolos.",
                 FORMAT_SUGGESTION_MSG,
             )
-        
+
         if len(cpf_digits) != 11:
             raise ValueError(
                 INVALID_CPF_MSG,

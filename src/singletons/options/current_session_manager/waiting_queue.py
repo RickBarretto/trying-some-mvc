@@ -6,7 +6,6 @@ from screen.warning import WarningScreen
 
 
 def send_to_waiting_queue(clinic: ClinicController):
-        
     # Valida a entrada do CPF
     try:
         cpf = Prompt.get_cpf()
@@ -17,7 +16,7 @@ def send_to_waiting_queue(clinic: ClinicController):
     if clinic.model.current_session.status == SessionStatus.UNBEGUN:
         WarningScreen("A sessão atual nunca foi inicializada.").render()
         return
-    
+
     if clinic.model.current_session.status == SessionStatus.UNBEGUN:
         WarningScreen("A sessão atual já foi finalizada.").render()
         return

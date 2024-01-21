@@ -6,7 +6,7 @@ class PatientOptions:
     @staticmethod
     def register_patient(clinic: clinic.ClinicController):
         """Registra paciente no banco de dados.
-        
+
         Questions
         ---------
         * CPF do paciente
@@ -16,7 +16,7 @@ class PatientOptions:
         Feedbacks
         ---------
         * Registro foi um sucesso
-        
+
         Warnings
         --------
         * Formato de CPF inválido
@@ -46,7 +46,7 @@ class PatientOptions:
     @staticmethod
     def book_schedule(clinic: clinic.ClinicController):
         """Agenda uma sessão para um paciente.
-        
+
         Questions
         ---------
         * CPF do paciente
@@ -81,7 +81,7 @@ class PatientOptions:
         if not patient:
             screen.WarningScreen("Paciente não registrado.").render()
             return
-        
+
         if not session:
             screen.WarningScreen("Sessão não registrada.").render()
             return
@@ -89,7 +89,7 @@ class PatientOptions:
         # Verifica o agendamento
         if session.uid in patient.scheduled_sessions:
             screen.WarningScreen(
-                f"Paciente {patient.name} já está "\
+                f"Paciente {patient.name} já está "
                 f"registrado para a sessão {session.formated_date}."
             ).render()
             return
@@ -101,7 +101,7 @@ class PatientOptions:
     @staticmethod
     def list_patient_bookings(clinic: clinic.ClinicController):
         """Lista os agendamentos de um paciente.
-        
+
         Questions
         ---------
         * CPF do paciente
@@ -123,17 +123,16 @@ class PatientOptions:
         except ValueError as e:
             screen.WarningScreen(e).render()
             return
-        
+
         patient = clinic.find_patient(cpf)
 
         # Verifica registro
         if patient is None:
             screen.WarningScreen("Paciente não registrado.").render()
             return
-        
+
         # Lista sessões agendadas
         booked_sessions = clinic.get_patient_bookings(patient)
         data = booked_sessions if booked_sessions else ["Nenhuma sessão agendada"]
 
         screen.ListScreen("Sessões agendadas", data).render()
-

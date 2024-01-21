@@ -48,7 +48,7 @@ class MainMenu:
 
             func, desc = self._options[choice - 1]
             func(self.controller)
-            
+
             # try:
             #     func(self.controller)
             # except:

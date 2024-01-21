@@ -7,7 +7,7 @@ from screen.warning import WarningScreen
 
 def check_current_booking(clinic: ClinicController):
     """Verifica se paciente está agendado para a sessão atual.
-    
+
     Questions
     ---------
     * CPF do paciente
