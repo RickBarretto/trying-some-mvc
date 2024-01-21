@@ -140,16 +140,20 @@ class ClinicController:
             None
         )
 
-    def book_schedule(self, patient: PatientModel, session: SessionModel) -> bool:
-        """Agenda paciente para uma sessão, e retorna o status do agendamento.
+    def book_schedule(self, patient: PatientModel, session: SessionModel) -> None:
+        """Agenda paciente para uma sessão.
 
-        Retorna ``False`` caso a sessão já tenha sido registrada.
+        Assertions
+        ----------
+        * `patient` deve estar registrado
+        * `session` deve estar registrada
+        * `session.uid` não pode estar agendada em `patient.scheduled_sessions`
         """
-        if session.uid in patient.scheduled_sessions:
-            return False
+        assert patient in self.model.patients
+        assert session in self.model.sessions
+        assert session.uid not in patient.scheduled_sessions
 
         patient.scheduled_sessions.append(session.uid)
-        return True
 
     def get_patient_bookings(self, patient: PatientModel) -> list[str]:
         """Retorna uma lista com os agendamentos feito pelo paciente."""
