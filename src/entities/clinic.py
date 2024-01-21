@@ -152,6 +152,7 @@ class ClinicController:
         return True
 
     def get_patient_bookings(self, patient: PatientModel) -> list[str]:
+        """Retorna uma lista com os agendamentos feito pelo paciente."""
         sessions_ids = patient.scheduled_sessions
         sessions = [
             session for session in self.model.sessions if session.uid in sessions_ids
@@ -177,6 +178,6 @@ class ClinicController:
         `model.waiting_queue` não pode estar vazia
         """
         assert self.model.waiting_queue
-        
+
         patient_id = self.model.waiting_queue.pop(0)
         self.current_patient = self.get_patient(patient_id)
