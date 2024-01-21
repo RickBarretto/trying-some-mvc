@@ -27,7 +27,7 @@ def check_current_booking(clinic: ClinicController):
     except ValueError as e:
         return WarningScreen(e).render()
 
-    patient = clinic.find_patient(cpf)
+    patient = clinic.patient_by_cpf(cpf)
 
     # Verifica se paciente existe no banco de dados
     if not patient:

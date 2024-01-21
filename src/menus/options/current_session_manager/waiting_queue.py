@@ -45,7 +45,7 @@ def send_to_waiting_queue(clinic: ClinicController):
 
 
     # Verifica se o paciente é registrado
-    patient = clinic.find_patient(cpf) 
+    patient = clinic.patient_by_cpf(cpf) 
     if not patient:
         WarningScreen("Paciente não registrado.").render()
         return

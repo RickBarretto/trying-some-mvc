@@ -34,7 +34,7 @@ def book_schedule(clinic: ClinicController):
         WarningScreen(e).render()
         return
 
-    patient = clinic.find_patient(patient_cpf)
+    patient = clinic.patient_by_cpf(patient_cpf)
     session = clinic.find_session(session_date)
 
     # Valida registros

@@ -118,7 +118,7 @@ class ClinicController:
         ----------
         * `patient` não pode já estar registrado em `model.patients`
         """
-        assert self.find_patient(cpf) is None
+        assert self.patient_by_cpf(cpf) is None
 
         # Criação do novo paciente
         new_id: int = self.model.new_patient_id
@@ -132,7 +132,7 @@ class ClinicController:
 
         return patient
 
-    def find_patient(self, cpf: str) -> PatientModel | None:
+    def patient_by_cpf(self, cpf: str) -> PatientModel | None:
         """Procura paciente pelo ``cpf``.
 
         Se não encontrado, retorna ``None``.

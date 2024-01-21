@@ -34,7 +34,7 @@ def register(clinic: ClinicController):
         return
 
     # Verifica se paciente já está registrado
-    if clinic.find_patient(cpf):
+    if clinic.patient_by_cpf(cpf):
         WarningScreen("Paciente já foi registrado.").render()
         return
 

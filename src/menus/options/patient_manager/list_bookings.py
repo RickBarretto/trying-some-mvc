@@ -29,7 +29,7 @@ def list_bookings(clinic: ClinicController):
         WarningScreen(e).render()
         return
 
-    patient = clinic.find_patient(cpf)
+    patient = clinic.patient_by_cpf(cpf)
 
     # Verifica registro
     if patient is None:
