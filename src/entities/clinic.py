@@ -1,14 +1,14 @@
-from .session import SessionModel
+from .session import Session
 from .patient import Patient
 
 
 class ClinicModel:
     def __init__(self) -> None:
-        self.current_session: SessionModel | None = None
+        self.current_session: Session | None = None
         self.current_patient: Patient | None = None
         self.waiting_queue: list[int] = []
 
-        self.sessions: list[SessionModel] = []
+        self.sessions: list[Session] = []
         self.patients: list[Patient] = []
 
         self.last_session_id = 0
@@ -27,7 +27,7 @@ class ClinicModel:
 
         self.current_session = self.register_session(date)
 
-    def session_by_date(self, date: int) -> SessionModel | None:
+    def session_by_date(self, date: int) -> Session | None:
         """Retorna uma sessão existente na data ``date``.
 
         Retornará ``None`` caso a sessão não exista.

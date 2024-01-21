@@ -14,7 +14,7 @@ class SessionStatus(enum.Enum):
 
 
 @dataclass
-class SessionModel:
+class Session:
     uid: int
     date: int
     status: SessionStatus = SessionStatus.UNBEGUN

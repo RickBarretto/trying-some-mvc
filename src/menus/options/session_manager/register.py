@@ -1,5 +1,5 @@
 from entities.clinic import ClinicModel
-from entities.session import SessionModel
+from entities.session import Session
 from menus.options import current_session_manager
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
@@ -50,7 +50,7 @@ def register(clinic: ClinicModel, dry_run: bool = False, should_update: bool = F
     
     # Criação da sessão
     new_id: int = clinic.new_session_id()
-    session: SessionModel = SessionModel(uid=new_id, date=date)
+    session: Session = Session(uid=new_id, date=date)
 
     # Registro da nova sessão
     clinic.sessions.append(session)
