@@ -130,18 +130,15 @@ class ClinicController:
             None
         )
     
-    def get_patient(self, uid: int) -> PatientModel:
+    def get_patient(self, uid: int) -> PatientModel | None:
         """Procura paciente pelo ``uid``.
 
-        Raises
-        ------
-        ``ValueError`` para paciente não registrado.
+        Se não encontrado, retorna ``None``.
         """
-        for patient in self.model.patients:
-            if patient.uid == uid:
-                return patient
-
-        raise ValueError("Paciente não registrado.")
+        return next(
+            (patient for patient in self.model.patiens if patient.uid == uid),
+            None
+        )
 
     def book_schedule(self, patient: PatientModel, session: SessionModel) -> bool:
         """Agenda paciente para uma sessão, e retorna o status do agendamento.
