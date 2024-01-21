@@ -54,13 +54,6 @@ class ClinicController:
             (session for session in self.model.sessions if session.date == date), None
         )
 
-    def start_session(self) -> bool:
-        if self.model.current_session.status != SessionStatus.UNBEGUN:
-            return False
-
-        self.model.current_session.status = SessionStatus.BEGUN
-        return True
-
     def patient_by_cpf(self, cpf: str) -> PatientModel | None:
         """Procura paciente pelo ``cpf``.
 

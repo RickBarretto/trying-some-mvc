@@ -30,5 +30,5 @@ def start_current_session(clinic: ClinicController):
         return
 
     # Ativa a sessão atual
-    clinic.start_session()
+    clinic.model.current_session.status = SessionStatus.BEGUN
     WarningScreen("Sessão iniciada!").render()
