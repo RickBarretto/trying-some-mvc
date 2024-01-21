@@ -125,12 +125,10 @@ class ClinicController:
 
         Se não encontrado, retorna ``None``.
         """
-
-        for patient in self.model.patients:
-            if patient.cpf == cpf:
-                return patient
-
-        return None
+        return next(
+            (patient for patient in self.model.patiens if patient.cpf == cpf),
+            None
+        )
     
     def get_patient(self, uid: int) -> PatientModel:
         """Procura paciente pelo ``uid``.
