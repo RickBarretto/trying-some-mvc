@@ -1,11 +1,11 @@
-from entities.clinic import ClinicModel
+from entities.clinic import Clinic
 
 from tui.prompt import Prompt
 from tui.splash import SplashScreen
 from tui.warning import WarningScreen
 
 
-def check_current_booking(clinic: ClinicModel):
+def check_current_booking(clinic: Clinic):
     """Verifica se paciente está agendado para a sessão atual.
 
     Questions

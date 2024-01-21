@@ -1,8 +1,8 @@
-from entities.clinic import ClinicModel
+from entities.clinic import Clinic
 from tui.list import ListScreen
 
 
-def list_all(clinic: ClinicModel):
+def list_all(clinic: Clinic):
         """Lista todas as sessões registradas na clínica.
 
         Feedbacks

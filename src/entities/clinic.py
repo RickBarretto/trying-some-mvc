@@ -2,7 +2,7 @@ from .session import Session
 from .patient import Patient
 
 
-class ClinicModel:
+class Clinic:
     def __init__(self) -> None:
         self.current_session: Session | None = None
         self.current_patient: Patient | None = None

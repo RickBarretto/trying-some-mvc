@@ -10,7 +10,7 @@ podendo assim ser usado por outros módulos.
 
 
 from menus.interface import MainMenu
-from entities.clinic import ClinicModel
+from entities.clinic import Clinic
 
 from .options import current_session_manager
 from .options import patient_manager
@@ -31,6 +31,6 @@ options = [
     (current_session_manager.show_next_patient, "Mostrar próximo paciente."),
 ]
 
-reception = MainMenu(ClinicModel(), options)
+reception = MainMenu(Clinic(), options)
 
 __all__ = ["reception"]

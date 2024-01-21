@@ -1,11 +1,11 @@
-from entities.clinic import ClinicModel
+from entities.clinic import Clinic
 from entities.session import Session
 from menus.options import current_session_manager
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
 
-def register(clinic: ClinicModel, dry_run: bool = False, should_update: bool = False) -> bool | None:
+def register(clinic: Clinic, dry_run: bool = False, should_update: bool = False) -> bool | None:
     """Registra uma nova sessão no banco de dados.
 
     Arguments

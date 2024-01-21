@@ -1,9 +1,9 @@
-from entities.clinic import ClinicModel
+from entities.clinic import Clinic
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
 
-def find(clinic: ClinicModel):
+def find(clinic: Clinic):
     """Registra uma nova sessão no banco de dados.
 
     Questions

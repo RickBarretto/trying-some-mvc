@@ -1,11 +1,11 @@
 
 
-from entities.clinic import ClinicModel
+from entities.clinic import Clinic
 from entities.session import Session, SessionStatus
 from tui.warning import WarningScreen
 
 
-def update(clinic: ClinicModel, session: Session):
+def update(clinic: Clinic, session: Session):
     """Atualiza a sessão atual.
 
     Note

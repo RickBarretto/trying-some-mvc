@@ -1,11 +1,11 @@
-from entities.clinic import ClinicModel
+from entities.clinic import Clinic
 from entities.session import SessionStatus
 
 from tui.prompt import Prompt
 from tui.warning import WarningScreen
 
 
-def send_to_waiting_queue(clinic: ClinicModel):
+def send_to_waiting_queue(clinic: Clinic):
     """Envia um paciente para a fila de espera.
 
     Questions
