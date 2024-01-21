@@ -5,6 +5,7 @@ from .patient import PatientModel
 class ClinicModel:
     def __init__(self) -> None:
         self.current_session: SessionModel | None = None
+        self.current_patient: PatientModel | None = None
         self.waiting_queue: list[int] = []
 
         self.sessions: list[SessionModel] = []
@@ -12,13 +13,6 @@ class ClinicModel:
 
         self.last_session_id = 0
         self.last_patient_id = 0
-
-    @property
-    def current_patient_id(self) -> int | None:
-        if self.waiting_queue:
-            return self.waiting_queue[0]
-
-        return None
 
     @property
     def new_session_id(self):
