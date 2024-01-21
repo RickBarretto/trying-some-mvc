@@ -14,7 +14,7 @@ def choice(options: list[str]) -> int:
             content=content,
         )
     
-    def format_data(options) -> list[str]:
+    def format_data(options: list[str]) -> list[str]:
         return [prefix_option(i, opt) for i, opt in enumerate(options)]
     
     def user_choice(stop_index: int) -> int:
@@ -33,7 +33,7 @@ def choice(options: list[str]) -> int:
     screen = Screen()
 
     # Formata os dados
-    data = format_data(option)
+    data = format_data(options)
     
     # Imprime os dados
     screen.render_full_screen(data)
