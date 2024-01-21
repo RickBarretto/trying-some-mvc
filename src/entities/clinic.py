@@ -66,14 +66,18 @@ class ClinicController:
             (patient for patient in self.model.patiens if patient.uid == uid), None
         )
 
-    def attend_next_patient(self) -> bool:
-        """Atende o próximo paciente da fila de espera.
 
-        Assertions
-        ----------
-        `model.waiting_queue` não pode estar vazia
-        """
-        assert self.model.waiting_queue
-
-        patient_id = self.model.waiting_queue.pop(0)
-        self.current_patient = self.patient_by_id(patient_id)
+# I'm here as a reference
+# TODO: Implement or delete me!
+#
+# def attend_next_patient(self) -> bool:
+#     """Atende o próximo paciente da fila de espera.
+# 
+#     Assertions
+#     ----------
+#     `model.waiting_queue` não pode estar vazia
+#     """
+#     assert self.model.waiting_queue
+# 
+#     patient_id = self.model.waiting_queue.pop(0)
+#     self.current_patient = self.patient_by_id(patient_id)
