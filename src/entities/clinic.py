@@ -172,9 +172,13 @@ class ClinicController:
         self.model.waiting_queue.append(patient.uid)
         return True
 
-    def shift_queue(self) -> bool:
-        if len(self.model.waiting_queue) < 2:
-            return False
-
-        self.model.waiting_queue.pop(0)
-        return True
+    def attend_next_patient(self) -> None:
+        """Atende o próximo paciente da fila de espera.
+        
+        Raises
+        ------
+        ``IndexError`` quando não tiver mais pacientes na fila de espera.
+        ``ValueError`` quando o paciente não estiver registrado.
+        """
+        patient_id = self.model.waiting_queue.pop(0)
+        self.current_patient = self.get_patient(patient_id)
