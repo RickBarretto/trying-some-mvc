@@ -1,8 +1,7 @@
 from entities.clinic import Clinic
 
-from tui.prompt import Prompt
-
 import tui
+from tui import prompt
 
 from menus.use_cases import status
 
@@ -31,7 +30,7 @@ def check_current_booking(clinic: Clinic) -> bool:
 
     # Entrada do CPF
     try:
-        cpf = Prompt.get_cpf()
+        cpf = prompt.get_cpf()
     except ValueError as e:
         tui.warn(e)
         return status.MayBeRepeated

@@ -1,5 +1,5 @@
 from entities.clinic import Clinic
-from tui.prompt import Prompt
+from tui import prompt
 
 import tui
 
@@ -31,7 +31,7 @@ def find(clinic: Clinic):
 
     # Valida entrada
     try:
-        date = Prompt.get_date()
+        date = prompt.get_date()
     except ValueError as e:
         tui.warn(e)
         return status.MayBeRepeated

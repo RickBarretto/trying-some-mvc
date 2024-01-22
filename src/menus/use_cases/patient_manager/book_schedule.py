@@ -1,5 +1,5 @@
 from entities.clinic import Clinic
-from tui.prompt import Prompt
+from tui import prompt
 
 import tui
 
@@ -36,8 +36,8 @@ def book_schedule(clinic: Clinic) -> bool:
 
     # Valida entradas
     try:
-        patient_cpf = Prompt.get_cpf()
-        session_date = Prompt.get_date()
+        patient_cpf = prompt.get_cpf()
+        session_date = prompt.get_date()
     except ValueError as e:
         tui.warn(e)
         return status.MayBeRepeated

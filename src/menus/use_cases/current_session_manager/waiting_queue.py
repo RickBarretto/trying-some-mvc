@@ -1,7 +1,7 @@
 from entities.clinic import Clinic
 from entities.session import SessionStatus
 
-from tui.prompt import Prompt
+from tui import prompt
 
 import tui
 
@@ -49,7 +49,7 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
 
     # Valida a entrada do CPF
     try:
-        cpf = Prompt.get_cpf()
+        cpf = prompt.get_cpf()
     except ValueError as e:
         tui.warn(e)
         return status.MayBeRepeated

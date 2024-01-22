@@ -1,6 +1,6 @@
 from entities.clinic import Clinic
 from entities.patient import Patient
-from tui.prompt import Prompt
+from tui import prompt
 
 import tui
 
@@ -36,9 +36,9 @@ def register(clinic: Clinic) -> bool:
 
     # Valida entradas
     try:
-        cpf: str = Prompt.get_cpf()
-        name: str = Prompt.prompt("Insira o nome do paciente.")
-        extra: str = Prompt.multiline("Insira informações extra.")
+        cpf: str = prompt.get_cpf()
+        name: str = prompt.prompt("Insira o nome do paciente.")
+        extra: str = prompt.multiline("Insira informações extra.")
     except ValueError as e:
         tui.warn(e)
         return status.MayBeRepeated
