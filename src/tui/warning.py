@@ -1,7 +1,7 @@
 from tui._screen import Screen
 
 
-def warn(self, content: str | list[str] | Exception) -> None:
+def warn(content: str | list[str] | Exception) -> None:
     """Define uma tela de avisos.
 
     Será posto um símbolo de aviso ao início e uma mensagem de proseguir ao fim.
