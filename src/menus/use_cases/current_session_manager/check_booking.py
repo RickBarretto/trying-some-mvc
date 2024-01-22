@@ -5,13 +5,7 @@ from tui import prompt
 
 from menus.use_cases import current_session_manager, status
 from menus.use_cases import patient_manager
-
-def _should_create_new_patient(clinic: Clinic, cpf: str):
-    return tui.progress(
-        f"Deseja registrar paciente do CPF {cpf}?",
-        patient_manager.register,
-        clinic, patient_cpf=cpf
-    )
+from menus.use_cases import proposes
 
 
 def check_current_booking(clinic: Clinic) -> bool:
@@ -50,7 +44,7 @@ def check_current_booking(clinic: Clinic) -> bool:
     if not patient:
         tui.warn("Paciente não registrado.")
 
-        if _should_create_new_patient(clinic, cpf):
+        if proposes.wish_register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:
             return status.Ok
@@ -66,19 +60,8 @@ def check_current_booking(clinic: Clinic) -> bool:
     tui.info(message)
 
     if not is_booked:
-        if not tui.progress(
-            "Desejas agendar paciente para a sessão atual?",
-            patient_manager.book_schedule,
-            clinic,
-            patient=patient,
-            session=clinic.current_session
-        ):
+        if not proposes.wish_book_session(clinic, patient, clinic.current_session):
             return status.Ok
 
-    tui.progress(
-        "Desejas por o paciente na fila de espera?",
-        current_session_manager.send_to_waiting_queue,
-        clinic,
-        patient=patient,
-    )
+    proposes.wish_send_patient_to_waiting_queue(clinic, patient)
     return status.Ok
