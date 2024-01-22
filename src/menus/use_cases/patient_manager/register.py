@@ -56,5 +56,5 @@ def register(clinic: Clinic) -> bool:
     clinic.patients.append(patient)
     clinic.last_patient_id_id = new_id
 
-    tui.warn(f"{patient.name} registrado com sucesso!")
+    tui.info(f"{patient.name} registrado com sucesso!")
     return status.Ok
