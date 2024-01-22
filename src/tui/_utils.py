@@ -19,9 +19,26 @@ def terminal_size() -> tuple[int, int]:
     return size.columns, size.lines
 
 
-def render_rule(inner_width: int, bottom: bool = False):
-    # Imprime "+------------------------+"
-    print("+", ("-" * inner_width), "+", sep="")
+def render_rule(inner_width: int, position: int = 0):
+    """
+    Arguments
+    ---------
+    position: int = 0
+        0: para topo
+        1: para meio
+        2: para baixo
+    """
+    dash = "─"  # unicode: 2500
+    corners = {
+        0: ("╭", "╮"), # unicode: (256D, 256E)
+        1: ("├", "┤"), # unicode: (251C, 2524)
+        2: ("╰", "╯"), # unicode: (2570, 256F)
+    } 
+    print(corners[position][0], (dash * inner_width), corners[position][1], sep="")
+
+def render_default_content(content: str):
+    vertical_bar = "│" # unicode: 2502
+    print(vertical_bar, content, vertical_bar, sep="")
 
 
 def render_content(content: str, inner_width: int, center: bool = False):
@@ -31,10 +48,10 @@ def render_content(content: str, inner_width: int, center: bool = False):
     for line in content:
         # Imprime "|        <conteúdo>      |" para ``center = True``
         # Imprime "|<conteúdo>              |" para ``center = False``
-        print("|", f"{line:{pos}{inner_width}}", "|", sep="")
+        render_default_content(f"{line:{pos}{inner_width}}")
 
 
 def render_vertical_space(inner_width: int, height: int):
     for _ in range(height - 1):
         # Imprime "|        <espaço em branco>      |"
-        print("|", (" " * inner_width), "|", sep="")
+        render_default_content(" " * inner_width)

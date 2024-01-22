@@ -36,9 +36,9 @@ class Screen:
     def clear_screen(self):
         clear_screen()
 
-    def render_rule(self, width: int | None = None):
+    def render_rule(self, width: int | None = None, position: int = 0):
         width = width - 2 if width is not None else self.inner_width
-        render_rule(width)
+        render_rule(width, position)
 
     def render_content(self, content: list[str], center: bool = False):
         render_content(content, self.inner_width, center)
@@ -57,11 +57,11 @@ class Screen:
 
         self.clear_screen()
 
-        self.render_rule()
+        self.render_rule(position=0)
         self.render_vertical_space(content_height=content_height)
         self.render_content(content, center)
         self.render_vertical_space(content_height=content_height)
-        self.render_rule()
+        self.render_rule(position=2)
 
     def wait(self):
         _ = input(">>> ")
