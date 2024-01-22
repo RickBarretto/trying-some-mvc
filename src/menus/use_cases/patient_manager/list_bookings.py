@@ -2,7 +2,7 @@ from entities.clinic import Clinic
 
 import tui
 
-from menus.use_cases import propose, request
+from menus.use_cases import propose, request, warnings
 
 
 def list_bookings(clinic: Clinic):
@@ -32,7 +32,7 @@ def list_bookings(clinic: Clinic):
     # Verifica registro
 
     if patient is None:
-        tui.warn("Paciente não registrado.")
+        warnings.patient_not_registered(cpf)
         if propose.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:

@@ -2,7 +2,7 @@ from entities.clinic import Clinic
 from entities.session import SessionStatus
 
 import tui
-
+from menus.use_cases import warnings
 
 
 def start(clinic: Clinic) -> bool:
@@ -23,11 +23,11 @@ def start(clinic: Clinic) -> bool:
 
     # Verifica status da sessão
     if session_status == SessionStatus.BEGUN:
-        tui.warn("Sessão já foi iniciada.")
+        warnings.session_has_already_started(clinic.current_session)
         return 
 
     if session_status == SessionStatus.FINISHED:
-        tui.warn("Sessão já foi finalizada.")
+        warnings.session_has_already_been_finished(clinic.current_session)
         return 
 
     # Ativa a sessão atual

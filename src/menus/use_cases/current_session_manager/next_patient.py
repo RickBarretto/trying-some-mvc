@@ -2,7 +2,7 @@ from entities.clinic import Clinic
 from entities.session import SessionStatus
 import tui
 
-from menus.use_cases import propose
+from menus.use_cases import propose, warnings
 
 
 def show_next_patient(clinic: Clinic) -> bool:
@@ -25,12 +25,12 @@ def show_next_patient(clinic: Clinic) -> bool:
     waiting_queue = clinic.waiting_queue
 
     if clinic.current_session.status == SessionStatus.UNBEGUN:
-        tui.warn("Sessão nunca foi iniciada!")
+        warnings.session_has_never_started(clinic.current_session)
         if not propose.start_current_session(clinic):
             return 
 
     if clinic.current_session.status == SessionStatus.FINISHED:
-        tui.warn("Sessão já foi finalizada!")
+        warnings.session_has_already_been_finished(clinic.current_session)
         return 
 
     # Verifica se a fila de espera está vazia

@@ -1,6 +1,6 @@
 from entities.clinic import Clinic
 import tui
-from menus.use_cases import propose, request
+from menus.use_cases import propose, request, warnings
 
 
 def check_current_booking(clinic: Clinic):
@@ -26,7 +26,7 @@ def check_current_booking(clinic: Clinic):
     # Verifica se paciente existe no banco de dados
 
     if not (patient := clinic.patient_by_cpf(cpf)):
-        tui.warn("Paciente não registrado.")
+        warnings.patient_not_registered()
 
         if propose.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)

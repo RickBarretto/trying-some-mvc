@@ -2,7 +2,7 @@ from entities.clinic import Clinic
 from entities.patient import Patient
 from entities.session import Session
 
-from menus.use_cases import propose, request
+from menus.use_cases import propose, request, warnings
 
 import tui
 
@@ -44,16 +44,17 @@ def book_schedule(
 
     # Valida registros
 
-    if not patient:
-        tui.warn("Paciente não registrado.")
+    # TODO: Improve menu with faster feedback
 
+    if not patient:
+        warnings.patient_not_registered(patient_cpf)
         if propose.register_patient(clinic, patient_cpf):
             patient = clinic.patient_by_cpf(patient_cpf)
         else:
             return 
 
     if not session:
-        tui.warn("Sessão não registrada.")
+        warnings.session_not_registered(session_date)
 
         if propose.register_session(clinic, session_date):
             session = clinic.session_by_date(session_date)

@@ -4,7 +4,7 @@ from entities.session import SessionStatus
 
 import tui
 
-from menus.use_cases import propose, request
+from menus.use_cases import propose, request, warnings
 
 
 def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> bool:
@@ -34,12 +34,12 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
     current_session_status = clinic.current_session.status
 
     if current_session_status == SessionStatus.UNBEGUN:
-        tui.warn("A sessão nunca foi inicializada.")
+        warnings.session_has_never_started(clinic.current_session)
         if not propose.start_current_session(clinic):
             return 
 
     if current_session_status == SessionStatus.FINISHED:
-        tui.warn("A sessão ja foi finalizada.")
+        warnings.session_has_already_been_finished(clinic.current_session)
         return 
 
     # Valida a entrada do CPF
@@ -48,7 +48,7 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
         patient = clinic.patient_by_cpf(cpf)
 
     if not patient:
-        tui.warn("Paciente não registrado.")
+        warnings.patient_not_registered(cpf)
         if propose.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:
