@@ -5,13 +5,7 @@ from tui import prompt
 import tui
 
 from menus.use_cases import status
-
-def _ask_for_session_creation(clinic: Clinic, date: str):
-    tui.progress(
-        f"Deseja criar uma sessão no dia {date}?", 
-        session_manager.register, 
-        clinic, date=date
-    )
+from menus.use_cases import proposes
 
 def find(clinic: Clinic):
     """Registra uma nova sessão no banco de dados.
@@ -53,6 +47,6 @@ def find(clinic: Clinic):
 
     tui.info(f"Sessão não encontrada para o dia {date}.")
     
-    _ask_for_session_creation(clinic, date)
+    proposes.wish_register_session(clinic, date)
 
     return status.Ok
