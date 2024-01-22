@@ -1,4 +1,5 @@
 from entities.clinic import Clinic
+from entities.patient import Patient
 from entities.session import SessionStatus
 
 from tui import prompt
@@ -19,7 +20,7 @@ def _should_create_new_patient(clinic: Clinic, cpf: str):
 
 
 
-def send_to_waiting_queue(clinic: Clinic) -> bool:
+def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> bool:
     """Envia um paciente para a fila de espera.
 
     Questions
@@ -52,12 +53,12 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
 
     if current_session_status == SessionStatus.UNBEGUN:
         tui.warn("A sessão nunca foi inicializada.")
-        tui.progress(
+        if not tui.progress(
             "Desejas iniciar a sessão atual?",
             current_session_manager.start,
             clinic
-        )
-        return status.Ok
+        ):
+            return status.Ok
 
     if current_session_status == SessionStatus.FINISHED:
         tui.warn("A sessão ja foi finalizada.")
@@ -65,13 +66,15 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
 
     # Valida a entrada do CPF
     try:
-        cpf = prompt.get_cpf()
+        if not patient:
+            cpf = prompt.get_cpf()
     except ValueError as e:
         tui.warn(e)
         return status.MayBeRepeated
 
     # Verifica se o paciente é registrado
-    patient = clinic.patient_by_cpf(cpf)
+    if not patient:
+        patient = clinic.patient_by_cpf(cpf)
 
     if not patient:
         tui.warn("Paciente não registrado.")

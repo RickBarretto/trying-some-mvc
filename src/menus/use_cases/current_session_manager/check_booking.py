@@ -75,5 +75,10 @@ def check_current_booking(clinic: Clinic) -> bool:
         ):
             return status.Ok
 
-    # TODO: propor por paciente na fila de espera
+    tui.progress(
+        "Desejas por o paciente na fila de espera?",
+        current_session_manager.send_to_waiting_queue,
+        clinic,
+        patient=patient,
+    )
     return status.Ok
