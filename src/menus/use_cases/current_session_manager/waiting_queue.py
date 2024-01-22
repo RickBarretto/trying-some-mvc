@@ -83,10 +83,16 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
         
     
     # Verifica agendamento
-    # TODO: propor agendamento 
     if clinic.current_session.uid not in patient.scheduled_sessions:
         tui.warn(f"{patient.name} não está agendado para a sessão atual!")
-        return status.Ok
+        if not tui.progress(
+            "Desejas agendar paciente para a sessão atual?",
+            patient_manager.book_schedule,
+            clinic,
+            patient=patient,
+            session=clinic.current_session
+        ):
+            return status.Ok
 
     # Verifica se o paciente já consta na fila de espera
     waiting_queue = clinic.waiting_queue
