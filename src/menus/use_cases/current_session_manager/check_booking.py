@@ -3,7 +3,7 @@ from entities.clinic import Clinic
 import tui
 from tui import prompt
 
-from menus.use_cases import status
+from menus.use_cases import current_session_manager, status
 from menus.use_cases import patient_manager
 
 def _should_create_new_patient(clinic: Clinic, cpf: str):
@@ -65,6 +65,14 @@ def check_current_booking(clinic: Clinic) -> bool:
 
     tui.info(message)
 
-    # TODO: agendar paciente
+    if not is_booked:
+        tui.progress(
+            "Desejas agendar paciente para a sessão atual?",
+            patient_manager.book_schedule,
+            clinic,
+            patient=patient,
+            session=clinic.current_session
+        )
+
     # TODO: propor por paciente na fila de espera
     return status.Ok
