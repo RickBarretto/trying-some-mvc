@@ -1,14 +1,14 @@
 from tui._screen import Screen
 
 
-def info(content: str | list[str] | Exception) -> None:
+def info(content: str | list[str]) -> None:
     """Define uma tela de avisos.
 
     Será posto um símbolo de aviso ao início e uma mensagem de proseguir ao fim.
 
     Arguments
     ---------
-    content: str | list[str] | Exception
+    content: str | list[str]
         Recebe ``content`` para imprimí-lo na tela.
         Esse argumento é automaticamente convertido para o tipo ``list[str]``.
 
