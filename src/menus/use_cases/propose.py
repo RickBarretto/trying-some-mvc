@@ -7,13 +7,6 @@ from menus.use_cases import current_session_manager, patient_manager, session_ma
 import tui
 
 
-def _propose(question: str, use_case: Callable, *args, **kwargs) -> bool:
-    if tui.progress(question):
-        use_case(*args, **kwargs)
-        return True
-    return False
-
-
 def add_to_waiting_queue(clinic: Clinic, patient: Patient) -> bool:
     question = f"Desejas adicionar {patient.name} à fila de espera?"
     use_case = current_session_manager.send_to_waiting_queue
@@ -54,3 +47,9 @@ def register_session(clinic: Clinic, session_date: str) -> bool:
     use_case = session_manager.register
 
     return _propose(question, use_case, clinic, date=session_date)
+
+def _propose(question: str, use_case: Callable, *args, **kwargs) -> bool:
+    if tui.progress(question):
+        use_case(*args, **kwargs)
+        return True
+    return False
