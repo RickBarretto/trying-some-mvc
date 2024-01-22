@@ -7,6 +7,7 @@ import tui
 
 from menus.use_cases import status
 from menus.use_cases import patient_manager
+from menus.use_cases import current_session_manager
 
 
 def _should_create_new_patient(clinic: Clinic, cpf: str):
@@ -49,9 +50,13 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
     # Verifica status da sessão
     current_session_status = clinic.current_session.status
 
-    # TODO: perguntar se deseja iniciar
     if current_session_status == SessionStatus.UNBEGUN:
         tui.warn("A sessão nunca foi inicializada.")
+        tui.progress(
+            "Desejas iniciar a sessão atual?",
+            current_session_manager.start,
+            clinic
+        )
         return status.Ok
 
     if current_session_status == SessionStatus.FINISHED:
