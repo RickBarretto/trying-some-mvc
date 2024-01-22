@@ -1,12 +1,10 @@
 from entities.clinic import Clinic
 from entities.patient import Patient
 from entities.session import Session
-from tui import prompt
-
-import tui
-
 from menus.use_cases import status
 from menus.use_cases import proposes
+from tui import prompt
+import tui
 
 
 def book_schedule(
