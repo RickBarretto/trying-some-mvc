@@ -6,25 +6,9 @@ from tui import prompt
 import tui
 
 from menus.use_cases import status
+from menus.use_cases import proposes
 from menus.use_cases import session_manager
 from menus.use_cases import patient_manager
-
-
-
-def _should_create_new_session(clinic: Clinic, date: str):
-    return tui.progress(
-        f"Deseja criar sessão na data {date}?",
-        session_manager.register,
-        clinic, date=date
-    )
-        
-
-def _should_create_new_patient(clinic: Clinic, cpf: str):
-    return tui.progress(
-        f"Deseja registrar paciente do CPF {cpf}?",
-        patient_manager.register,
-        clinic, patient_cpf=cpf
-    )
 
 
 def book_schedule(
@@ -79,7 +63,7 @@ def book_schedule(
     if not patient:
         tui.warn("Paciente não registrado.")
         
-        if _should_create_new_patient(clinic, patient_cpf):
+        if proposes.wish_register_patient(clinic, patient_cpf):
             patient = clinic.patient_by_cpf(patient_cpf)
         else:
             return status.Ok
@@ -87,7 +71,7 @@ def book_schedule(
     if not session:
         tui.warn("Sessão não registrada.")
         
-        if _should_create_new_session(clinic, session_date):
+        if proposes.wish_register_session(clinic, session_date):
             session = clinic.session_by_date(session_date)
         else:
             return status.Ok
