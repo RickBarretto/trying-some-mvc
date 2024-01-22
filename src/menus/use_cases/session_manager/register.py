@@ -34,11 +34,6 @@ def register(
     * Formato de data inválido
     * Sessão já registrada
 
-    Return
-    ------
-    bool:
-        Retorna o status da função, que pode ser `status.Ok` (`False`)
-        ou `status.MayBeRepeated` (`True`).
     """
 
     # Valida entrada
@@ -50,11 +45,11 @@ def register(
 
     if session and dry_run:
         tui.info("Entrando na sessão novamente.")
-        return status.Ok
+        return 
 
     if session:
         tui.warn("Sessão já foi registrada.")
-        return status.Ok
+        return 
 
     # Criação da sessão
     new_id: int = clinic.new_session_id()
@@ -69,5 +64,3 @@ def register(
     # Atualiza a sessão caso a função seja chamada por fora
     if should_update:
         current_session_manager.update(clinic, session)
-
-    return status.Ok

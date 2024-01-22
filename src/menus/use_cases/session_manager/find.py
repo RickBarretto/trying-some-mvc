@@ -22,11 +22,6 @@ def find(clinic: Clinic):
     * Formato de data inválido
     * Sessão não registrada     : Propõe a registrar
 
-    Return
-    ------
-    bool:
-        Retorna o status da função, que pode ser `status.Ok` (`False`)
-        ou `status.MayBeRepeated` (`True`).
     """
 
     # Valida entrada
@@ -35,10 +30,8 @@ def find(clinic: Clinic):
 
     if session:
         tui.info([f"Sessão encontrada para o dia {date}.", f"Sessão: {session}"])
-        return status.Ok
+        return 
 
     tui.info(f"Sessão não encontrada para o dia {date}.")
 
     propose.register_session(clinic, date)
-
-    return status.Ok

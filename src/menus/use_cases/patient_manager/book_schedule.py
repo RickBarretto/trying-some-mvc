@@ -30,11 +30,6 @@ def book_schedule(
     * Sessão já finalizada
     * Paciente já estava agendado
 
-    Return
-    ------
-    bool:
-        Retorna o status da função, que pode ser `status.Ok` (`True`)
-        ou `status.MayBeRepeated` (`False`).
     """
 
     # Valida entradas
@@ -55,7 +50,7 @@ def book_schedule(
         if propose.register_patient(clinic, patient_cpf):
             patient = clinic.patient_by_cpf(patient_cpf)
         else:
-            return status.Ok
+            return 
 
     if not session:
         tui.warn("Sessão não registrada.")
@@ -63,7 +58,7 @@ def book_schedule(
         if propose.register_session(clinic, session_date):
             session = clinic.session_by_date(session_date)
         else:
-            return status.Ok
+            return 
 
     # Verifica o agendamento
     if session.uid in patient.scheduled_sessions:
@@ -71,10 +66,9 @@ def book_schedule(
             f"Paciente {patient.name} já está "
             f"registrado para a sessão {session.date}."
         )
-        return status.Ok
+        return 
 
     # Agenda sessão para paciente
     patient.scheduled_sessions.append(session.uid)
 
     tui.info(f"{patient.name} agendado para o dia {session.date}!")
-    return status.Ok

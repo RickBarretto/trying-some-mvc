@@ -28,11 +28,6 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
     * Paciente não agendado     : Propõe o agendar para a sessão atual
     * Paciente já está na fila de espera
 
-    Return
-    ------
-    bool:
-        Retorna o status da função, que pode ser `status.Ok` (`True`)
-        ou `status.MayBeRepeated` (`False`).
     """
 
     # Verifica status da sessão
@@ -41,11 +36,11 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
     if current_session_status == SessionStatus.UNBEGUN:
         tui.warn("A sessão nunca foi inicializada.")
         if not propose.start_current_session(clinic):
-            return status.Ok
+            return 
 
     if current_session_status == SessionStatus.FINISHED:
         tui.warn("A sessão ja foi finalizada.")
-        return status.Ok
+        return 
 
     # Valida a entrada do CPF
     if not patient:
@@ -57,19 +52,19 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
         if propose.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:
-            return status.Ok
+            return 
 
     # Verifica agendamento
     if clinic.current_session.uid not in patient.scheduled_sessions:
         tui.warn(f"{patient.name} não está agendado para a sessão atual!")
         if not propose.book_session(clinic, patient, clinic.current_session):
-            return status.Ok
+            return 
 
     # Verifica se o paciente já consta na fila de espera
     waiting_queue = clinic.waiting_queue
     if patient.uid in waiting_queue:
         tui.warn("Paciente já está na fila de espera.")
-        return status.Ok
+        return 
 
     # Põe o paciente na fila de espera
     clinic.waiting_queue.append(patient.uid)
@@ -82,5 +77,3 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
             f"O mesmo se encontra na posição {len(waiting_queue)}!",
         ]
     )
-
-    return status.Ok

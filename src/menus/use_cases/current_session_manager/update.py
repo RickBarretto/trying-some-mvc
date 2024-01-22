@@ -18,15 +18,9 @@ def update(clinic: Clinic, session: Session) -> bool:
     ---------
     * Sessão atual atualizada
 
-    Return
-    ------
-    bool:
-        Retorna o status da função, que pode ser `status.Ok` (`True`)
-        ou `status.MayBeRepeated` (`False`).
     """
 
     # Atualiza a sessão atual
     clinic.current_session = session
 
     tui.info(f"Sessão atual atualizada para o dia {session.date}!")
-    return status.Ok

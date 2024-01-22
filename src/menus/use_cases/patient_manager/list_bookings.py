@@ -23,11 +23,6 @@ def list_bookings(clinic: Clinic):
     * Formato de CPF inválido
     * Paciente não registrado   : Propõe o registrar
 
-    Return
-    ------
-    bool:
-        Retorna o status da função, que pode ser `status.Ok` (`True`)
-        ou `status.MayBeRepeated` (`False`).
     """
 
     # Valida entrada
@@ -42,7 +37,7 @@ def list_bookings(clinic: Clinic):
         if propose.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:
-            return status.Ok
+            return 
 
     # Lista sessões agendadas
 
@@ -52,4 +47,3 @@ def list_bookings(clinic: Clinic):
     data = sessions if sessions else ["Nenhuma sessão agendada"]
 
     tui.bullet_list(f"Sessões agendadas de {patient.name}:", data)
-    return status.Ok

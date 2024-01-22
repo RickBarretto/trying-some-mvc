@@ -21,28 +21,23 @@ def show_next_patient(clinic: Clinic) -> bool:
     * Sessão nunca foi inicializada : Propõe a iniciar
     * Não há pacientes na fila
 
-    Return
-    ------
-    bool:
-        Retorna o status da função, que pode ser `status.Ok` (`False`)
-        ou `status.MayBeRepeated` (`True`).
     """
     waiting_queue = clinic.waiting_queue
 
     if clinic.current_session.status == SessionStatus.UNBEGUN:
         tui.warn("Sessão nunca foi iniciada!")
         if not propose.start_current_session(clinic):
-            return status.Ok
+            return 
 
     if clinic.current_session.status == SessionStatus.FINISHED:
         tui.warn("Sessão já foi finalizada!")
-        return status.Ok
+        return 
 
     # Verifica se a fila de espera está vazia
 
     if not waiting_queue:
         tui.warn("Não há pacientes na fila de espera.")
-        return status.Ok
+        return 
 
     # Pega a instância do próximo paciente
     next_patient_id = waiting_queue[0]
@@ -51,4 +46,3 @@ def show_next_patient(clinic: Clinic) -> bool:
     # Imprime informações do paciente
     content = ["Próximo paciente:", str(patient)]
     tui.info(content)
-    return status.Ok

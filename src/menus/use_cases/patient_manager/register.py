@@ -26,11 +26,6 @@ def register(clinic: Clinic, patient_cpf: str | None = None) -> bool:
     * TODO: Nome deve conter pelo menos nome e sobrenome
     * Paciente já registrado
 
-    Return
-    ------
-    bool:
-        Retorna o status da função, que pode ser `status.Ok` (`True`)
-        ou `status.MayBeRepeated` (`False`).
     """
 
     # Valida entradas
@@ -40,7 +35,7 @@ def register(clinic: Clinic, patient_cpf: str | None = None) -> bool:
     # Verifica se paciente já é registrado
     if clinic.patient_by_cpf(patient_cpf):
         tui.warn("Paciente já foi registrado.")
-        return status.Ok
+        return 
 
     # Adiciona outros dados do paciente
     patient_name: str = tui.prompt("Insira o nome do paciente.")
@@ -57,4 +52,3 @@ def register(clinic: Clinic, patient_cpf: str | None = None) -> bool:
     clinic.last_patient_id_id = new_id
 
     tui.info(f"{patient.name} registrado com sucesso!")
-    return status.Ok

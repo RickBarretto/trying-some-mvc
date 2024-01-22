@@ -1,9 +1,9 @@
 from entities.clinic import Clinic
 import tui
-from menus.use_cases import propose, request, status
+from menus.use_cases import propose, request
 
 
-def check_current_booking(clinic: Clinic) -> bool:
+def check_current_booking(clinic: Clinic):
     """Verifica se paciente está agendado para a sessão atual.
 
     Questions
@@ -17,12 +17,7 @@ def check_current_booking(clinic: Clinic) -> bool:
     Warnings
     --------
     * Paciente não registrado   : Propõe o registrar.
-
-    Return
-    ------
-    bool:
-        Retorna o status da função, que pode ser `status.Ok` (`True`)
-        ou `status.MayBeRepeated` (`True`).
+    
     """
 
     # Entrada do CPF
@@ -36,7 +31,7 @@ def check_current_booking(clinic: Clinic) -> bool:
         if propose.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:
-            return status.Ok
+            return
 
     # Verifica se paciente está marcado para a sessão atual
     is_booked = clinic.current_session.uid in patient.scheduled_sessions
@@ -50,6 +45,6 @@ def check_current_booking(clinic: Clinic) -> bool:
 
     if not is_booked:
         if not propose.book_session(clinic, patient, clinic.current_session):
-            return status.Ok
+            return
 
     propose.send_patient_to_waiting_queue(clinic, patient)

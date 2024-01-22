@@ -17,12 +17,7 @@ def start(clinic: Clinic) -> bool:
     --------
     * Sessão já inicializada
     * Sessão já finalizada
-
-    Return
-    ------
-    bool:
-        Retorna o status da função, que pode ser `status.Ok` (`True`)
-        ou `status.MayBeRepeated` (`False`).
+    
     """
 
     session_status = clinic.current_session.status
@@ -30,14 +25,13 @@ def start(clinic: Clinic) -> bool:
     # Verifica status da sessão
     if session_status == SessionStatus.BEGUN:
         tui.warn("Sessão já foi iniciada.")
-        return status.Ok
+        return 
 
     if session_status == SessionStatus.FINISHED:
         tui.warn("Sessão já foi finalizada.")
-        return status.Ok
+        return 
 
     # Ativa a sessão atual
     clinic.current_session.status = SessionStatus.BEGUN
 
     tui.info("Sessão iniciada!")
-    return status.Ok
