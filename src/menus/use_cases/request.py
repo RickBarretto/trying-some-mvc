@@ -46,11 +46,13 @@ def _is_valid_cpf(entry: str) -> bool:
     has_dash_at_index_11 = [11] == [index for index, char in enumerate(entry) if char == "-"]
     
     # Verifica os campos de preenchimento
-         
-    has_4_fields                = 4 == len(fields)
-    all_fields_are_digits       = all((field.isdigit() for field in fields))
-    first_3_fields_has_3_digits = all((3 == len(field) for field in fields[0:3]))
-    last_field_has_2_digits     = 2 == len(fields[-1])
+    try:
+        has_4_fields                = 4 == len(fields)
+        all_fields_are_digits       = all((field.isdigit() for field in fields))
+        first_3_fields_has_3_digits = all((3 == len(field) for field in fields[0:3]))
+        last_field_has_2_digits     = 2 == len(fields[-1])
+    except IndexError:
+        return False
 
     return all((
         has_dot_at_index_3_and_7,
@@ -74,9 +76,12 @@ def _is_valid_date(entry: str) -> bool:
     # O formato deve seguir o formato brasileiro:
     #   DD/MM/YYYY
 
-    day_has_two_digits    = 2 == len(fields[0])
-    month_has_two_digits  = 2 == len(fields[1])
-    year_has_four_digits  = 3 == len(fields[2])
+    try:
+        day_has_two_digits    = 2 == len(fields[0])
+        month_has_two_digits  = 2 == len(fields[1])
+        year_has_four_digits  = 3 == len(fields[2])
+    except IndexError:
+        return False
 
     return all((
         has_three_fields, 
