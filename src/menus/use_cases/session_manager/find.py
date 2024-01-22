@@ -1,9 +1,8 @@
 from entities.clinic import Clinic
-from tui import prompt
 
 import tui
 
-from menus.use_cases import propose, request, status
+from menus.use_cases import propose, request
 
 
 def find(clinic: Clinic):

@@ -4,7 +4,7 @@ from entities.session import SessionStatus
 
 import tui
 
-from menus.use_cases import propose, request, status
+from menus.use_cases import propose, request
 
 
 def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> bool:

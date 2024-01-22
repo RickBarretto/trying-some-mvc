@@ -3,7 +3,7 @@ from entities.patient import Patient
 
 import tui
 
-from menus.use_cases import request, status
+from menus.use_cases import request
 
 
 def register(clinic: Clinic, patient_cpf: str | None = None) -> bool:

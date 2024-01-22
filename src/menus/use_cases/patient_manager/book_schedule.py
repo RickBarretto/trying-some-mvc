@@ -2,7 +2,7 @@ from entities.clinic import Clinic
 from entities.patient import Patient
 from entities.session import Session
 
-from menus.use_cases import propose, request, status
+from menus.use_cases import propose, request
 
 import tui
 

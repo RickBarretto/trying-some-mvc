@@ -3,7 +3,6 @@ from entities.session import SessionStatus
 
 import tui
 
-from menus.use_cases import status
 
 
 def start(clinic: Clinic) -> bool:

@@ -1,7 +1,6 @@
 from entities.clinic import Clinic
 import tui
 
-from menus.use_cases import status
 
 
 def list_all(clinic: Clinic):
