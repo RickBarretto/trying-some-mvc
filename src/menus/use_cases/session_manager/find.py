@@ -3,8 +3,7 @@ from tui import prompt
 
 import tui
 
-from menus.use_cases import status
-from menus.use_cases import proposes
+from menus.use_cases import proposes, request, status
 
 
 def find(clinic: Clinic):
@@ -31,13 +30,7 @@ def find(clinic: Clinic):
     """
 
     # Valida entrada
-    try:
-        date = prompt.get_date()
-    except ValueError as e:
-        tui.warn(e)
-        return status.MayBeRepeated
-
-    # Valida entrada
+    date = request.get_date()
     session = clinic.session_by_date(date)
 
     if session:
