@@ -53,4 +53,6 @@ def check_current_booking(clinic: Clinic) -> bool:
     message = TEMPLATE_MESSAGE.format(patient.name, " " if is_booked else " não ")
 
     tui.info(message)
+
+    # TODO: propor por paciente na fila de espera
     return status.Ok
