@@ -1,4 +1,5 @@
 from entities.clinic import Clinic
+from entities.patient import Patient
 import tui
 from menus.use_cases import propose, request, warnings
 
@@ -20,10 +21,11 @@ def check_current_booking(clinic: Clinic):
     
     """
 
-    # Entrada do CPF
+    # ============= Entrada do usuário =============
+     
     cpf = request.patient_cpf()
 
-    # Verifica se paciente existe no banco de dados
+    # ============= Verificação do paciente no banco de dados =============
 
     if not (patient := clinic.patient_by_cpf(cpf)):
         warnings.patient_not_registered()
@@ -32,19 +34,30 @@ def check_current_booking(clinic: Clinic):
             patient = clinic.patient_by_cpf(cpf)
         else:
             return
+        
+    # ============= Verificação do agendamento =============
 
-    # Verifica se paciente está marcado para a sessão atual
     is_booked = clinic.current_session.uid in patient.scheduled_sessions
 
-    # Imprime o feedback
+    # ============= Impressão do feedback =============
 
-    TEMPLATE_MESSAGE = "Paciente {}{}está marcado para a sessão atual."
-    message = TEMPLATE_MESSAGE.format(patient.name, " " if is_booked else " não ")
+    show_checking_feedback(patient, is_booked)
 
-    tui.info(message)
+    # ============= Proposta de agendamento =============
 
     if not is_booked:
         if not propose.book_session(clinic, patient, clinic.current_session):
             return
+        
+    # ============= Enfileiramento do paciente =============
 
     propose.send_patient_to_waiting_queue(clinic, patient)
+
+
+def show_checking_feedback(patient: Patient, is_booked: bool):
+    no_or_space = " " if is_booked else " não "
+
+    message_start = patient.name + "" if is_booked else "não"
+    message_end = "está marcado para a sessão atual."
+    
+    tui.info(f"{message_start} {message_end}")
