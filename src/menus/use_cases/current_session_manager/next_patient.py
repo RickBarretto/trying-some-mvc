@@ -1,4 +1,5 @@
 from entities.clinic import Clinic
+from entities.patient import Patient
 from entities.session import SessionStatus
 import tui
 
@@ -22,7 +23,8 @@ def show_next_patient(clinic: Clinic) -> bool:
     * Não há pacientes na fila
 
     """
-    waiting_queue = clinic.waiting_queue
+
+    # ============= Verificação do status da sessão atual =============
 
     if clinic.current_session.status == SessionStatus.UNBEGUN:
         warnings.session_has_never_started(clinic.current_session)
@@ -33,16 +35,16 @@ def show_next_patient(clinic: Clinic) -> bool:
         warnings.session_has_already_been_finished(clinic.current_session)
         return 
 
-    # Verifica se a fila de espera está vazia
+    # ============= Feedback =============
 
-    if not waiting_queue:
+    if not clinic.waiting_queue:
         tui.warn("Não há pacientes na fila de espera.")
-        return 
+    else:
+        tui.info(["Próximo paciente:", next_patient(clinic)])
 
-    # Pega a instância do próximo paciente
-    next_patient_id = waiting_queue[0]
-    patient = clinic.patient_by_id(next_patient_id)
 
-    # Imprime informações do paciente
-    content = ["Próximo paciente:", str(patient)]
-    tui.info(content)
+def next_patient(clinic: Clinic) -> str:
+    assert clinic.waiting_queue
+
+    next_patient_id = clinic.waiting_queue[0]
+    return str(clinic.patient_by_id(next_patient_id))
