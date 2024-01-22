@@ -36,6 +36,7 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
     * Sessão já foi finalizada
     * Formato de CPF inválido
     * Paciente não registrado
+    * Paciente não agendado
     * Paciente já está na fila de espera
 
     Return
@@ -74,6 +75,12 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
             patient = clinic.patient_by_cpf(cpf)
         else:
             return status.Ok
+        
+    
+    # Verifica agendamento
+    if clinic.current_session.uid not in patient.scheduled_sessions:
+        tui.warn(f"{patient.name} não está agendado para a sessão atual!")
+        return status.Ok
 
     # Verifica se o paciente já consta na fila de espera
     waiting_queue = clinic.waiting_queue
