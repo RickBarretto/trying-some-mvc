@@ -5,6 +5,7 @@ from tui.prompt import Prompt
 
 import tui
 
+
 def register(
     clinic: Clinic, dry_run: bool = False, should_update: bool = False
 ) -> bool:

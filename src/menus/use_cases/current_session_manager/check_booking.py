@@ -50,7 +50,7 @@ def check_current_booking(clinic: Clinic) -> bool:
     is_booked = clinic.current_session.uid in patient.scheduled_sessions
 
     # Imprime o feedback
-    
+
     TEMPLATE_MESSAGE = "Paciente {}{}está marcado para a sessão atual."
     message = TEMPLATE_MESSAGE.format(patient.name, " " if is_booked else " não ")
 

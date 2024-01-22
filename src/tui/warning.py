@@ -1,4 +1,3 @@
-
 from tui._screen import Screen
 
 
