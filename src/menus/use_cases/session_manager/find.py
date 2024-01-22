@@ -3,7 +3,7 @@ from tui import prompt
 
 import tui
 
-from menus.use_cases import proposes, request, status
+from menus.use_cases import propose, request, status
 
 
 def find(clinic: Clinic):
@@ -39,6 +39,6 @@ def find(clinic: Clinic):
 
     tui.info(f"Sessão não encontrada para o dia {date}.")
 
-    proposes.register_session(clinic, date)
+    propose.register_session(clinic, date)
 
     return status.Ok

@@ -1,6 +1,6 @@
 from entities.clinic import Clinic
 import tui
-from menus.use_cases import proposes, request, status
+from menus.use_cases import propose, request, status
 
 
 def check_current_booking(clinic: Clinic) -> bool:
@@ -33,7 +33,7 @@ def check_current_booking(clinic: Clinic) -> bool:
     if not (patient := clinic.patient_by_cpf(cpf)):
         tui.warn("Paciente não registrado.")
 
-        if proposes.register_patient(clinic, cpf):
+        if propose.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:
             return status.Ok
@@ -49,7 +49,7 @@ def check_current_booking(clinic: Clinic) -> bool:
     tui.info(message)
 
     if not is_booked:
-        if not proposes.book_session(clinic, patient, clinic.current_session):
+        if not propose.book_session(clinic, patient, clinic.current_session):
             return status.Ok
 
-    proposes.send_patient_to_waiting_queue(clinic, patient)
+    propose.send_patient_to_waiting_queue(clinic, patient)

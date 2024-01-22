@@ -2,7 +2,7 @@ from entities.clinic import Clinic
 from entities.session import SessionStatus
 import tui
 
-from menus.use_cases import proposes, status
+from menus.use_cases import propose, status
 
 
 def show_next_patient(clinic: Clinic) -> bool:
@@ -31,7 +31,7 @@ def show_next_patient(clinic: Clinic) -> bool:
 
     if clinic.current_session.status == SessionStatus.UNBEGUN:
         tui.warn("Sessão nunca foi iniciada!")
-        if not proposes.start_current_session(clinic):
+        if not propose.start_current_session(clinic):
             return status.Ok
 
     if clinic.current_session.status == SessionStatus.FINISHED:
