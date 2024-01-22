@@ -35,7 +35,7 @@ def prompt(ask: str, suggestion: str = "") -> str:
     screen.render_rule(position=2)
     return input(" >>> ").strip()
 
-
+# TODO: atualizar para um Prompt full screen
 def multiline(message: str) -> list[str]:
     print(message)
     print("(Linha vazia para finalizar.)")

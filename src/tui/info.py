@@ -30,6 +30,7 @@ def info(content: str | list[str]) -> None:
         content = [content]
 
     screen = Screen()
+    # TODO: fix symbol breaking formatation 
     symbol = "🛈"  # unicode: 1F6C8
 
     # Adiciona símbolo de aviso ao início
