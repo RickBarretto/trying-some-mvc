@@ -44,7 +44,7 @@ def register(clinic: Clinic, patient_cpf: str | None = None) -> bool:
 
     # Adiciona outros dados do paciente
     patient_name: str = tui.prompt("Insira o nome do paciente.")
-    extra_information: str = tui.prompt.multiline("Insira informações extra.")
+    extra_information: str = tui.multiline("Insira informações extra.")
 
     # Criação do paciente
     new_id: int = clinic.new_patient_id()
