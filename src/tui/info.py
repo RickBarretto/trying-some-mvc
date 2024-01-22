@@ -26,7 +26,9 @@ def info(content: str | list[str]) -> None:
         +-------------------------------------------------------+
     """
 
-    content = [content] if content is str else content
+    if type(content) is str:
+        content = [content]
+    
     screen = Screen()
 
     # Adiciona símbolo de aviso ao início
