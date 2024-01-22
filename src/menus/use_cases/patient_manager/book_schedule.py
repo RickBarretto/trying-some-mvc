@@ -5,6 +5,8 @@ import tui
 
 from menus.use_cases import status
 from menus.use_cases import session_manager
+from menus.use_cases import patient_manager
+
 
 
 def _should_create_new_session(clinic: Clinic, date: str):
@@ -14,6 +16,13 @@ def _should_create_new_session(clinic: Clinic, date: str):
         clinic, date=date
     )
         
+
+def _should_create_new_patient(clinic: Clinic, cpf: str):
+    return tui.progress(
+        f"Deseja registrar paciente do CPF {cpf}?",
+        patient_manager.register,
+        clinic, patient_cpf=cpf
+    )
 
 
 def book_schedule(clinic: Clinic) -> bool:
@@ -57,10 +66,13 @@ def book_schedule(clinic: Clinic) -> bool:
 
     # Valida registros
 
-    # TODO: perguntar se deseja registar
     if not patient:
         tui.warn("Paciente não registrado.")
-        return status.Ok
+        
+        if _should_create_new_patient(clinic, patient_cpf):
+            patient = clinic.patient_by_cpf(patient_cpf)
+        else:
+            return status.Ok
 
     if not session:
         tui.warn("Sessão não registrada.")
