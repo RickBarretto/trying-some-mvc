@@ -1,5 +1,3 @@
-# TODO: remove this, not needed anymore
-
 from menus.interface import MainMenu
 
 from .use_cases import session_manager
