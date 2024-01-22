@@ -20,7 +20,7 @@ def find(clinic: Clinic):
     Warnings
     --------
     * Formato de data inválido
-    * Sessão não registrada
+    * Sessão não registrada     : Propõe a registrar
 
     Return
     ------

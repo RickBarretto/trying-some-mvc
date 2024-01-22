@@ -21,7 +21,7 @@ def list_bookings(clinic: Clinic):
     Warnings
     --------
     * Formato de CPF inválido
-    * Paciente não registrado
+    * Paciente não registrado   : Propõe o registrar
 
     Return
     ------

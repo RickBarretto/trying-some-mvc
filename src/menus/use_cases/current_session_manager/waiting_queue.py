@@ -21,11 +21,11 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
 
     Warnings
     --------
-    * Sessão não inicializada
+    * Sessão não inicializada   : Propõe a inicializar
     * Sessão já foi finalizada
     * Formato de CPF inválido
-    * Paciente não registrado
-    * Paciente não agendado
+    * Paciente não registrado   : Propõe o registrar
+    * Paciente não agendado     : Propõe o agendar para a sessão atual
     * Paciente já está na fila de espera
 
     Return

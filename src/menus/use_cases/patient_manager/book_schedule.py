@@ -25,8 +25,8 @@ def book_schedule(
     --------
     * Formato de data inválido
     * Formato de CPF inválido
-    * Paciente não registrado
-    * Sessão não registrada
+    * Paciente não registrado   : Propõe o registrar
+    * Sessão não registrada     : Propõe a registrar
     * Sessão já finalizada
     * Paciente já estava agendado
 

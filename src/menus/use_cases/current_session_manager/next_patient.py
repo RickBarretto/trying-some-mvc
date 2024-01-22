@@ -18,7 +18,7 @@ def show_next_patient(clinic: Clinic) -> bool:
 
     Warnings
     --------
-    * Sessão nunca foi inicializada
+    * Sessão nunca foi inicializada : Propõe a iniciar
     * Não há pacientes na fila
 
     Return

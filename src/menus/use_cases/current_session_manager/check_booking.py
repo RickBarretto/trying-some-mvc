@@ -16,7 +16,7 @@ def check_current_booking(clinic: Clinic) -> bool:
 
     Warnings
     --------
-    * Paciente não registrado
+    * Paciente não registrado   : Propõe o registrar.
 
     Return
     ------
