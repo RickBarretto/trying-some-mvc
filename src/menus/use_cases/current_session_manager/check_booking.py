@@ -66,13 +66,14 @@ def check_current_booking(clinic: Clinic) -> bool:
     tui.info(message)
 
     if not is_booked:
-        tui.progress(
+        if not tui.progress(
             "Desejas agendar paciente para a sessão atual?",
             patient_manager.book_schedule,
             clinic,
             patient=patient,
             session=clinic.current_session
-        )
+        ):
+            return status.Ok
 
     # TODO: propor por paciente na fila de espera
     return status.Ok
