@@ -2,8 +2,7 @@ from entities.clinic import Clinic
 from entities.session import SessionStatus
 import tui
 
-from menus.use_cases import status
-from menus.use_cases import proposes
+from menus.use_cases import proposes, status
 
 
 def show_next_patient(clinic: Clinic) -> bool:
