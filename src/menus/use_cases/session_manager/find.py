@@ -1,6 +1,7 @@
 from entities.clinic import Clinic
 from tui.prompt import Prompt
-from tui.warning import WarningScreen
+
+import tui
 
 from menus.use_cases import status
 
@@ -32,16 +33,16 @@ def find(clinic: Clinic):
     try:
         date = Prompt.get_date()
     except ValueError as e:
-        WarningScreen(e).render()
+        tui.warn(e)
         return status.MayBeRepeated
 
     # Valida entrada
     session = clinic.session_by_date(date)
 
     if session:
-        WarningScreen([f"Sessão encontrada para o dia {date}.", str(session)]).render()
+        tui.warn([f"Sessão encontrada para o dia {date}.", str(session)])
     else:
         # TODO: pergunta se deseja registrar
-        WarningScreen(f"Sessão não encontrada para o dia {date}.").render()
+        tui.warn(f"Sessão não encontrada para o dia {date}.")
 
     return status.Ok

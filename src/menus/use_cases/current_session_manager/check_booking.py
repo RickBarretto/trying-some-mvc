@@ -2,7 +2,8 @@ from entities.clinic import Clinic
 
 from tui.prompt import Prompt
 from tui.splash import SplashScreen
-from tui.warning import WarningScreen
+
+import tui
 
 from menus.use_cases import status
 
@@ -33,7 +34,7 @@ def check_current_booking(clinic: Clinic) -> bool:
     try:
         cpf = Prompt.get_cpf()
     except ValueError as e:
-        WarningScreen(e).render()
+        tui.warn(e)
         return status.MayBeRepeated
 
     patient = clinic.patient_by_cpf(cpf)
@@ -42,7 +43,7 @@ def check_current_booking(clinic: Clinic) -> bool:
 
     # TODO: registrar paciente caso necessário
     if not patient:
-        WarningScreen("Paciente não registrado.").render()
+        tui.warn("Paciente não registrado.")
         return status.Ok
 
     # Verifica se paciente está marcado para a sessão atual

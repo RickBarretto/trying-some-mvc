@@ -1,6 +1,7 @@
 from entities.clinic import Clinic
 from entities.session import Session, SessionStatus
-from tui.warning import WarningScreen
+
+import tui
 
 from menus.use_cases import status
 
@@ -28,5 +29,5 @@ def update(clinic: Clinic, session: Session) -> bool:
     clinic.current_session = session
 
     # TODO: Usar InfoScreen
-    WarningScreen(f"Sessão atual atualizada para o dia {session.date}!").render()
+    tui.warn(f"Sessão atual atualizada para o dia {session.date}!")
     return status.Ok

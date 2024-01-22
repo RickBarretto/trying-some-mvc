@@ -1,7 +1,6 @@
 from typing import Callable, Protocol
 
 import tui
-from tui.warning import WarningScreen
 
 
 class Model(Protocol):
@@ -27,7 +26,7 @@ class MainMenu:
             try:
                 user_choice = tui.choice(self._descriptions)
             except (ValueError, IndexError) as e:
-                WarningScreen(e).render()
+                tui.warn(e)
                 user_choice = -1
 
             if user_choice == -1:
@@ -42,4 +41,4 @@ class MainMenu:
             # try:
             #     func(self.model)
             # except:
-            #     WarningScreen("Função não implementada").render()
+            #     tui.warn("Função não implementada")

@@ -7,4 +7,4 @@ from .choice import choice
 from .list import ListScreen
 from .prompt import Prompt
 from .splash import SplashScreen
-from .warning import WarningScreen
+from .warning import warn

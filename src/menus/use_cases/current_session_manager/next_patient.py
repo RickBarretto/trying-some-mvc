@@ -1,5 +1,7 @@
 from entities.clinic import Clinic
-from tui import WarningScreen, SplashScreen
+from tui import SplashScreen
+
+import tui
 
 from menus.use_cases import status
 
@@ -31,7 +33,7 @@ def show_next_patient(clinic: Clinic) -> bool:
 
     # TODO: perguntar se deseja adicionar
     if not waiting_queue:
-        WarningScreen("Não há pacientes na fila de espera.").render()
+        tui.warn("Não há pacientes na fila de espera.")
         return status.Ok
 
     # Pega a instância do próximo paciente

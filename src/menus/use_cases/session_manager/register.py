@@ -2,8 +2,8 @@ from entities.clinic import Clinic
 from entities.session import Session
 from menus.use_cases import current_session_manager, status
 from tui.prompt import Prompt
-from tui.warning import WarningScreen
 
+import tui
 
 def register(
     clinic: Clinic, dry_run: bool = False, should_update: bool = False
@@ -42,18 +42,18 @@ def register(
     try:
         date = Prompt.get_date()
     except ValueError as e:
-        WarningScreen(e).render()
+        tui.warn(e)
         return status.MayBeRepeated
 
     # Verifica registro
     session = clinic.session_by_date(date)
 
     if session and dry_run:
-        WarningScreen("Entrando na sessão novamente.").render()
+        tui.warn("Entrando na sessão novamente.")
         return status.Ok
 
     if session:
-        WarningScreen("Sessão já foi registrada.").render()
+        tui.warn("Sessão já foi registrada.")
         return status.Ok
 
     # Criação da sessão
@@ -64,7 +64,7 @@ def register(
     clinic.sessions.append(session)
     clinic.last_session_id = new_id
 
-    WarningScreen(f"Sessão registrada na data {session.date}.").render()
+    tui.warn(f"Sessão registrada na data {session.date}.")
 
     # Atualiza a sessão caso a função seja chamada por fora
     if should_update:

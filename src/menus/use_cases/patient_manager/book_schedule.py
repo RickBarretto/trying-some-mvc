@@ -1,6 +1,7 @@
 from entities.clinic import Clinic
 from tui.prompt import Prompt
-from tui.warning import WarningScreen
+
+import tui
 
 from menus.use_cases import status
 
@@ -38,7 +39,7 @@ def book_schedule(clinic: Clinic) -> bool:
         patient_cpf = Prompt.get_cpf()
         session_date = Prompt.get_date()
     except ValueError as e:
-        WarningScreen(e).render()
+        tui.warn(e)
         return status.MayBeRepeated
 
     patient = clinic.patient_by_cpf(patient_cpf)
@@ -48,25 +49,25 @@ def book_schedule(clinic: Clinic) -> bool:
 
     # TODO: perguntar se deseja registar
     if not patient:
-        WarningScreen("Paciente não registrado.").render()
+        tui.warn("Paciente não registrado.")
         return status.Ok
 
     # TODO: perguntar se deseja registar
     if not session:
-        WarningScreen("Sessão não registrada.").render()
+        tui.warn("Sessão não registrada.")
         return status.Ok
 
     # Verifica o agendamento
     if session.uid in patient.scheduled_sessions:
-        WarningScreen(
+        tui.warn(
             f"Paciente {patient.name} já está "
             f"registrado para a sessão {session.date}."
-        ).render()
+        )
         return status.Ok
 
     # Agenda sessão para paciente
     patient.scheduled_sessions.append(session.uid)
 
     # TODO: usar InfoScreen
-    WarningScreen(f"{patient.name} agendado para o dia {session.date}!").render()
+    tui.warn(f"{patient.name} agendado para o dia {session.date}!")
     return status.Ok

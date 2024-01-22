@@ -1,7 +1,8 @@
 from entities.clinic import Clinic
 from tui.list import ListScreen
 from tui.prompt import Prompt
-from tui.warning import WarningScreen
+
+import tui
 
 from menus.use_cases import status
 
@@ -34,7 +35,7 @@ def list_bookings(clinic: Clinic):
     try:
         cpf = Prompt.get_cpf()
     except ValueError as e:
-        WarningScreen(e).render()
+        tui.warn(e)
         return status.MayBeRepeated
 
     patient = clinic.patient_by_cpf(cpf)
@@ -43,7 +44,7 @@ def list_bookings(clinic: Clinic):
 
     # TODO: perguntar se deseja registrar
     if patient is None:
-        WarningScreen("Paciente não registrado.").render()
+        tui.warn("Paciente não registrado.")
         return status.Ok
 
     # Lista sessões agendadas

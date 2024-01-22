@@ -1,6 +1,7 @@
 from entities.clinic import Clinic
 from entities.session import SessionStatus
-from tui.warning import WarningScreen
+
+import tui
 
 from menus.use_cases import status
 
@@ -28,16 +29,16 @@ def start(clinic: Clinic) -> bool:
 
     # Verifica status da sessão
     if session_status == SessionStatus.BEGUN:
-        WarningScreen("Sessão já foi iniciada.").render()
+        tui.warn("Sessão já foi iniciada.")
         return status.Ok
 
     if session_status == SessionStatus.FINISHED:
-        WarningScreen("Sessão já foi finalizada.").render()
+        tui.warn("Sessão já foi finalizada.")
         return status.Ok
 
     # Ativa a sessão atual
     clinic.current_session.status = SessionStatus.BEGUN
 
     # TODO: Usar InfoScreen
-    WarningScreen("Sessão iniciada!").render()
+    tui.warn("Sessão iniciada!")
     return status.Ok

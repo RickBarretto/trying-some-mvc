@@ -1,37 +1,21 @@
+
 from tui._screen import Screen
 
 
-class WarningScreen(Screen):
-    """Define uma tela de avisos
+def warn(self, content: str | list[str] | Exception) -> None:
+    """Define uma tela de avisos.
 
-    Args
-    ----
+    Será posto um símbolo de aviso ao início e uma mensagem de proseguir ao fim.
+
+    Arguments
+    ---------
     content: str | list[str] | Exception
         Recebe ``content`` para imprimí-lo na tela.
         Esse argumento é automaticamente convertido para o tipo ``list[str]``.
-    """
 
-    def __init__(self, content: str | list[str] | Exception) -> None:
-        # Converte ``content`` para o tipo correto
-        match content:
-            case str():  # põe ``content`` dentro de uma lista
-                content = [content]
-            case Exception():  # converte ``Exception.args`` para lista
-                content = list(content.args)  # note que args é do tipo ``tuple``
-            case _:
-                pass
-
-        # Atribuindo variável
-        self.content = content
-
-    def render(self):
-        """Imprime um aviso ao usuário.
-
-        Será posto um símbolo de aviso ao início e uma mensagem de proseguir ao fim.
-
-        Example
+    Example
         -------
-        >>> WarningScreen("Paciente não pode ser registrado!").render()
+        >>> warn("Paciente não pode ser registrado!")
         +-------------------------------------------------------+
         |                                                       |
         |                                                       |
@@ -41,17 +25,32 @@ class WarningScreen(Screen):
         |                                                       |
         |                                                       |
         +-------------------------------------------------------+
-        """
+    """
 
-        content = self.content
+    # Defnie funções internas
+    def to_list_str(content: str | list[str] | Exception) -> list[str]:
+        """Converte ``content`` para o tipo correto"""
+        match content:
+            case str():  # põe ``content`` dentro de uma lista
+                content = [content]
+            case Exception():  # converte ``Exception.args`` para lista
+                content = list(content.args)  # note que args é do tipo ``tuple``
+            case _:
+                pass
 
-        # Adiciona símbolo de aviso ao início
-        content[0] = "[!] - " + content[0]
+    # Inicio da função principal
+    screen = Screen()
 
-        # Adiciona mensagem para continuar ao fim
-        content.append("")
-        content.append("Pressione [Enter] para continuar.")
+    # Corrige o tipo de content
+    content = to_list_str(content)
 
-        # Renderiza a tela e espera por entrada.
-        self.render_full_screen(content, center=True)
-        self.wait()
+    # Adiciona símbolo de aviso ao início
+    content[0] = "[!] - " + content[0]
+
+    # Adiciona mensagem para continuar ao fim
+    content.append("")
+    content.append("Pressione [Enter] para continuar.")
+
+    # Renderiza a tela e espera por entrada.
+    screen.render_full_screen(content, center=True)
+    screen.wait()

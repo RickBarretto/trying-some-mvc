@@ -2,7 +2,8 @@ from entities.clinic import Clinic
 from entities.session import SessionStatus
 
 from tui.prompt import Prompt
-from tui.warning import WarningScreen
+
+import tui
 
 from menus.use_cases import status
 
@@ -39,18 +40,18 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
 
     # TODO: perguntar se deseja iniciar
     if current_session_status == SessionStatus.UNBEGUN:
-        WarningScreen("A sessão nunca foi inicializada.").render()
+        tui.warn("A sessão nunca foi inicializada.")
         return status.Ok
 
     if current_session_status == SessionStatus.FINISHED:
-        WarningScreen("A sessão ja foi finalizada.").render()
+        tui.warn("A sessão ja foi finalizada.")
         return status.Ok
 
     # Valida a entrada do CPF
     try:
         cpf = Prompt.get_cpf()
     except ValueError as e:
-        WarningScreen(e).render()
+        tui.warn(e)
         return status.MayBeRepeated
 
     # Verifica se o paciente é registrado
@@ -58,13 +59,13 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
 
     # TODO: perguntar se deseja registrar
     if not patient:
-        WarningScreen("Paciente não registrado.").render()
+        tui.warn("Paciente não registrado.")
         return status.Ok
 
     # Verifica se o paciente já consta na fila de espera
     waiting_queue = clinic.waiting_queue
     if patient.uid in waiting_queue:
-        WarningScreen("Paciente já está na fila de espera.").render()
+        tui.warn("Paciente já está na fila de espera.")
         return status.Ok
 
     # Põe o paciente na fila de espera
@@ -73,8 +74,8 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
     # Feedback
 
     # TODO: Usar InfoScreen
-    WarningScreen(
+    tui.warn(
         f"{patient.name} colocado na fila de espera na posição {len(waiting_queue)}!"
-    ).render()
+    )
 
     return status.Ok
