@@ -6,7 +6,7 @@ para insdicar se um use_case pode ser repetido ou não.
 Ou seja, em caso de erro na entrada do usuário, a função poderá ser repetida.
 """
 
-Ok = True
-MayBeRepeated = False
+Ok = False
+MayBeRepeated = True
 
 __all__ = ["Ok", "MayBeRepeated"]

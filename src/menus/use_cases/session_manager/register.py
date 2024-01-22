@@ -36,8 +36,8 @@ def register(
     Return
     ------
     bool:
-        Retorna o status da função, que pode ser `status.Ok` (`True`)
-        ou `status.MayBeRepeated` (`False`).
+        Retorna o status da função, que pode ser `status.Ok` (`False`)
+        ou `status.MayBeRepeated` (`True`).
     """
 
     # Valida entrada

@@ -22,8 +22,8 @@ def show_next_patient(clinic: Clinic) -> bool:
     Return
     ------
     bool:
-        Retorna o status da função, que pode ser `status.Ok` (`True`)
-        ou `status.MayBeRepeated` (`False`).
+        Retorna o status da função, que pode ser `status.Ok` (`False`)
+        ou `status.MayBeRepeated` (`True`).
     """
     waiting_queue = clinic.waiting_queue
 

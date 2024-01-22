@@ -25,7 +25,7 @@ def check_current_booking(clinic: Clinic) -> bool:
     ------
     bool:
         Retorna o status da função, que pode ser `status.Ok` (`True`)
-        ou `status.MayBeRepeated` (`False`).
+        ou `status.MayBeRepeated` (`True`).
     """
 
     # Entrada do CPF
