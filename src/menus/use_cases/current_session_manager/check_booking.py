@@ -21,11 +21,9 @@ def check_current_booking(clinic: Clinic):
     
     """
 
-    # ============= Entrada do usuário =============
-     
-    cpf = request.patient_cpf()
-
     # ============= Verificação do paciente no banco de dados =============
+    
+    cpf = request.patient_cpf()
 
     if not (patient := clinic.patient_by_cpf(cpf)):
         warnings.patient_not_registered()
