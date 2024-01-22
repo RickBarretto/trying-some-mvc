@@ -1,7 +1,6 @@
 from entities.clinic import Clinic
 from entities.session import Session
-from menus.use_cases import current_session_manager, status
-from tui import prompt
+from menus.use_cases import current_session_manager, request, status
 
 import tui
 
@@ -43,12 +42,8 @@ def register(
     """
 
     # Valida entrada
-    try:
-        if date is None:
-            date = prompt.get_date()
-    except ValueError as e:
-        tui.warn(e)
-        return status.MayBeRepeated
+    if not date:
+        date = request.get_date()
 
     # Verifica registro
     session = clinic.session_by_date(date)
