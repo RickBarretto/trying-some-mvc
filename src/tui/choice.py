@@ -24,10 +24,9 @@ def choice(options: list[str]) -> int:
 
     def prefix_option(index: int, content: str) -> str:
         """Prefixa cada linha do conteúdo com uma numeração."""
-        TEMPLATE = "{tabs}{index:<2} - {content}"
+        TEMPLATE = "{index:<2} - {content}"
 
         return TEMPLATE.format(
-            tabs=" " * int(os.get_terminal_size().columns * 0.2),
             index=index + 1,
             content=content,
         )

@@ -44,11 +44,14 @@ def render_default_content(content: str):
 def render_content(content: str, inner_width: int, center: bool = False):
     # define o posicionamento de ``content`` de acordo com ``center``
     pos = "^" if center else "<"
+    tab = int(os.get_terminal_size().columns * 0.2) if not center else 0
 
     for line in content:
         # Imprime "|        <conteúdo>      |" para ``center = True``
         # Imprime "|<conteúdo>              |" para ``center = False``
-        render_default_content(f"{line:{pos}{inner_width}}")
+        line = line.strip()
+        prefix = ' ' * tab
+        render_default_content(f"{prefix}{line:{pos}{inner_width - tab}}")
 
 
 def render_vertical_space(inner_width: int, height: int):
