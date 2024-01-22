@@ -1,10 +1,6 @@
 from entities.clinic import Clinic
-
 import tui
-from tui import prompt
-
-from menus.use_cases import status
-from menus.use_cases import proposes
+from menus.use_cases import proposes, request, status
 
 
 def check_current_booking(clinic: Clinic) -> bool:
@@ -30,17 +26,11 @@ def check_current_booking(clinic: Clinic) -> bool:
     """
 
     # Entrada do CPF
-    try:
-        cpf = prompt.get_cpf()
-    except ValueError as e:
-        tui.warn(e)
-        return status.MayBeRepeated
-
-    patient = clinic.patient_by_cpf(cpf)
+    cpf = request.patient_cpf()
 
     # Verifica se paciente existe no banco de dados
 
-    if not patient:
+    if not (patient := clinic.patient_by_cpf(cpf)):
         tui.warn("Paciente não registrado.")
 
         if proposes.register_patient(clinic, cpf):
@@ -63,4 +53,3 @@ def check_current_booking(clinic: Clinic) -> bool:
             return status.Ok
 
     proposes.send_patient_to_waiting_queue(clinic, patient)
-    return status.Ok
