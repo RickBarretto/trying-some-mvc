@@ -3,8 +3,7 @@ from entities.clinic import Clinic
 import tui
 from tui import prompt
 
-from menus.use_cases import current_session_manager, status
-from menus.use_cases import patient_manager
+from menus.use_cases import status
 from menus.use_cases import proposes
 
 

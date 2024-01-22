@@ -3,7 +3,6 @@ from entities.session import SessionStatus
 import tui
 
 from menus.use_cases import status
-from menus.use_cases import current_session_manager
 from menus.use_cases import proposes
 
 

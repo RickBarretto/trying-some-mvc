@@ -1,4 +1,3 @@
-import os
 
 from ._screen import Screen
 

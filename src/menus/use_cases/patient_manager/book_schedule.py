@@ -7,8 +7,6 @@ import tui
 
 from menus.use_cases import status
 from menus.use_cases import proposes
-from menus.use_cases import session_manager
-from menus.use_cases import patient_manager
 
 
 def book_schedule(

@@ -1,5 +1,4 @@
 from entities.clinic import Clinic
-from menus.use_cases import session_manager
 from tui import prompt
 
 import tui

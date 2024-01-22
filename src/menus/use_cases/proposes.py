@@ -1,4 +1,3 @@
-from typing import Callable
 from entities.clinic import Clinic
 from entities.patient import Patient
 from entities.session import Session
@@ -23,7 +22,7 @@ def wish_send_patient_to_waiting_queue(clinic: Clinic, patient: Patient) -> bool
 
 
 def wish_start_current_session(clinic: Clinic) -> bool:
-    if tui.progress(f"Desejas iniciar sessão atual?"):
+    if tui.progress("Desejas iniciar sessão atual?"):
         current_session_manager.start(clinic)
         return True
 

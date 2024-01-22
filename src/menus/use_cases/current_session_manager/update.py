@@ -1,5 +1,5 @@
 from entities.clinic import Clinic
-from entities.session import Session, SessionStatus
+from entities.session import Session
 
 import tui
 
