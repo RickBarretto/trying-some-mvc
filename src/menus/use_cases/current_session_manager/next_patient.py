@@ -1,7 +1,9 @@
 from entities.clinic import Clinic
+from entities.session import SessionStatus
 import tui
 
 from menus.use_cases import status
+from menus.use_cases import current_session_manager
 
 
 def show_next_patient(clinic: Clinic) -> bool:
@@ -17,6 +19,7 @@ def show_next_patient(clinic: Clinic) -> bool:
 
     Warnings
     --------
+    * Sessão nunca foi inicializada
     * Não há pacientes na fila
 
     Return
@@ -27,6 +30,14 @@ def show_next_patient(clinic: Clinic) -> bool:
     """
     waiting_queue = clinic.waiting_queue
 
+    if clinic.current_session.status == SessionStatus.UNBEGUN:
+        tui.warn("Sessão nunca foi iniciada!")
+        if tui.progress(
+            "Desejas iniciar a sessão?",
+            current_session_manager.start,
+            clinic
+        ):
+            return status.Ok
     # Verifica se a fila de espera está vazia
 
     if not waiting_queue:
