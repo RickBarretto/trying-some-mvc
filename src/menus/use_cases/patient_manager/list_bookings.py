@@ -3,7 +3,7 @@ from tui import prompt
 
 import tui
 
-from menus.use_cases import proposes, status
+from menus.use_cases import proposes, request, status
 
 
 def list_bookings(clinic: Clinic):
@@ -31,12 +31,8 @@ def list_bookings(clinic: Clinic):
     """
 
     # Valida entrada
-    try:
-        cpf = prompt.get_cpf()
-    except ValueError as e:
-        tui.warn(e)
-        return status.MayBeRepeated
 
+    cpf = request.patient_cpf
     patient = clinic.patient_by_cpf(cpf)
 
     # Verifica registro
