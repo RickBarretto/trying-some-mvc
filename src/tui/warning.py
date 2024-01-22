@@ -31,11 +31,11 @@ def warn(content: str | list[str] | Exception) -> None:
         """Converte ``content`` para o tipo correto"""
         match content:
             case str():  # põe ``content`` dentro de uma lista
-                content = [content]
+                return [content]
             case Exception():  # converte ``Exception.args`` para lista
-                content = list(content.args)  # note que args é do tipo ``tuple``
+                return list(content.args)  # note que args é do tipo ``tuple``
             case _:
-                pass
+                return content
 
     # Inicio da função principal
     screen = Screen()
