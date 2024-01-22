@@ -54,5 +54,6 @@ def check_current_booking(clinic: Clinic) -> bool:
 
     tui.info(message)
 
+    # TODO: agendar paciente
     # TODO: propor por paciente na fila de espera
     return status.Ok
