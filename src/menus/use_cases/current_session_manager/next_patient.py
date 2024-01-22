@@ -4,6 +4,7 @@ import tui
 
 from menus.use_cases import status
 from menus.use_cases import current_session_manager
+from menus.use_cases import proposes
 
 
 def show_next_patient(clinic: Clinic) -> bool:
@@ -32,11 +33,7 @@ def show_next_patient(clinic: Clinic) -> bool:
 
     if clinic.current_session.status == SessionStatus.UNBEGUN:
         tui.warn("Sessão nunca foi iniciada!")
-        if tui.progress(
-            "Desejas iniciar a sessão?",
-            current_session_manager.start,
-            clinic
-        ):
+        if proposes.wish_start_current_session(clinic):
             return status.Ok
 
     if clinic.current_session.status == SessionStatus.FINISHED:
