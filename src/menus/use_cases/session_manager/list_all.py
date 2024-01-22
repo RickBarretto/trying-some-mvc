@@ -1,5 +1,5 @@
 from entities.clinic import Clinic
-from tui.list import ListScreen
+import tui
 
 from menus.use_cases import status
 
@@ -21,6 +21,6 @@ def list_all(clinic: Clinic):
     sessions = clinic.sessions
 
     data = sessions if sessions else ["Não há sessões registradas."]
-    ListScreen("Sessões registradas:", data).render()
+    tui.bullet_list("Sessões registradas:", data)
 
     return status.Ok

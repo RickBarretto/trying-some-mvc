@@ -1,5 +1,4 @@
 from entities.clinic import Clinic
-from tui.list import ListScreen
 from tui.prompt import Prompt
 
 import tui
@@ -54,5 +53,5 @@ def list_bookings(clinic: Clinic):
 
     data = sessions if sessions else ["Nenhuma sessão agendada"]
 
-    ListScreen(f"Sessões agendadas de {patient.name}:", data).render()
+    tui.bullet_list(f"Sessões agendadas de {patient.name}:", data)
     return status.Ok
