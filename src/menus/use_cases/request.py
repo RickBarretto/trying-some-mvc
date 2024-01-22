@@ -79,7 +79,7 @@ def _is_valid_date(entry: str) -> bool:
     try:
         day_has_two_digits    = 2 == len(fields[0])
         month_has_two_digits  = 2 == len(fields[1])
-        year_has_four_digits  = 3 == len(fields[2])
+        year_has_four_digits  = 4 == len(fields[2])
     except IndexError:
         return False
 
