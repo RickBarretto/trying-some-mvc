@@ -30,8 +30,6 @@ def find(clinic: Clinic):
 
     if session:
         tui.info([f"Sessão encontrada para o dia {date}.", f"Sessão: {session}"])
-        return 
-
-    tui.info(f"Sessão não encontrada para o dia {date}.")
-
-    propose.register_session(clinic, date)
+    else:
+        tui.info(f"Sessão não encontrada para o dia {date}.")
+        propose.register_session(clinic, date)
