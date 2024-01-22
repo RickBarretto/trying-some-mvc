@@ -1,3 +1,4 @@
+from requests import session
 from entities.clinic import Clinic
 from entities.patient import Patient
 from entities.session import SessionStatus
@@ -9,14 +10,7 @@ import tui
 from menus.use_cases import status
 from menus.use_cases import patient_manager
 from menus.use_cases import current_session_manager
-
-
-def _should_create_new_patient(clinic: Clinic, cpf: str):
-    return tui.progress(
-        f"Deseja registrar paciente do CPF {cpf}?",
-        patient_manager.register,
-        clinic, patient_cpf=cpf
-    )
+from menus.use_cases import proposes
 
 
 
@@ -53,11 +47,7 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
 
     if current_session_status == SessionStatus.UNBEGUN:
         tui.warn("A sessão nunca foi inicializada.")
-        if not tui.progress(
-            "Desejas iniciar a sessão atual?",
-            current_session_manager.start,
-            clinic
-        ):
+        if not proposes.wish_start_current_session(clinic):
             return status.Ok
 
     if current_session_status == SessionStatus.FINISHED:
@@ -78,23 +68,15 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
 
     if not patient:
         tui.warn("Paciente não registrado.")
-
-        if _should_create_new_patient(clinic, cpf):
+        if proposes.wish_register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:
             return status.Ok
         
-    
     # Verifica agendamento
     if clinic.current_session.uid not in patient.scheduled_sessions:
         tui.warn(f"{patient.name} não está agendado para a sessão atual!")
-        if not tui.progress(
-            "Desejas agendar paciente para a sessão atual?",
-            patient_manager.book_schedule,
-            clinic,
-            patient=patient,
-            session=clinic.current_session
-        ):
+        if not proposes.wish_book_session(clinic, patient, clinic.current_session):
             return status.Ok
 
     # Verifica se o paciente já consta na fila de espera
