@@ -31,14 +31,14 @@ def send_patient_to_waiting_queue(clinic: Clinic, patient: Patient) -> bool:
 def start_current_session(clinic: Clinic) -> bool:
     question = "Desejas iniciar sessão atual?"
     use_case = current_session_manager.start
-    
+
     return _propose(question, use_case, clinic)
 
 
 def register_patient(clinic: Clinic, patient_cpf: str) -> bool:
     question = f"Desejas registar paciente do CPF {patient_cpf}?"
     use_case = patient_manager.register
-    
+
     return _propose(question, use_case, clinic, patient_cpf)
 
 
