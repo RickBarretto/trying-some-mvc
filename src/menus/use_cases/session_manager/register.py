@@ -50,7 +50,7 @@ def register(
     session = clinic.session_by_date(date)
 
     if session and dry_run:
-        tui.warn("Entrando na sessão novamente.")
+        tui.info("Entrando na sessão novamente.")
         return status.Ok
 
     if session:
@@ -65,7 +65,7 @@ def register(
     clinic.sessions.append(session)
     clinic.last_session_id = new_id
 
-    tui.warn(f"Sessão registrada na data {session.date}.")
+    tui.info(f"Sessão registrada na data {session.date}.")
 
     # Atualiza a sessão caso a função seja chamada por fora
     if should_update:
