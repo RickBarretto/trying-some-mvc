@@ -42,11 +42,13 @@ def find(clinic: Clinic):
 
     if session:
         tui.info([f"Sessão encontrada para o dia {date}.", f"Sessão: {session}"])
-    else:
-        # TODO: pergunta se deseja registrar
-        tui.info(f"Sessão não encontrada para o dia {date}.")
-        if tui.progress(f"Deseja criar uma sessão no dia {date}?"):
-            while session_manager.register(clinic, date=date) is status.MayBeRepeated:
-                pass
+        return status.Ok
+    
+
+    tui.info(f"Sessão não encontrada para o dia {date}.")
+    
+    if tui.progress(f"Deseja criar uma sessão no dia {date}?"):
+        while session_manager.register(clinic, date=date) is status.MayBeRepeated:
+            pass
 
     return status.Ok
