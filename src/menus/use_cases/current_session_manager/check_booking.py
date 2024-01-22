@@ -52,6 +52,5 @@ def check_current_booking(clinic: Clinic) -> bool:
     TEMPLATE_MESSAGE = "Paciente {}{}está marcado para a sessão atual."
     message = TEMPLATE_MESSAGE.format(patient.name, " " if is_booked else " não ")
 
-    # TODO: use InfoScreen
-    tui.splash([message])
+    tui.info(message)
     return status.Ok
