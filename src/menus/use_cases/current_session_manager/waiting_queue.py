@@ -6,6 +6,16 @@ from tui import prompt
 import tui
 
 from menus.use_cases import status
+from menus.use_cases import patient_manager
+
+
+def _should_create_new_patient(clinic: Clinic, cpf: str):
+    return tui.progress(
+        f"Deseja registrar paciente do CPF {cpf}?",
+        patient_manager.register,
+        clinic, patient_cpf=cpf
+    )
+
 
 
 def send_to_waiting_queue(clinic: Clinic) -> bool:
@@ -57,10 +67,13 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
     # Verifica se o paciente é registrado
     patient = clinic.patient_by_cpf(cpf)
 
-    # TODO: perguntar se deseja registrar
     if not patient:
         tui.warn("Paciente não registrado.")
-        return status.Ok
+
+        if _should_create_new_patient(clinic, cpf):
+            patient = clinic.patient_by_cpf(cpf)
+        else:
+            return status.Ok
 
     # Verifica se o paciente já consta na fila de espera
     waiting_queue = clinic.waiting_queue
