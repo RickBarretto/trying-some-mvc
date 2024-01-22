@@ -40,5 +40,5 @@ def show_next_patient(clinic: Clinic) -> bool:
 
     # Imprime informações do paciente
     content = ["Próximo paciente:", str(patient)]
-    tui.splash(content)
+    tui.info(content)
     return status.Ok
