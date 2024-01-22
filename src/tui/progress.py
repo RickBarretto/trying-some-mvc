@@ -1,8 +1,7 @@
-from typing import Callable
 from ._screen import Screen
 
 
-def progress(question: list[str] | str, function: Callable, *args, **kwargs) -> bool:
+def progress(question: list[str] | str) -> bool:
     def answer() -> bool:
         return "S" == input(">>> ").strip().upper()
 
@@ -18,8 +17,4 @@ def progress(question: list[str] | str, function: Callable, *args, **kwargs) -> 
     screen = Screen()
     screen.render_full_screen(question, center=True)
 
-    if ans := answer():
-        while function(*args, **kwargs):
-            pass
-
-    return ans
+    return answer()
