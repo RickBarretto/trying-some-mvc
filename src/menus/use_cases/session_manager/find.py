@@ -47,7 +47,7 @@ def find(clinic: Clinic):
 
     tui.info(f"Sessão não encontrada para o dia {date}.")
     
-    tui.progress(
+    _ = tui.progress(
         f"Deseja criar uma sessão no dia {date}?", 
         session_manager.register, 
         clinic, date=date
