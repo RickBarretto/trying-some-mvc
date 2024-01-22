@@ -32,7 +32,7 @@ def info(content: str | list[str]) -> None:
     screen = Screen()
 
     # Adiciona símbolo de aviso ao início
-    content[0] = "🛈 - " + content[0] # unicode: 1F6C8
+    content[0] = "🛈 " + content[0] # unicode: 1F6C8
 
     # Adiciona mensagem para continuar ao fim
     content.append("")
