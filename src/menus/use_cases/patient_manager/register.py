@@ -37,14 +37,14 @@ def register(clinic: Clinic, patient_cpf: str | None = None) -> bool:
     if not patient_cpf:
         patient_cpf = request.patient_cpf()
 
-    # Adiciona outros dados do paciente
-    patient_name: str = tui.prompt("Insira o nome do paciente.")
-    extra_information: str = tui.prompt.multiline("Insira informações extra.")
-
     # Verifica se paciente já é registrado
     if clinic.patient_by_cpf(patient_cpf):
         tui.warn("Paciente já foi registrado.")
         return status.Ok
+
+    # Adiciona outros dados do paciente
+    patient_name: str = tui.prompt("Insira o nome do paciente.")
+    extra_information: str = tui.prompt.multiline("Insira informações extra.")
 
     # Criação do paciente
     new_id: int = clinic.new_patient_id()
