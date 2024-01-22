@@ -45,7 +45,7 @@ def choice(options: list[str]) -> int:
 
         try:
             choosen = int(input(">>> "))
-        except:
+        except ValueError:
             raise ValueError("O valor escolhido deve ser um inteiro.") from ValueError
 
         if start_index <= choosen <= stop_index:
