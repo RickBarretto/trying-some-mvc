@@ -40,9 +40,9 @@ def find(clinic: Clinic):
     session = clinic.session_by_date(date)
 
     if session:
-        tui.warn([f"Sessão encontrada para o dia {date}.", str(session)])
+        tui.info([f"Sessão encontrada para o dia {date}.", str(session)])
     else:
         # TODO: pergunta se deseja registrar
-        tui.warn(f"Sessão não encontrada para o dia {date}.")
+        tui.info(f"Sessão não encontrada para o dia {date}.")
 
     return status.Ok
