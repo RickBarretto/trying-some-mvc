@@ -38,7 +38,7 @@ def book_schedule(
     """
 
     # Valida entradas
-    
+
     if not patient:
         patient_cpf = request.patient_cpf()
         patient = clinic.patient_by_cpf(patient_cpf)
@@ -48,7 +48,7 @@ def book_schedule(
         session = clinic.session_by_date(session_date)
 
     # Valida registros
-        
+
     if not patient:
         tui.warn("Paciente não registrado.")
 

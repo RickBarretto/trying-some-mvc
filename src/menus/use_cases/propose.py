@@ -48,6 +48,7 @@ def register_session(clinic: Clinic, session_date: str) -> bool:
 
     return _propose(question, use_case, clinic, date=session_date)
 
+
 def _propose(question: str, use_case: Callable, *args, **kwargs) -> bool:
     if tui.progress(question):
         use_case(*args, **kwargs)
