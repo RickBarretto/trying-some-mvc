@@ -18,7 +18,7 @@ def bullet_list(title: str, items: list):
     +-------------------------------------------------------+
     """
     title = [title.upper(), ""]
-    items = [f" - {item}" for item in items]
+    items = [f" ◎ {item}" for item in items]
 
     screen = Screen()
     screen.clear_screen()
