@@ -28,6 +28,5 @@ def update(clinic: Clinic, session: Session) -> bool:
     # Atualiza a sessão atual
     clinic.current_session = session
 
-    # TODO: Usar InfoScreen
-    tui.warn(f"Sessão atual atualizada para o dia {session.date}!")
+    tui.info(f"Sessão atual atualizada para o dia {session.date}!")
     return status.Ok
