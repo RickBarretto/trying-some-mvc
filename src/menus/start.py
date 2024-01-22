@@ -14,9 +14,7 @@ class SomeModel:
 
 
 def start_reception(model: SomeModel):
-    while session_manager.register(reception.model, dry_run=True, should_update=True):
-        pass
-
+    session_manager.register(reception.model, dry_run=True, should_update=True)
     reception.run()
 
 
