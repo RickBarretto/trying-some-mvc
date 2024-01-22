@@ -2,12 +2,9 @@ from entities.clinic import Clinic
 from entities.patient import Patient
 from entities.session import SessionStatus
 
-from tui import prompt
-
 import tui
 
-from menus.use_cases import status
-from menus.use_cases import proposes
+from menus.use_cases import proposes, request, status
 
 
 def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> bool:
@@ -51,15 +48,8 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
         return status.Ok
 
     # Valida a entrada do CPF
-    try:
-        if not patient:
-            cpf = prompt.get_cpf()
-    except ValueError as e:
-        tui.warn(e)
-        return status.MayBeRepeated
-
-    # Verifica se o paciente é registrado
     if not patient:
+        cpf = request.patient_cpf()
         patient = clinic.patient_by_cpf(cpf)
 
     if not patient:
