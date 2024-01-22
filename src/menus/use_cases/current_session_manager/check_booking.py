@@ -1,7 +1,6 @@
 from entities.clinic import Clinic
 
 from tui.prompt import Prompt
-from tui.splash import SplashScreen
 
 import tui
 
@@ -55,5 +54,5 @@ def check_current_booking(clinic: Clinic) -> bool:
     message = TEMPLATE_MESSAGE.format(patient.name, " " if is_booked else " não ")
 
     # TODO: use InfoScreen
-    SplashScreen([message]).render()
+    tui.splash([message])
     return status.Ok

@@ -1,6 +1,4 @@
 from entities.clinic import Clinic
-from tui import SplashScreen
-
 import tui
 
 from menus.use_cases import status
@@ -42,5 +40,5 @@ def show_next_patient(clinic: Clinic) -> bool:
 
     # Imprime informações do paciente
     content = ["Próximo paciente:", str(patient)]
-    SplashScreen(content).render()
+    tui.splash(content)
     return status.Ok

@@ -1,7 +1,7 @@
 from tui._screen import Screen
 
 
-class SplashScreen(Screen):
+def splash(content: list[str] | str):
     """Renderiza uma tela com mensagens centralizadas.
 
     Arguments
@@ -10,27 +10,21 @@ class SplashScreen(Screen):
         O conteúdo a ser impresso.
         É automaticamente convertido para `list[str]`
 
+    Example
+    -------
+    >>> splash("Bem vindo!")
+    +-------------------------------------------------------+
+    |                                                       |
+    |                                                       |
+    |                                                       |
+    |                     Bem vindo!                        |
+    |                                                       |
+    |                                                       |
+    |                                                       |
+    +-------------------------------------------------------+
     """
+    content: list[str] = [content] if content is str else content
 
-    def __init__(self, content: list[str] | str) -> None:
-        self.content: list[str] = [content] if content is str else content
-
-    def render(self):
-        """Renderiza e espera pelo input do usuário.
-
-        Example
-        -------
-        >>> SplashScreen("Bem vindo!").render()
-        +-------------------------------------------------------+
-        |                                                       |
-        |                                                       |
-        |                                                       |
-        |                     Bem vindo!                        |
-        |                                                       |
-        |                                                       |
-        |                                                       |
-        +-------------------------------------------------------+
-        """
-        content = self.content
-        self.render_full_screen(content, center=True)
-        self.wait()
+    screen = Screen()
+    screen.render_full_screen(content, center=True)
+    screen.wait()
