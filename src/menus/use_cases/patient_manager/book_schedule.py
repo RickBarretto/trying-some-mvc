@@ -1,9 +1,9 @@
 from entities.clinic import Clinic
 from entities.patient import Patient
 from entities.session import Session
-from menus.use_cases import status
-from menus.use_cases import proposes
-from tui import prompt
+
+from menus.use_cases import proposes, request, status
+
 import tui
 
 
@@ -38,23 +38,17 @@ def book_schedule(
     """
 
     # Valida entradas
-    try:
-        if not patient:
-            patient_cpf = prompt.get_cpf()
-        if not session:
-            session_date = prompt.get_date()
-    except ValueError as e:
-        tui.warn(e)
-        return status.MayBeRepeated
-
+    
     if not patient:
+        patient_cpf = request.patient_cpf()
         patient = clinic.patient_by_cpf(patient_cpf)
 
     if not session:
+        session_date = request.session_date()
         session = clinic.session_by_date(session_date)
 
     # Valida registros
-
+        
     if not patient:
         tui.warn("Paciente não registrado.")
 
