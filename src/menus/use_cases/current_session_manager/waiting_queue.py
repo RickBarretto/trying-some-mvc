@@ -73,8 +73,9 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
 
     # Feedback
 
-    tui.info(
-        f"{patient.name} colocado na fila de espera na posição {len(waiting_queue)}!"
-    )
+    tui.info([
+        f"{patient.name} colocado na fila de espera,"
+        f"O mesmo se encontra na posição {len(waiting_queue)}!"
+    ])
 
     return status.Ok
