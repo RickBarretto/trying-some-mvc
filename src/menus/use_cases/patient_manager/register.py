@@ -51,7 +51,9 @@ def register(clinic: Clinic, patient_cpf: str | None = None) -> bool:
 
     # Criação do paciente
     new_id: int = clinic.new_patient_id()
-    patient: Patient = Patient(uid=new_id, cpf=patient_cpf, name=patient_name, extra_info=extra_information)
+    patient: Patient = Patient(
+        uid=new_id, cpf=patient_cpf, name=patient_name, extra_info=extra_information
+    )
 
     # Registro do paciente
     clinic.patients.append(patient)

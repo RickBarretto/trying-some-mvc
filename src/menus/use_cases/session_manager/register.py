@@ -7,8 +7,10 @@ import tui
 
 
 def register(
-    clinic: Clinic, dry_run: bool = False, should_update: bool = False,
-    date: str | None = None
+    clinic: Clinic,
+    dry_run: bool = False,
+    should_update: bool = False,
+    date: str | None = None,
 ) -> bool:
     """Registra uma nova sessão no banco de dados.
 

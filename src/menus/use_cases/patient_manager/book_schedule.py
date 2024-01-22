@@ -12,9 +12,8 @@ from menus.use_cases import patient_manager
 
 
 def book_schedule(
-        clinic: Clinic, 
-        patient: Patient | None = None,
-        session: Session | None = None ) -> bool:
+    clinic: Clinic, patient: Patient | None = None, session: Session | None = None
+) -> bool:
     """Agenda uma sessão para um paciente.
 
     Questions
@@ -62,7 +61,7 @@ def book_schedule(
 
     if not patient:
         tui.warn("Paciente não registrado.")
-        
+
         if proposes.wish_register_patient(clinic, patient_cpf):
             patient = clinic.patient_by_cpf(patient_cpf)
         else:
@@ -70,7 +69,7 @@ def book_schedule(
 
     if not session:
         tui.warn("Sessão não registrada.")
-        
+
         if proposes.wish_register_session(clinic, session_date):
             session = clinic.session_by_date(session_date)
         else:

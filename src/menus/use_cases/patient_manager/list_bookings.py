@@ -11,7 +11,8 @@ def _should_create_new_patient(clinic: Clinic, cpf: str):
     return tui.progress(
         f"Deseja registrar paciente do CPF {cpf}?",
         patient_manager.register,
-        clinic, patient_cpf=cpf
+        clinic,
+        patient_cpf=cpf,
     )
 
 

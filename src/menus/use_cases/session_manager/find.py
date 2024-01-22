@@ -7,6 +7,7 @@ import tui
 from menus.use_cases import status
 from menus.use_cases import proposes
 
+
 def find(clinic: Clinic):
     """Registra uma nova sessão no banco de dados.
 
@@ -43,10 +44,9 @@ def find(clinic: Clinic):
     if session:
         tui.info([f"Sessão encontrada para o dia {date}.", f"Sessão: {session}"])
         return status.Ok
-    
 
     tui.info(f"Sessão não encontrada para o dia {date}.")
-    
+
     proposes.wish_register_session(clinic, date)
 
     return status.Ok

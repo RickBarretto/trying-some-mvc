@@ -13,7 +13,6 @@ from menus.use_cases import current_session_manager
 from menus.use_cases import proposes
 
 
-
 def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> bool:
     """Envia um paciente para a fila de espera.
 
@@ -72,7 +71,7 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
             patient = clinic.patient_by_cpf(cpf)
         else:
             return status.Ok
-        
+
     # Verifica agendamento
     if clinic.current_session.uid not in patient.scheduled_sessions:
         tui.warn(f"{patient.name} não está agendado para a sessão atual!")
@@ -90,9 +89,11 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
 
     # Feedback
 
-    tui.info([
-        f"{patient.name} colocado na fila de espera,",
-        f"O mesmo se encontra na posição {len(waiting_queue)}!"
-    ])
+    tui.info(
+        [
+            f"{patient.name} colocado na fila de espera,",
+            f"O mesmo se encontra na posição {len(waiting_queue)}!",
+        ]
+    )
 
     return status.Ok

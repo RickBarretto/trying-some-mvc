@@ -3,7 +3,7 @@ from tui._screen import Screen
 
 def bullet_list(title: str, items: list):
     """Renderiza uma lista de ``items`` do tipo bullet point.
-    
+
     Example
     -------
     >>> bullet_list("ABCD", ["A", "B", "C", "D"])
@@ -18,7 +18,7 @@ def bullet_list(title: str, items: list):
     +-------------------------------------------------------+
     """
     title = [title.upper(), ""]
-    items = [f" ◎ {item}" for item in items] # unicode: 25CE
+    items = [f" ◎ {item}" for item in items]  # unicode: 25CE
 
     screen = Screen()
     screen.clear_screen()

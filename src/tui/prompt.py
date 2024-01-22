@@ -1,7 +1,7 @@
-
 def prompt(msg: str) -> str:
     print(msg)
     return input(">>> ")
+
 
 def get_date(custom_message: str = "Insira uma data.") -> str:
     date = prompt(custom_message)
@@ -17,6 +17,7 @@ def get_date(custom_message: str = "Insira uma data.") -> str:
             raise ValueError(*ERROR_MESSAGE)
 
     return date
+
 
 def get_cpf(custom_message: str = "Insira o CPF.") -> str:
     INVALID_CPF_MSG = "Formato de CPF inválido!"
@@ -56,6 +57,7 @@ def get_cpf(custom_message: str = "Insira o CPF.") -> str:
         )
 
     return cpf
+
 
 def multiline(message: str) -> list[str]:
     print(message)

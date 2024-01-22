@@ -28,9 +28,9 @@ def info(content: str | list[str]) -> None:
 
     if type(content) is str:
         content = [content]
-    
+
     screen = Screen()
-    symbol = "🛈" # unicode: 1F6C8
+    symbol = "🛈"  # unicode: 1F6C8
 
     # Adiciona símbolo de aviso ao início
     content[0] = f"{symbol}  {content[0]} {symbol}"

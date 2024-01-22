@@ -39,7 +39,7 @@ def warn(content: str | list[str] | Exception) -> None:
 
     # Inicio da função principal
     screen = Screen()
-    symbol = "⚠" # unicode: 26A0
+    symbol = "⚠"  # unicode: 26A0
 
     # Corrige o tipo de content e,
     content = to_list_str(content)
