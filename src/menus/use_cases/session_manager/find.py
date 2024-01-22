@@ -30,7 +30,7 @@ def find(clinic: Clinic):
     """
 
     # Valida entrada
-    date = request.get_date()
+    date = request.session_date()
     session = clinic.session_by_date(date)
 
     if session:

@@ -43,7 +43,7 @@ def register(
 
     # Valida entrada
     if not date:
-        date = request.get_date()
+        date = request.session_date()
 
     # Verifica registro
     session = clinic.session_by_date(date)
