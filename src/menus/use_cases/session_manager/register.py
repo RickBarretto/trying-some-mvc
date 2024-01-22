@@ -7,7 +7,8 @@ import tui
 
 
 def register(
-    clinic: Clinic, dry_run: bool = False, should_update: bool = False
+    clinic: Clinic, dry_run: bool = False, should_update: bool = False,
+    date: str | None = None
 ) -> bool:
     """Registra uma nova sessão no banco de dados.
 
@@ -41,7 +42,8 @@ def register(
 
     # Valida entrada
     try:
-        date = prompt.get_date()
+        if date is None:
+            date = prompt.get_date()
     except ValueError as e:
         tui.warn(e)
         return status.MayBeRepeated

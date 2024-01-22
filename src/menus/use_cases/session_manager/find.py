@@ -1,4 +1,5 @@
 from entities.clinic import Clinic
+from menus.use_cases import session_manager
 from tui import prompt
 
 import tui
@@ -44,5 +45,8 @@ def find(clinic: Clinic):
     else:
         # TODO: pergunta se deseja registrar
         tui.info(f"Sessão não encontrada para o dia {date}.")
+        if tui.progress(f"Deseja criar uma sessão no dia {date}?"):
+            while session_manager.register(clinic, date=date) is status.MayBeRepeated:
+                pass
 
     return status.Ok
