@@ -23,7 +23,8 @@ def splash(content: list[str] | str):
     |                                                       |
     +-------------------------------------------------------+
     """
-    content: list[str] = [content] if content is str else content
+    if type(content) is str:
+        content = [content]
 
     screen = Screen()
     screen.render_full_screen(content, center=True)
