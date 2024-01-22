@@ -3,17 +3,7 @@ from tui import prompt
 
 import tui
 
-from menus.use_cases import status
-from menus.use_cases import patient_manager
-
-
-def _should_create_new_patient(clinic: Clinic, cpf: str):
-    return tui.progress(
-        f"Deseja registrar paciente do CPF {cpf}?",
-        patient_manager.register,
-        clinic,
-        patient_cpf=cpf,
-    )
+from menus.use_cases import proposes, status
 
 
 def list_bookings(clinic: Clinic):
@@ -53,7 +43,7 @@ def list_bookings(clinic: Clinic):
 
     if patient is None:
         tui.warn("Paciente não registrado.")
-        if _should_create_new_patient(clinic, cpf):
+        if proposes.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:
             return status.Ok
