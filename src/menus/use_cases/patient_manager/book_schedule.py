@@ -68,6 +68,5 @@ def book_schedule(clinic: Clinic) -> bool:
     # Agenda sessão para paciente
     patient.scheduled_sessions.append(session.uid)
 
-    # TODO: usar InfoScreen
-    tui.warn(f"{patient.name} agendado para o dia {session.date}!")
+    tui.info(f"{patient.name} agendado para o dia {session.date}!")
     return status.Ok
