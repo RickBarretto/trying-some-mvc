@@ -44,7 +44,7 @@ def warn(content: str | list[str] | Exception) -> None:
     content = to_list_str(content)
 
     # Adiciona símbolo de aviso ao início
-    content[0] = "[!] - " + content[0]
+    content[0] = "⚠ - " + content[0] # unicode: 26A0
 
     # Adiciona mensagem para continuar ao fim
     content.append("")
