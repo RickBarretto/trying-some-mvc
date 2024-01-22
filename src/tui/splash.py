@@ -23,7 +23,7 @@ def splash(content: list[str] | str):
     |                                                       |
     +-------------------------------------------------------+
     """
-    if type(content) is str:
+    if isinstance(content, str):
         content = [content]
 
     screen = Screen()

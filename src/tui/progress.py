@@ -5,7 +5,7 @@ def progress(question: list[str] | str) -> bool:
     def answer() -> bool:
         return "S" == input(">>> ").strip().upper()
 
-    if type(question) is str:
+    if isinstance(question, str):
         question = [question]
 
     question += [

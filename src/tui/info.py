@@ -26,7 +26,7 @@ def info(content: str | list[str]) -> None:
         +-------------------------------------------------------+
     """
 
-    if type(content) is str:
+    if isinstance(content, str):
         content = [content]
 
     screen = Screen()
