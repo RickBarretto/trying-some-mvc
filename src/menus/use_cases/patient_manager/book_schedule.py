@@ -1,4 +1,6 @@
 from entities.clinic import Clinic
+from entities.patient import Patient
+from entities.session import Session
 from tui import prompt
 
 import tui
@@ -25,7 +27,10 @@ def _should_create_new_patient(clinic: Clinic, cpf: str):
     )
 
 
-def book_schedule(clinic: Clinic) -> bool:
+def book_schedule(
+        clinic: Clinic, 
+        patient: Patient | None = None,
+        session: Session | None = None ) -> bool:
     """Agenda uma sessão para um paciente.
 
     Questions
@@ -55,14 +60,19 @@ def book_schedule(clinic: Clinic) -> bool:
 
     # Valida entradas
     try:
-        patient_cpf = prompt.get_cpf()
-        session_date = prompt.get_date()
+        if not patient:
+            patient_cpf = prompt.get_cpf()
+        if not session:
+            session_date = prompt.get_date()
     except ValueError as e:
         tui.warn(e)
         return status.MayBeRepeated
 
-    patient = clinic.patient_by_cpf(patient_cpf)
-    session = clinic.session_by_date(session_date)
+    if not patient:
+        patient = clinic.patient_by_cpf(patient_cpf)
+
+    if not session:
+        session = clinic.session_by_date(session_date)
 
     # Valida registros
 
