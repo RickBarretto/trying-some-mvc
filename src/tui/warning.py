@@ -39,16 +39,16 @@ def warn(content: str | list[str] | Exception) -> None:
 
     # Inicio da função principal
     screen = Screen()
+    symbol = "⚠" # unicode: 26A0
 
-    # Corrige o tipo de content
+    # Corrige o tipo de content e,
     content = to_list_str(content)
 
     # Adiciona símbolo de aviso ao início
-    content[0] = "⚠ " + content[0] # unicode: 26A0
+    content[0] = f"{symbol}  {content[0]} {symbol}"
 
     # Adiciona mensagem para continuar ao fim
-    content.append("")
-    content.append("Pressione [Enter] para continuar.")
+    content += ["", "Pressione [Enter] para continuar."]
 
     # Renderiza a tela e espera por entrada.
     screen.render_full_screen(content, center=True)

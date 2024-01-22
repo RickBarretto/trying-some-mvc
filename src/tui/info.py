@@ -30,13 +30,13 @@ def info(content: str | list[str]) -> None:
         content = [content]
     
     screen = Screen()
+    symbol = "🛈" # unicode: 1F6C8
 
     # Adiciona símbolo de aviso ao início
-    content[0] = "🛈 " + content[0] # unicode: 1F6C8
+    content[0] = f"{symbol}  {content[0]} {symbol}"
 
     # Adiciona mensagem para continuar ao fim
-    content.append("")
-    content.append("Pressione [Enter] para continuar.")
+    content += ["", "Pressione [Enter] para continuar."]
 
     # Renderiza a tela e espera por entrada.
     screen.render_full_screen(content, center=True)
