@@ -1,10 +1,9 @@
 from entities.clinic import Clinic
 from entities.patient import Patient
-from tui import prompt
 
 import tui
 
-from menus.use_cases import status
+from menus.use_cases import request, status
 
 
 def register(clinic: Clinic, patient_cpf: str | None = None) -> bool:
@@ -35,16 +34,14 @@ def register(clinic: Clinic, patient_cpf: str | None = None) -> bool:
     """
 
     # Valida entradas
-    try:
-        if patient_cpf is None:
-            patient_cpf: str = prompt.get_cpf()
-        patient_name: str = prompt.prompt("Insira o nome do paciente.")
-        extra_information: str = prompt.multiline("Insira informações extra.")
-    except ValueError as e:
-        tui.warn(e)
-        return status.MayBeRepeated
+    if not patient_cpf:
+        patient_cpf = request.patient_cpf()
 
-    # Verifica se paciente já está registrado
+    # Adiciona outros dados do paciente
+    patient_name: str = tui.prompt("Insira o nome do paciente.")
+    extra_information: str = tui.prompt.multiline("Insira informações extra.")
+
+    # Verifica se paciente já é registrado
     if clinic.patient_by_cpf(patient_cpf):
         tui.warn("Paciente já foi registrado.")
         return status.Ok
