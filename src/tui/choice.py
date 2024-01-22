@@ -8,7 +8,7 @@ def choice(options: list[str]) -> int:
 
     Example
     -------
-    >>> SplashScreen(["Opção 1", "Opção 2", "Opção 3", "Opção 4"]).render()
+    >>> choice(["Opção 1", "Opção 2", "Opção 3", "Opção 4"])
     +-------------------------------------------------------+
     |                                                       |
     |    1 - Opção 1                                        |
