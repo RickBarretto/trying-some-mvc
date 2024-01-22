@@ -38,6 +38,11 @@ def show_next_patient(clinic: Clinic) -> bool:
             clinic
         ):
             return status.Ok
+
+    if clinic.current_session.status == SessionStatus.FINISHED:
+        tui.warn("Sessão já foi finalizada!")
+        return status.Ok
+
     # Verifica se a fila de espera está vazia
 
     if not waiting_queue:
