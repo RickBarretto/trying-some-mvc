@@ -73,8 +73,7 @@ def send_to_waiting_queue(clinic: Clinic) -> bool:
 
     # Feedback
 
-    # TODO: Usar InfoScreen
-    tui.warn(
+    tui.info(
         f"{patient.name} colocado na fila de espera na posição {len(waiting_queue)}!"
     )
 
