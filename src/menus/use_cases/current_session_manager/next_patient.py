@@ -32,7 +32,7 @@ def show_next_patient(clinic: Clinic) -> bool:
 
     if clinic.current_session.status == SessionStatus.UNBEGUN:
         tui.warn("Sessão nunca foi iniciada!")
-        if not proposes.wish_start_current_session(clinic):
+        if not proposes.start_current_session(clinic):
             return status.Ok
 
     if clinic.current_session.status == SessionStatus.FINISHED:

@@ -43,7 +43,7 @@ def check_current_booking(clinic: Clinic) -> bool:
     if not patient:
         tui.warn("Paciente não registrado.")
 
-        if proposes.wish_register_patient(clinic, cpf):
+        if proposes.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:
             return status.Ok
@@ -59,8 +59,8 @@ def check_current_booking(clinic: Clinic) -> bool:
     tui.info(message)
 
     if not is_booked:
-        if not proposes.wish_book_session(clinic, patient, clinic.current_session):
+        if not proposes.book_session(clinic, patient, clinic.current_session):
             return status.Ok
 
-    proposes.wish_send_patient_to_waiting_queue(clinic, patient)
+    proposes.send_patient_to_waiting_queue(clinic, patient)
     return status.Ok

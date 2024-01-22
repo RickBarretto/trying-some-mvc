@@ -58,7 +58,7 @@ def book_schedule(
     if not patient:
         tui.warn("Paciente não registrado.")
 
-        if proposes.wish_register_patient(clinic, patient_cpf):
+        if proposes.register_patient(clinic, patient_cpf):
             patient = clinic.patient_by_cpf(patient_cpf)
         else:
             return status.Ok
@@ -66,7 +66,7 @@ def book_schedule(
     if not session:
         tui.warn("Sessão não registrada.")
 
-        if proposes.wish_register_session(clinic, session_date):
+        if proposes.register_session(clinic, session_date):
             session = clinic.session_by_date(session_date)
         else:
             return status.Ok

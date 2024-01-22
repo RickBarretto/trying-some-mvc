@@ -43,7 +43,7 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
 
     if current_session_status == SessionStatus.UNBEGUN:
         tui.warn("A sessão nunca foi inicializada.")
-        if not proposes.wish_start_current_session(clinic):
+        if not proposes.start_current_session(clinic):
             return status.Ok
 
     if current_session_status == SessionStatus.FINISHED:
@@ -64,7 +64,7 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
 
     if not patient:
         tui.warn("Paciente não registrado.")
-        if proposes.wish_register_patient(clinic, cpf):
+        if proposes.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
         else:
             return status.Ok
@@ -72,7 +72,7 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
     # Verifica agendamento
     if clinic.current_session.uid not in patient.scheduled_sessions:
         tui.warn(f"{patient.name} não está agendado para a sessão atual!")
-        if not proposes.wish_book_session(clinic, patient, clinic.current_session):
+        if not proposes.book_session(clinic, patient, clinic.current_session):
             return status.Ok
 
     # Verifica se o paciente já consta na fila de espera

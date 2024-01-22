@@ -46,6 +46,6 @@ def find(clinic: Clinic):
 
     tui.info(f"Sessão não encontrada para o dia {date}.")
 
-    proposes.wish_register_session(clinic, date)
+    proposes.register_session(clinic, date)
 
     return status.Ok
