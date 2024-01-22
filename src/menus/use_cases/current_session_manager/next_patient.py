@@ -29,7 +29,6 @@ def show_next_patient(clinic: Clinic) -> bool:
 
     # Verifica se a fila de espera está vazia
 
-    # TODO: perguntar se deseja adicionar
     if not waiting_queue:
         tui.warn("Não há pacientes na fila de espera.")
         return status.Ok
