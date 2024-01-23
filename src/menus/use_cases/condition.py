@@ -7,6 +7,8 @@ from menus.use_cases import propose, warnings
 
 import tui
 
+def is_able_to_read_records(clinic: Clinic) -> bool:
+    has_patient_being_attended(clinic) and has_active_current_session(clinic)
 
 def has_active_current_session(clinic: Clinic) -> bool:
     if clinic.current_session.status == SessionStatus.UNBEGUN:

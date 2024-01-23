@@ -24,7 +24,7 @@ def read_full_medical_records(clinic: Clinic):
 
     # ============= Verifica se é possível ler o prontuário =============
 
-    if not can_read(clinic):
+    if not condition.is_able_to_read_records(clinic):
         return
     
     # ============= Feedback =============
@@ -54,7 +54,7 @@ def read_first_medical_annotation(clinic: Clinic):
 
     # ============= Verifica se é possível ler o prontuário =============
 
-    if not can_read(clinic):
+    if not condition.is_able_to_read_records(clinic):
         return
 
     # ============= Feedback =============
@@ -84,7 +84,7 @@ def read_last_medical_annotation(clinic: Clinic):
 
     # ============= Verifica se é possível ler o prontuário =============
 
-    if not can_read(clinic):
+    if not condition.is_able_to_read_records(clinic):
         return
 
     # ============= Feedback =============
@@ -94,8 +94,3 @@ def read_last_medical_annotation(clinic: Clinic):
         return
     
     tui.info([f"Última anotação médica de {clinic.current_patient.name}:", clinic.current_patient.medical_records[-1]])
-
-
-def can_read(clinic: Clinic) -> bool:
-    condition.has_patient_being_attended(clinic) and \
-        condition.has_active_current_session(clinic)
