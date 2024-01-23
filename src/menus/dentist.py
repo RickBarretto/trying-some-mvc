@@ -30,7 +30,7 @@ options = [
     ("Ler prontuário médico.", patient_manager.read_full_medical_records),
     ("Ler primeira anotação do prontuário.", patient_manager.read_first_medical_annotation),
     ("Ler última anotação do prontuário.", patient_manager.read_last_medical_annotation),
-    ("Fazer anotação no prontuário.", not_implemented),
+    ("Fazer anotação no prontuário.", patient_manager.annotate_records),
 ]
 
 reception = MainMenu(Clinic(), options)
