@@ -14,7 +14,7 @@ def prompt(ask: str, suggestion: str = "") -> str:
     |              Formato: XXX.XXX.XXX-XX                  |
     |                                                       |
     +-------------------------------------------------------+
-    |      >>>|                                             |
+           >>>|                                             
     """
 
     content = [ask]
