@@ -52,7 +52,7 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
         if not propose.register_patient(clinic, cpf):
             return
     
-    patient = clinic.patient_by_cpf(cpf)
+        patient = clinic.patient_by_cpf(cpf)
 
     # ============= Verifica agendamento do paciente =============
 
