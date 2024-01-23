@@ -9,7 +9,7 @@ import tui
 
 def book_schedule(
     clinic: Clinic, patient: Patient | None = None, session: Session | None = None
-) -> bool:
+):
     """Agenda uma sessão para um paciente.
 
     Questions
@@ -42,7 +42,7 @@ def book_schedule(
         warnings.patient_not_registered(patient_cpf)
         if not propose.register_patient(clinic, patient_cpf):
             return
-            
+
         patient = clinic.patient_by_cpf(patient_cpf)
 
     # ============= Verifica registro da sessão =============
@@ -56,14 +56,16 @@ def book_schedule(
 
         if propose.register_session(clinic, session_date):
             return
-        
+
         session = clinic.session_by_date(session_date)
 
     # ============= Agenda paciente + Feedback  =============
 
     if session.uid in patient.scheduled_sessions:
-        message = f"Paciente {patient.name} já está "           \
-                  f"registrado para a sessão {session.date}." 
+        message = (
+            f"Paciente {patient.name} já está "
+            f"registrado para a sessão {session.date}."
+        )
         tui.warn(message)
     else:
         patient.scheduled_sessions.append(session.uid)

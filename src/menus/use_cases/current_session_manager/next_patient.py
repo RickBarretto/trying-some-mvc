@@ -6,7 +6,7 @@ import tui
 from menus.use_cases import propose, warnings
 
 
-def show_next_patient(clinic: Clinic) -> bool:
+def show_next_patient(clinic: Clinic):
     """Mostra novo paciente
 
     Questions
@@ -29,11 +29,11 @@ def show_next_patient(clinic: Clinic) -> bool:
     if clinic.current_session.status == SessionStatus.UNBEGUN:
         warnings.session_has_never_started(clinic.current_session)
         if not propose.start_current_session(clinic):
-            return 
+            return
 
     if clinic.current_session.status == SessionStatus.FINISHED:
         warnings.session_has_already_been_finished(clinic.current_session)
-        return 
+        return
 
     # ============= Feedback =============
 

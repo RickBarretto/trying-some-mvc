@@ -2,7 +2,6 @@ from entities.clinic import Clinic
 import tui
 
 
-
 def list_all(clinic: Clinic):
     """Lista todas as sessões registradas na clínica.
 

@@ -34,14 +34,13 @@ def list_bookings(clinic: Clinic):
         warnings.patient_not_registered(cpf)
         if propose.register_patient(clinic, cpf):
             return
-        
+
         patient = clinic.patient_by_cpf(cpf)
 
     # ============= Lista agendamentos =============
-    
+
     tui.bullet_list(
-        f"Sessões agendadas de {patient.name}:", 
-        find_bookings(clinic, patient)
+        f"Sessões agendadas de {patient.name}:", find_bookings(clinic, patient)
     )
 
 

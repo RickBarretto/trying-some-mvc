@@ -4,8 +4,7 @@ from entities.session import Session
 import tui
 
 
-
-def update(clinic: Clinic, session: Session) -> bool:
+def update(clinic: Clinic, session: Session):
     """Atualiza a sessão atual.
 
     Note

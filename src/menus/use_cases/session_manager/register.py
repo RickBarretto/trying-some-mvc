@@ -10,7 +10,7 @@ def register(
     dry_run: bool = False,
     should_update: bool = False,
     date: str | None = None,
-) -> bool:
+):
     """Registra uma nova sessão no banco de dados.
 
     Arguments
@@ -37,7 +37,7 @@ def register(
     """
 
     # ============= Verifica registro da sessão =============
-    
+
     if not date:
         date = request.session_date()
 
@@ -45,11 +45,11 @@ def register(
 
     if session and dry_run:
         tui.info("Entrando na sessão novamente.")
-        return 
+        return
 
     if session:
         tui.warn("Sessão já foi registrada.")
-        return 
+        return
 
     # ============= Registro da sessão =============
 

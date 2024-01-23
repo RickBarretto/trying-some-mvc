@@ -14,7 +14,7 @@ def prompt(ask: str, suggestion: str = "") -> str:
     |              Formato: XXX.XXX.XXX-XX                  |
     |                                                       |
     +-------------------------------------------------------+
-           >>>|                                             
+           >>>|
     """
 
     content = [ask]
@@ -34,6 +34,7 @@ def prompt(ask: str, suggestion: str = "") -> str:
     screen.render_vertical_space(height=content_height)
     screen.render_rule(position=2)
     return input(" >>> ").strip()
+
 
 # TODO: atualizar para um Prompt full screen
 def multiline(message: str) -> list[str]:

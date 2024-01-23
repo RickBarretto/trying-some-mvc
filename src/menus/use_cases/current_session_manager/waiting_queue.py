@@ -7,7 +7,7 @@ import tui
 from menus.use_cases import propose, request, warnings
 
 
-def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> bool:
+def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None):
     """Envia um paciente para a fila de espera.
 
     Questions
@@ -34,10 +34,10 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
 
     if session_has_never_begun(clinic.current_session):
         if not propose.start_current_session(clinic):
-            return 
+            return
 
     if session_has_already_finished(clinic.current_session):
-        return 
+        return
 
     # ============= Pega input do usuário =============
 
@@ -51,7 +51,7 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
         warnings.patient_not_registered(cpf)
         if not propose.register_patient(clinic, cpf):
             return
-    
+
         patient = clinic.patient_by_cpf(cpf)
 
     # ============= Verifica agendamento do paciente =============
@@ -62,7 +62,7 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
             return
 
     # ============= Verifica se paciente está na fila =============
-        
+
     if patient.uid in clinic.waiting_queue:
         tui.warn("Paciente já está na fila de espera.")
         return
@@ -80,11 +80,13 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None) -> boo
 
     tui.info(message)
 
+
 def session_has_already_finished(session: Session):
     if res := (session.status == SessionStatus.FINISHED):
         warnings.session_has_never_started(session)
 
     return res
+
 
 def session_has_never_begun(session: Session) -> bool:
     if res := (session.status == SessionStatus.UNBEGUN):
