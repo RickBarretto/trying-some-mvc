@@ -23,9 +23,12 @@ def find(clinic: Clinic):
 
     """
 
-    # Valida entrada
+    # ============= Procura sessão =============
+
     date = request.session_date()
     session = clinic.session_by_date(date)
+
+    # ============= Feedback =============
 
     if session:
         tui.info([f"Sessão encontrada para o dia {date}.", f"Sessão: {session}"])
