@@ -1,5 +1,6 @@
 from tui._screen import Screen
 
+__all__ = ["bullet_list"]
 
 def bullet_list(title: str, items: list):
     """Renderiza uma lista de ``items`` do tipo bullet point.
@@ -18,7 +19,9 @@ def bullet_list(title: str, items: list):
     +-------------------------------------------------------+
     """
     title = [title.upper(), ""]
-    items = [f" ◎ {item}" for item in items]  # unicode: 25CE
+    bullet = "◎"  # unicode: 25CE
+
+    items = add_bullets(items, bullet, max_length=40)
 
     screen = Screen()
     screen.clear_screen()
@@ -29,3 +32,42 @@ def bullet_list(title: str, items: list):
     screen.render_vertical_space(height=2)
     screen.render_rule(position=2)
     screen.wait()
+
+
+def add_bullets(content: list[list[str]], bullet = "*", max_length = 20) -> list[str]:
+    result = []
+
+    bullet_prefix = f" {bullet} "
+    align_prefix = " " * len(bullet_prefix)
+
+    for item in content:
+        lines: list[str] = break_line(item, max_length)
+        lines[0] = bullet_prefix + lines[0]
+        for i in range(1, len(lines)):
+            lines[i] = align_prefix + lines[i]
+
+        result += lines
+
+    return result
+
+
+def break_line(content: str, max_length = 20) -> list[str]:
+    result = []
+
+    line_start = 0
+    last_whitespace = 0
+
+    for i, el in enumerate(content):
+        is_whitespace = el == " "
+        reached_line_limit = (i - line_start) >= max_length
+        
+        if is_whitespace:
+            last_whitespace = i
+
+        if is_whitespace and reached_line_limit:
+            result.append(content[line_start:last_whitespace])
+            line_start = i + 1
+        
+    result.append(content[line_start:])
+
+    return result
