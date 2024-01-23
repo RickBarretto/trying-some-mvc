@@ -1,13 +1,9 @@
-from entities.clinic import Clinic
-from entities.patient import Patient
-from entities.session import Session, SessionStatus
-
+import entities
 import tui
-
 from menus.use_cases import propose, request, warnings
 
 
-def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None):
+def send_to_waiting_queue(clinic: entities.Clinic, patient: entities.Patient | None = None):
     """Envia um paciente para a fila de espera.
 
     Questions
@@ -81,15 +77,15 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None):
     tui.info(message)
 
 
-def session_has_already_finished(session: Session):
-    if res := (session.status == SessionStatus.FINISHED):
+def session_has_already_finished(session: entities.Session):
+    if res := (session.status == entities.SessionStatus.FINISHED):
         warnings.session_has_already_been_finished(session)
 
     return res
 
 
-def session_has_never_begun(session: Session) -> bool:
-    if res := (session.status == SessionStatus.UNBEGUN):
+def session_has_never_begun(session: entities.Session) -> bool:
+    if res := (session.status == entities.SessionStatus.UNBEGUN):
         warnings.session_has_never_started(session)
 
     return res
