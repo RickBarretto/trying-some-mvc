@@ -1,4 +1,5 @@
 from tui._screen import Screen
+from tui._utils import left_align_width
 
 __all__ = ["bullet_list"]
 
@@ -18,12 +19,16 @@ def bullet_list(title: str, items: list):
     |                                                       |
     +-------------------------------------------------------+
     """
+    screen = Screen()
+    
     title = [title.upper(), ""]
     bullet = "◎"  # unicode: 25CE
 
-    items = add_bullets(items, bullet, max_length=40)
+    lateral_margin = (left_align_width() * 2)
+    max_width = screen.width - lateral_margin 
 
-    screen = Screen()
+    items = add_bullets(items, bullet, max_length=max_width)
+
     screen.clear_screen()
     screen.render_rule(position=0)
     screen.render_vertical_space(height=2)
