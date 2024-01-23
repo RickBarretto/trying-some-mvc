@@ -1,11 +1,9 @@
-from entities.clinic import Clinic
-from entities.session import SessionStatus
-
-import tui
+import entities
 from menus.use_cases import warnings
+import tui
 
 
-def start(clinic: Clinic):
+def start(clinic: entities.Clinic):
     """Inicia a sessão atual.
 
     Feedbacks
@@ -23,17 +21,17 @@ def start(clinic: Clinic):
 
     session_status = clinic.current_session.status
 
-    if session_status == SessionStatus.BEGUN:
+    if session_status == entities.SessionStatus.BEGUN:
         warnings.session_has_already_started(clinic.current_session)
         return
 
-    if session_status == SessionStatus.FINISHED:
+    if session_status == entities.SessionStatus.FINISHED:
         warnings.session_has_already_been_finished(clinic.current_session)
         return
 
     # ============= Ativa sessão atual =============
 
-    clinic.current_session.status = SessionStatus.BEGUN
+    clinic.current_session.status = entities.SessionStatus.BEGUN
 
     # ============= Feedback =============
 
