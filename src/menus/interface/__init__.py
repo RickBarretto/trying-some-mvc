@@ -1,4 +1,5 @@
 from typing import Callable, Protocol
+from entities.clinic import Clinic
 
 import tui
 
@@ -7,10 +8,15 @@ class Model(Protocol):
     pass
 
 
+class MenuOption(Protocol):
+    def __call__(clinic: Clinic, *args, **kwargs):
+        pass
+
+
 class MainMenu:
-    def __init__(self, model: Model, options: list[tuple[str, Callable]]) -> None:
+    def __init__(self, model: Model, options: list[tuple[str, MenuOption]]) -> None:
         self.model = model
-        self._options: list[tuple[str, Callable]] = options
+        self._options = options
 
         self._descriptions = options = [desc for desc, func in self._options]
         self._descriptions.append("Sair.")
