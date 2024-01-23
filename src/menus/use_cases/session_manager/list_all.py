@@ -14,5 +14,6 @@ def list_all(clinic: Clinic):
 
     # ============= Lista sessões =============
 
-    data = clinic.sessions if clinic.sessions else ["Não há sessões registradas."]
+    data = [str(session) for session in clinic.sessions] if clinic.sessions \
+        else ["Não há sessões registradas."]
     tui.bullet_list("Sessões registradas:", data)
