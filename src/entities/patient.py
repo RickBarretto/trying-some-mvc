@@ -7,10 +7,10 @@ class Patient:
     cpf: str
     name: str
     extra_info: list[str]
-    medical_records = list[str]
 
     def __post_init__(self):
         self.scheduled_sessions: list[int] = []
+        self.medical_records: list[str] = []
 
     def __str__(self) -> str:
         return f"{self.name} - CPF: {self.cpf} (ID: {self.uid})"
