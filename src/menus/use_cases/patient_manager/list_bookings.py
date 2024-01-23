@@ -27,12 +27,12 @@ def list_bookings(clinic: Clinic):
 
     # ============= Verifica registro do paciente =============
 
-    cpf = request.patient_cpf
+    cpf = request.patient_cpf()
     patient = clinic.patient_by_cpf(cpf)
 
     if not patient:
         warnings.patient_not_registered(cpf)
-        if propose.register_patient(clinic, cpf):
+        if not propose.register_patient(clinic, cpf):
             return
 
         patient = clinic.patient_by_cpf(cpf)
