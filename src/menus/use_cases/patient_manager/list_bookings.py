@@ -1,4 +1,5 @@
 from entities.clinic import Clinic
+from entities.patient import Patient
 
 import tui
 
@@ -24,25 +25,28 @@ def list_bookings(clinic: Clinic):
 
     """
 
-    # Valida entrada
+    # ============= Verifica registro do paciente =============
 
     cpf = request.patient_cpf
     patient = clinic.patient_by_cpf(cpf)
 
-    # Verifica registro
-
-    if patient is None:
+    if not patient:
         warnings.patient_not_registered(cpf)
         if propose.register_patient(clinic, cpf):
-            patient = clinic.patient_by_cpf(cpf)
-        else:
-            return 
+            return
+        
+        patient = clinic.patient_by_cpf(cpf)
 
-    # Lista sessões agendadas
+    # ============= Lista agendamentos =============
+    
+    tui.bullet_list(
+        f"Sessões agendadas de {patient.name}:", 
+        find_bookings(clinic, patient)
+    )
 
+
+def find_bookings(clinic: Clinic, patient: Patient):
     sessions_ids = patient.scheduled_sessions
     sessions = [session for session in clinic.sessions if session.uid in sessions_ids]
 
-    data = sessions if sessions else ["Nenhuma sessão agendada"]
-
-    tui.bullet_list(f"Sessões agendadas de {patient.name}:", data)
+    return sessions if sessions else ["Nenhuma sessão agendada"]
