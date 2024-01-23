@@ -36,11 +36,11 @@ def register(
 
     """
 
-    # Valida entrada
+    # ============= Verifica registro da sessão =============
+    
     if not date:
         date = request.session_date()
 
-    # Verifica registro
     session = clinic.session_by_date(date)
 
     if session and dry_run:
@@ -51,16 +51,21 @@ def register(
         tui.warn("Sessão já foi registrada.")
         return 
 
-    # Criação da sessão
+    # ============= Registro da sessão =============
+
+    session = register_session(clinic, date)
+    tui.info(f"Sessão registrada na data {session.date}.")
+
+    # ============= Atualiza sessão atual =============
+
+    if should_update:
+        current_session_manager.update(clinic, session)
+
+
+def register_session(clinic: Clinic, date: str) -> Session:
     new_id: int = clinic.new_session_id()
     session: Session = Session(uid=new_id, date=date)
 
-    # Registro da nova sessão
     clinic.sessions.append(session)
     clinic.last_session_id = new_id
-
-    tui.info(f"Sessão registrada na data {session.date}.")
-
-    # Atualiza a sessão caso a função seja chamada por fora
-    if should_update:
-        current_session_manager.update(clinic, session)
+    return session
