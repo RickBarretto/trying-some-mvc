@@ -42,19 +42,3 @@ class Clinic:
         Se não encontrado, retorna ``None``.
         """
         return next((patient for patient in self.patients if patient.uid == uid), None)
-
-
-# I'm here as a reference
-# TODO: Implement or delete me!
-#
-# def attend_next_patient(self) -> bool:
-#     """Atende o próximo paciente da fila de espera.
-#
-#     Assertions
-#     ----------
-#     `waiting_queue` não pode estar vazia
-#     """
-#     assert self.waiting_queue
-#
-#     patient_id = self.waiting_queue.pop(0)
-#     self.current_patient = self.patient_by_id(patient_id)

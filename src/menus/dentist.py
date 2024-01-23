@@ -26,7 +26,7 @@ def not_implemented(clinic: Clinic):
 options = [
     ("Procurar sessão por data.", session_manager.find),
     ("Iniciar sessão atual.", current_session_manager.start),
-    ("Atender próximo paciente.", not_implemented),
+    ("Atender próximo paciente.", current_session_manager.attend_next_patient),
     ("Ler prontuário médico.", not_implemented),
     ("Ler primeira anotação do prontuário.", not_implemented),
     ("Ler última anotação do prontuário.", not_implemented),
