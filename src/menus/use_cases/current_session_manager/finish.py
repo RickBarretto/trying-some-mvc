@@ -1,11 +1,9 @@
-from entities.clinic import Clinic
-from entities.session import SessionStatus
-
-import tui
+import entities
 from menus.use_cases import warnings
+import tui
 
 
-def finish(clinic: Clinic, suppress_warnings: bool = False):
+def finish(clinic: entities.Clinic, suppress_warnings: bool = False):
     """Finaliza a sessão atual.
 
     Feedbacks
@@ -24,18 +22,18 @@ def finish(clinic: Clinic, suppress_warnings: bool = False):
     session_status = clinic.current_session.status
 
     if not suppress_warnings:
-        if session_status == SessionStatus.UNBEGUN:
+        if session_status == entities.SessionStatus.UNBEGUN:
             warnings.session_has_never_started(clinic.current_session)
             if not tui.progress("Desejas finalizar mesmo assim?"):
                 return
 
-        if session_status == SessionStatus.FINISHED:
+        if session_status == entities.SessionStatus.FINISHED:
             warnings.session_has_already_been_finished(clinic.current_session)
             return
 
     # ============= Desativa sessão atual =============
 
-    clinic.current_session.status = SessionStatus.FINISHED
+    clinic.current_session.status = entities.SessionStatus.FINISHED
 
     # ============= Feedback =============
 
