@@ -16,12 +16,7 @@ from .use_cases import current_session_manager
 from .use_cases import patient_manager
 from .use_cases import session_manager
 
-import tui
-
 # Todas as opções disponíveis para a dentist
-
-def not_implemented(clinic: Clinic):
-    tui.warn("Opção não implementada!")
 
 options = [
     ("Procurar sessão por data.", session_manager.find),
