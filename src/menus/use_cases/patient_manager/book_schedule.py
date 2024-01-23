@@ -32,44 +32,39 @@ def book_schedule(
 
     """
 
-    # Valida entradas
+    # ============= Verifica registro do paciente =============
 
     if not patient:
         patient_cpf = request.patient_cpf()
         patient = clinic.patient_by_cpf(patient_cpf)
 
+    if not patient:
+        warnings.patient_not_registered(patient_cpf)
+        if not propose.register_patient(clinic, patient_cpf):
+            return
+            
+        patient = clinic.patient_by_cpf(patient_cpf)
+
+    # ============= Verifica registro da sessão =============
+
     if not session:
         session_date = request.session_date()
         session = clinic.session_by_date(session_date)
-
-    # Valida registros
-
-    # TODO: Improve menu with faster feedback
-
-    if not patient:
-        warnings.patient_not_registered(patient_cpf)
-        if propose.register_patient(clinic, patient_cpf):
-            patient = clinic.patient_by_cpf(patient_cpf)
-        else:
-            return 
 
     if not session:
         warnings.session_not_registered(session_date)
 
         if propose.register_session(clinic, session_date):
-            session = clinic.session_by_date(session_date)
-        else:
-            return 
+            return
+        
+        session = clinic.session_by_date(session_date)
 
-    # Verifica o agendamento
+    # ============= Agenda paciente + Feedback  =============
+
     if session.uid in patient.scheduled_sessions:
-        tui.warn(
-            f"Paciente {patient.name} já está "
-            f"registrado para a sessão {session.date}."
-        )
-        return 
-
-    # Agenda sessão para paciente
-    patient.scheduled_sessions.append(session.uid)
-
-    tui.info(f"{patient.name} agendado para o dia {session.date}!")
+        message = f"Paciente {patient.name} já está "           \
+                  f"registrado para a sessão {session.date}." 
+        tui.warn(message)
+    else:
+        patient.scheduled_sessions.append(session.uid)
+        tui.info(f"{patient.name} agendado para o dia {session.date}!")
