@@ -8,15 +8,15 @@ ao invés da declaração de classe,
 podendo assim ser usado por outros módulos.
 """
 
-
-from menus.interface import MainMenu
 from entities.clinic import Clinic
-
+from menus.interface import MainMenu
 from .use_cases import current_session_manager
 from .use_cases import patient_manager
 from .use_cases import session_manager
 
 # Todas as opções disponíveis para a recepção
+
+__all__ = ["start"]
 
 options = [
     ("Registrar nova sessão.", session_manager.register),
@@ -37,6 +37,6 @@ options = [
     ("Mostrar próximo paciente.", current_session_manager.show_next_patient),
 ]
 
-reception = MainMenu(Clinic(), options)
-
-__all__ = ["reception"]
+def start(clinic: Clinic):
+    reception = MainMenu(clinic, options)
+    reception.run()

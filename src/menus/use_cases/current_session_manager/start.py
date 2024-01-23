@@ -37,4 +37,4 @@ def start(clinic: Clinic):
 
     # ============= Feedback =============
 
-    tui.info("Sessão iniciada!")
+    tui.info(f"Sessão {clinic.current_session.date} iniciada!")

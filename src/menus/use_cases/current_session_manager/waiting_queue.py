@@ -83,13 +83,13 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None):
 
 def session_has_already_finished(session: Session):
     if res := (session.status == SessionStatus.FINISHED):
-        warnings.session_has_never_started(session)
+        warnings.session_has_already_been_finished(session)
 
     return res
 
 
 def session_has_never_begun(session: Session) -> bool:
     if res := (session.status == SessionStatus.UNBEGUN):
-        warnings.session_has_already_been_finished(session)
+        warnings.session_has_never_started(session)
 
     return res

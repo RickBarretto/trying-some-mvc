@@ -58,7 +58,7 @@ def attend_next_patient(clinic: Clinic):
         tui.warn("Não há pacientes na fila de espera.")
     else:
         _attend_next_patient(clinic)
-        tui.info(["Paciente atual:", clinic.current_patient])
+        tui.info(["Paciente atual:", str(clinic.current_patient)])
 
 
 def next_patient(clinic: Clinic) -> str:

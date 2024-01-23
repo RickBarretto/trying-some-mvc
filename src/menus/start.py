@@ -1,19 +1,27 @@
+from entities.clinic import Clinic
 from menus.interface import MainMenu
+from menus.use_cases import current_session_manager
+import tui
 
-from .use_cases import session_manager
-from .reception import reception
+from .use_cases import current_session_manager
+from menus import dentist, reception
 
-
-__all__ = ["reception"]
-
-
-class SomeModel:
-    pass
+__all__ = ["start_application"]
 
 
-def start_reception(model: SomeModel):
-    session_manager.register(reception.model, dry_run=True, should_update=True)
-    reception.run()
+def main_menu(clinic: Clinic):
 
+    current_session_manager.update(clinic)
 
-startup = MainMenu(SomeModel(), [("Iniciar como recepção.", start_reception)])
+    options = [
+            ("Iniciar como recepção.", reception.start),
+            ("Iniciar como dentista.", dentist.start),
+            ("Atualizar sessão atual.", current_session_manager.update),
+            ("Finalizar sessão atual.", current_session_manager.finish),
+        ]
+    
+    MainMenu(clinic, options).run()
+
+def start_application(clinic: Clinic):
+    tui.splash(["Bem-vindo ao Dente Clean Manager!", "", "Pressione [Enter] para iniciar uma sessão"])
+    main_menu(clinic)

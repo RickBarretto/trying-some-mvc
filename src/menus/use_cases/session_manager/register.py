@@ -7,8 +7,7 @@ import tui
 
 def register(
     clinic: Clinic,
-    dry_run: bool = False,
-    should_update: bool = False,
+    suppress_warnings: bool = False,
     date: str | None = None,
 ):
     """Registra uma nova sessão no banco de dados.
@@ -43,10 +42,9 @@ def register(
 
     session = clinic.session_by_date(date)
 
-    if session and dry_run:
-        tui.info("Entrando na sessão novamente.")
+    if session and suppress_warnings:
         return
-
+    
     if session:
         tui.warn("Sessão já foi registrada.")
         return
@@ -55,11 +53,6 @@ def register(
 
     session = register_session(clinic, date)
     tui.info(f"Sessão registrada na data {session.date}.")
-
-    # ============= Atualiza sessão atual =============
-
-    if should_update:
-        current_session_manager.update(clinic, session)
 
 
 def register_session(clinic: Clinic, date: str) -> Session:

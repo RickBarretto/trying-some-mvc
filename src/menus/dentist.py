@@ -18,6 +18,8 @@ from .use_cases import session_manager
 
 # Todas as opções disponíveis para a dentist
 
+__all__ = ["start"]
+
 options = [
     ("Procurar sessão por data.", session_manager.find),
     ("Iniciar sessão atual.", current_session_manager.start),
@@ -34,6 +36,6 @@ options = [
     ("Fazer anotação no prontuário.", patient_manager.annotate_medical_records),
 ]
 
-reception = MainMenu(Clinic(), options)
-
-__all__ = ["reception"]
+def start(clinic: Clinic):
+    dentist = MainMenu(clinic, options)
+    dentist.run()

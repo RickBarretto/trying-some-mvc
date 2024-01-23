@@ -1,5 +1,9 @@
-from menus.start import startup
+from entities.clinic import Clinic
+from menus.start import start_application
+
 
 
 if __name__ == "__main__":
-    startup.run()
+    
+    clinic_singleton = Clinic()
+    start_application(clinic_singleton)
