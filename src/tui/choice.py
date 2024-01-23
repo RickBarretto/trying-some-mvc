@@ -1,7 +1,7 @@
 from ._screen import Screen
 
 
-def choice(options: list[str]) -> int:
+def choice(options: list[str], status_bar: str = "") -> int:
     """Renderiza tela de escolha do usuário e retorna a escolha.
 
     Example
@@ -62,7 +62,7 @@ def choice(options: list[str]) -> int:
     data = format_data(options)
 
     # Imprime os dados
-    screen.render_full_screen(data)
+    screen.render_full_screen(data, status_bar=status_bar)
 
     # Retorna a escolha do usuário
     return user_choice(len(options))

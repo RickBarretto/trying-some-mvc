@@ -37,6 +37,12 @@ options = [
     ("Mostrar próximo paciente.", current_session_manager.show_next_patient),
 ]
 
+def current_session(clinic: Clinic) -> str:
+    if clinic.current_session:
+        return f"Sessão atual: {clinic.current_session.date} - {clinic.current_session.status}"
+    else:
+        return "Sessão atual não configurada."
+
 def start(clinic: Clinic):
-    reception = MainMenu(clinic, options)
+    reception = MainMenu(clinic, options, status_func=current_session)
     reception.run()

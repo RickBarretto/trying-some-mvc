@@ -12,11 +12,14 @@ class MenuOption(Protocol):
     def __call__(clinic: Clinic, *args, **kwargs):
         pass
 
+def default_status(model: Model) -> str:
+    return ""
 
 class MainMenu:
-    def __init__(self, model: Model, options: list[tuple[str, MenuOption]]) -> None:
+    def __init__(self, model: Model, options: list[tuple[str, MenuOption]], status_func: Callable[[Model], str] = default_status) -> None:
         self.model = model
         self._options = options
+        self.status = status_func
 
         self._descriptions = options = [desc for desc, func in self._options]
         self._descriptions.append("Sair.")
@@ -30,7 +33,7 @@ class MainMenu:
 
         while True:
             try:
-                user_choice = tui.choice(self._descriptions)
+                user_choice = tui.choice(self._descriptions, self.status(self.model))
             except (ValueError, IndexError) as e:
                 tui.warn(e)
                 user_choice = -1

@@ -36,6 +36,13 @@ options = [
     ("Fazer anotação no prontuário.", patient_manager.annotate_medical_records),
 ]
 
+def current_patient(clinic: Clinic) -> str:
+    if clinic.current_session:
+        return f"Paciente atual: {clinic.current_patient.name}"
+    else:
+        return "Nenhum paciente sendo atendido!"
+
+
 def start(clinic: Clinic):
-    dentist = MainMenu(clinic, options)
+    dentist = MainMenu(clinic, options, status_func=current_patient)
     dentist.run()
