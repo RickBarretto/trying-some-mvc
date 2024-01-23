@@ -1,11 +1,9 @@
-from entities.clinic import Clinic
-from entities.session import SessionStatus
+import entities
 from menus.use_cases import current_session_manager, session_manager, request
-
 import tui
 
 
-def update(clinic: Clinic):
+def update(clinic: entities.Clinic):
     """Atualiza a sessão atual.
 
     Note
@@ -32,7 +30,7 @@ def update(clinic: Clinic):
         return
 
     if clinic.current_session:
-        if clinic.current_session.status != SessionStatus.FINISHED:
+        if clinic.current_session.status != entities.SessionStatus.FINISHED:
             tui.warn(["A sessão atual não foi finalizada ainda!"])
             
             if not tui.progress("Desejas finalizá-la?"):
