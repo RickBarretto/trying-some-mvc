@@ -36,7 +36,6 @@ def prompt(ask: str, suggestion: str = "") -> str:
     return input(" >>> ").strip()
 
 
-# TODO: atualizar para um Prompt full screen
 def multiline(message: str) -> list[str]:
     content = [message]
     content.append("")

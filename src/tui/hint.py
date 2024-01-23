@@ -57,7 +57,7 @@ def _hint(symbol: str, content: str | list[str] | Exception) -> None:
     content[0] = f"{symbol}  {content[0]} {symbol}"
 
     # Adiciona mensagem para continuar ao fim
-    content += ["", "[Pressione [Enter] para continuar]"]
+    content += ["", "Pressione [Enter] para continuar"]
 
     # Renderiza a tela e espera por entrada.
     screen.render_full_screen(content, center=True)

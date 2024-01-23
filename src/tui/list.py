@@ -42,7 +42,7 @@ def bullet_list(title: str, items: list):
 def add_bullets(content: list[list[str]], bullet = "*", max_length = 20) -> list[str]:
     result = []
 
-    bullet_prefix = f" {bullet} "
+    bullet_prefix = f" {bullet}  "
     align_prefix = " " * len(bullet_prefix)
 
     for item in content:
