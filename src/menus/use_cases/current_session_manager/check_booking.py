@@ -1,10 +1,9 @@
-from entities.clinic import Clinic
-from entities.patient import Patient
-import tui
+import entities
 from menus.use_cases import propose, request, warnings
+import tui
 
 
-def check_current_booking(clinic: Clinic):
+def check_current_booking(clinic: entities.Clinic):
     """Verifica se paciente está agendado para a sessão atual.
 
     Questions
@@ -52,7 +51,7 @@ def check_current_booking(clinic: Clinic):
     propose.send_patient_to_waiting_queue(clinic, patient)
 
 
-def show_checking_feedback(patient: Patient, is_booked: bool):
+def show_checking_feedback(patient: entities.Patient, is_booked: bool):
     message_start = patient.name + " " + ("" if is_booked else "não")
     message_end = "está marcado para a sessão atual"
 
