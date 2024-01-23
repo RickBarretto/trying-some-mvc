@@ -8,10 +8,13 @@ def progress(question: list[str] | str) -> bool:
     if isinstance(question, str):
         question = [question]
 
+    cancel_message = "[Enter] Cancelar"
+    confirm_message = "[S] Sim"
+    confirm_message = f"{confirm_message:>{len(cancel_message)}}"
+
     question += [
         "",
-        "Responda [S], caso sim.",
-        "Do contrário, responda qualquer coisa.",
+         f"{confirm_message} | {cancel_message}"
     ]
 
     screen = Screen()
