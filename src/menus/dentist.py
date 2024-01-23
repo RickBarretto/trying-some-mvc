@@ -27,9 +27,9 @@ options = [
     ("Procurar sessão por data.", session_manager.find),
     ("Iniciar sessão atual.", current_session_manager.start),
     ("Atender próximo paciente.", current_session_manager.attend_next_patient),
-    ("Ler prontuário médico.", not_implemented),
-    ("Ler primeira anotação do prontuário.", not_implemented),
-    ("Ler última anotação do prontuário.", not_implemented),
+    ("Ler prontuário médico.", patient_manager.read_full_medical_records),
+    ("Ler primeira anotação do prontuário.", patient_manager.read_first_medical_annotation),
+    ("Ler última anotação do prontuário.", patient_manager.read_last_medical_annotation),
     ("Fazer anotação no prontuário.", not_implemented),
 ]
 
