@@ -1,6 +1,6 @@
 from typing import Callable, Protocol
-from entities.clinic import Clinic
 
+import entities
 import tui
 
 
@@ -9,7 +9,7 @@ class Model(Protocol):
 
 
 class MenuOption(Protocol):
-    def __call__(clinic: Clinic, *args, **kwargs):
+    def __call__(clinic: entities.Clinic, *args, **kwargs):
         pass
 
 def default_status(model: Model) -> str:
