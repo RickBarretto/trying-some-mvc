@@ -1,10 +1,13 @@
-
-
 from entities.clinic import Clinic
 from menus.use_cases import condition
 import tui
 
-__all__ = ["read_first_medical_annotation", "read_full_medical_records", "read_last_medical_annotation"]
+__all__ = [
+    "read_first_medical_annotation",
+    "read_full_medical_records",
+    "read_last_medical_annotation",
+]
+
 
 def read_full_medical_records(clinic: Clinic):
     """Lê o prontuário médico completo do paciente atual.
@@ -26,14 +29,17 @@ def read_full_medical_records(clinic: Clinic):
 
     if not condition.is_able_to_read_records(clinic):
         return
-    
+
     # ============= Feedback =============
-    
+
     if not clinic.current_patient.medical_records:
         tui.info(f"{clinic.current_patient.name} não possui anotações médicas.")
         return
 
-    tui.bullet_list(f"Anotações médicas de {clinic.current_patient.name}:", clinic.current_patient.medical_records)
+    tui.bullet_list(
+        f"Anotações médicas de {clinic.current_patient.name}:",
+        clinic.current_patient.medical_records,
+    )
 
 
 def read_first_medical_annotation(clinic: Clinic):
@@ -63,7 +69,12 @@ def read_first_medical_annotation(clinic: Clinic):
         tui.info(f"{clinic.current_patient.name} não possui anotações médicas.")
         return
 
-    tui.info([f"Primeira anotação médica de {clinic.current_patient.name}:", clinic.current_patient.medical_records[0]])
+    tui.info(
+        [
+            f"Primeira anotação médica de {clinic.current_patient.name}:",
+            clinic.current_patient.medical_records[0],
+        ]
+    )
 
 
 def read_last_medical_annotation(clinic: Clinic):
@@ -92,5 +103,10 @@ def read_last_medical_annotation(clinic: Clinic):
     if not clinic.current_patient.medical_records:
         tui.info(f"{clinic.current_patient.name} não possui anotações médicas.")
         return
-    
-    tui.info([f"Última anotação médica de {clinic.current_patient.name}:", clinic.current_patient.medical_records[-1]])
+
+    tui.info(
+        [
+            f"Última anotação médica de {clinic.current_patient.name}:",
+            clinic.current_patient.medical_records[-1],
+        ]
+    )

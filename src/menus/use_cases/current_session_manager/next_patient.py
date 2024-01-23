@@ -1,8 +1,7 @@
 from entities.clinic import Clinic
-from entities.session import SessionStatus
 import tui
 
-from menus.use_cases import propose, warnings, condition
+from menus.use_cases import condition
 
 __all__ = ["attend_next_patient", "show_next_patient"]
 
@@ -58,7 +57,7 @@ def attend_next_patient(clinic: Clinic):
     if not clinic.waiting_queue:
         tui.warn("Não há pacientes na fila de espera.")
     else:
-        attend_next_patient(clinic)
+        _attend_next_patient(clinic)
         tui.info(["Paciente atual:", clinic.current_patient])
 
 
@@ -67,8 +66,8 @@ def next_patient(clinic: Clinic) -> str:
 
     next_patient_id = clinic.waiting_queue[0]
     return str(clinic.patient_by_id(next_patient_id))
-    
 
-def attend_next_patient(clinic: Clinic):
+
+def _attend_next_patient(clinic: Clinic):
     patient_id = clinic.waiting_queue.pop(0)
     clinic.current_patient = clinic.patient_by_id(patient_id)

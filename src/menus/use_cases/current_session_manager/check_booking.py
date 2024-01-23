@@ -53,8 +53,6 @@ def check_current_booking(clinic: Clinic):
 
 
 def show_checking_feedback(patient: Patient, is_booked: bool):
-    no_or_space = " " if is_booked else " não "
-
     message_start = patient.name + "" if is_booked else "não"
     message_end = "está marcado para a sessão atual."
 
