@@ -25,7 +25,7 @@ def prompt(ask: str, suggestion: str = "") -> str:
     visual_contents_height = 3  # 3 = (2 horizonntal rules + 1 input line)
     content_height = (
         screen.height - len(content) - visual_contents_height
-    ) >> 1  # >> 1 == // 2
+    ) >> 1  # >> 1 é uma micro optimização para // 2
 
     screen.clear_screen()
     screen.render_rule(position=0)
