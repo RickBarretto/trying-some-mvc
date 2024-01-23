@@ -7,7 +7,7 @@ import tui
 
 
 def is_able_to_read_records(clinic: Clinic) -> bool:
-    has_patient_being_attended(clinic) and has_active_current_session(clinic)
+    return has_patient_being_attended(clinic) and has_active_current_session(clinic)
 
 
 def has_active_current_session(clinic: Clinic) -> bool:
@@ -26,4 +26,4 @@ def has_active_current_session(clinic: Clinic) -> bool:
 def has_patient_being_attended(clinic: Clinic) -> bool:
     if not (res := clinic.current_patient):
         tui.warn("Nenhum paciente sendo atendido.")
-    return res
+    return bool(res)
