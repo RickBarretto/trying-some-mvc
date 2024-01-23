@@ -19,9 +19,10 @@ def start(clinic: Clinic) -> bool:
     
     """
 
+    # ============= Verifica status da sessão atual =============
+
     session_status = clinic.current_session.status
 
-    # Verifica status da sessão
     if session_status == SessionStatus.BEGUN:
         warnings.session_has_already_started(clinic.current_session)
         return 
@@ -30,7 +31,10 @@ def start(clinic: Clinic) -> bool:
         warnings.session_has_already_been_finished(clinic.current_session)
         return 
 
-    # Ativa a sessão atual
+    # ============= Ativa sessão atual =============
+
     clinic.current_session.status = SessionStatus.BEGUN
 
+    # ============= Feedback =============
+    
     tui.info("Sessão iniciada!")
