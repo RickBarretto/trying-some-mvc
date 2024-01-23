@@ -37,8 +37,8 @@ options = [
 ]
 
 def current_patient(clinic: Clinic) -> str:
-    if clinic.current_session:
-        return f"Paciente atual: {clinic.current_patient.name}"
+    if clinic.current_patient:
+        return f"Paciente atual: {clinic.current_patient.name} - CPF {clinic.current_patient.cpf}"
     else:
         return "Nenhum paciente sendo atendido!"
 

@@ -50,7 +50,7 @@ def render_content(content: str, inner_width: int, center: bool = False):
     for line in content:
         # Imprime "|        <conteúdo>      |" para ``center = True``
         # Imprime "|<conteúdo>              |" para ``center = False``
-        line = line.strip()
+        line = line.rstrip()
         prefix = " " * tab
         render_default_content(f"{prefix}{line:{pos}{inner_width - tab}}")
 

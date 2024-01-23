@@ -3,7 +3,7 @@ from tui._utils import left_align_width
 
 __all__ = ["bullet_list"]
 
-def bullet_list(title: str, items: list):
+def bullet_list(title: str, items: list, additional_margin: int = 0):
     """Renderiza uma lista de ``items`` do tipo bullet point.
 
     Example
@@ -21,13 +21,13 @@ def bullet_list(title: str, items: list):
     """
     screen = Screen()
     
-    title = [title.upper(), ""]
+    title = [title, ""]
     bullet = "◎"  # unicode: 25CE
 
     lateral_margin = (left_align_width() * 2)
     max_width = screen.width - lateral_margin 
 
-    items = add_bullets(items, bullet, max_length=max_width)
+    items = add_bullets(items, bullet, max_length=max_width, additional_margin=additional_margin)
 
     screen.clear_screen()
     screen.render_rule(position=0)
@@ -39,14 +39,14 @@ def bullet_list(title: str, items: list):
     screen.wait()
 
 
-def add_bullets(content: list[list[str]], bullet = "*", max_length = 20) -> list[str]:
+def add_bullets(content: list[list[str]], bullet = "*", max_length: int = 20, additional_margin: int = 0) -> list[str]:
     result = []
 
     bullet_prefix = f" {bullet}  "
-    align_prefix = " " * len(bullet_prefix)
+    align_prefix = " " * (len(bullet_prefix) + additional_margin)
 
     for item in content:
-        lines: list[str] = break_line(item, max_length)
+        lines: list[str] = break_line(item, max_length, additional_margin)
         lines[0] = bullet_prefix + lines[0]
         for i in range(1, len(lines)):
             lines[i] = align_prefix + lines[i]
@@ -56,7 +56,7 @@ def add_bullets(content: list[list[str]], bullet = "*", max_length = 20) -> list
     return result
 
 
-def break_line(content: str, max_length = 20) -> list[str]:
+def break_line(content: str, max_length = 20, additional_margin = 0) -> list[str]:
     result = []
 
     line_start = 0
@@ -65,6 +65,9 @@ def break_line(content: str, max_length = 20) -> list[str]:
     for i, el in enumerate(content):
         is_whitespace = el == " "
         reached_line_limit = (i - line_start) >= max_length
+        
+        if len(result) == 1:
+            max_length -= additional_margin
         
         if is_whitespace:
             last_whitespace = i
