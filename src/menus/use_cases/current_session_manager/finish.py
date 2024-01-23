@@ -2,7 +2,7 @@ from entities.clinic import Clinic
 from entities.session import SessionStatus
 
 import tui
-from menus.use_cases import condition, warnings
+from menus.use_cases import warnings
 
 
 def finish(clinic: Clinic, suppress_warnings: bool = False):

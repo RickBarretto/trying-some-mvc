@@ -1,6 +1,6 @@
 from entities.clinic import Clinic
 from entities.session import Session
-from menus.use_cases import current_session_manager, request
+from menus.use_cases import request
 
 import tui
 

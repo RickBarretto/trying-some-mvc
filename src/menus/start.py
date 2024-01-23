@@ -1,10 +1,8 @@
 from entities.clinic import Clinic
 from menus.interface import MainMenu
 from menus.use_cases import current_session_manager
-import tui
-
-from .use_cases import current_session_manager
 from menus import dentist, reception
+import tui
 
 __all__ = ["start_application"]
 

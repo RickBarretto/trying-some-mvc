@@ -26,7 +26,7 @@ def check_current_booking(clinic: Clinic):
     cpf = request.patient_cpf()
 
     if not (patient := clinic.patient_by_cpf(cpf)):
-        warnings.patient_not_registered()
+        warnings.patient_not_registered(cpf)
 
         if propose.register_patient(clinic, cpf):
             patient = clinic.patient_by_cpf(cpf)
