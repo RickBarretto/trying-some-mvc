@@ -7,6 +7,7 @@ class Patient:
     cpf: str
     name: str
     extra_info: list[str]
+    medical_records = list[str]
 
     def __post_init__(self):
         self.scheduled_sessions: list[int] = []
