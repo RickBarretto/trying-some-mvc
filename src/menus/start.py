@@ -12,10 +12,10 @@ def main_menu(clinic: Clinic):
     current_session_manager.update(clinic)
 
     options = [
-            ("Iniciar como recepção.", reception.start),
-            ("Iniciar como dentista.", dentist.start),
-            ("Atualizar sessão atual.", current_session_manager.update),
-            ("Finalizar sessão atual.", current_session_manager.finish),
+            ("Iniciar como recepção", reception.start),
+            ("Iniciar como dentista", dentist.start),
+            ("Atualizar sessão atual", current_session_manager.update),
+            ("Finalizar sessão atual", current_session_manager.finish),
         ]
     
     MainMenu(clinic, options).run()

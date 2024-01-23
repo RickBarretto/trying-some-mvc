@@ -64,7 +64,7 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None):
     # ============= Verifica se paciente está na fila =============
 
     if patient.uid in clinic.waiting_queue:
-        tui.warn("Paciente já está na fila de espera.")
+        tui.warn("Paciente já está na fila de espera!")
         return
 
     # ============= Põe paciente na fila =============
@@ -74,8 +74,8 @@ def send_to_waiting_queue(clinic: Clinic, patient: Patient | None = None):
     # ============= Feedback =============
 
     message = [
-        f"{patient.name} colocado na fila de espera,",
-        f"O mesmo se encontra na posição {len(clinic.waiting_queue)}!",
+        f"{patient.name} colocado na fila de espera",
+        f"O mesmo se encontra na posição {len(clinic.waiting_queue)}.",
     ]
 
     tui.info(message)

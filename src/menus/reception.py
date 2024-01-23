@@ -19,29 +19,29 @@ from .use_cases import session_manager
 __all__ = ["start"]
 
 options = [
-    ("Registrar nova sessão.", session_manager.register),
-    ("Listar sessões registradas.", session_manager.list_all),
-    ("Procurar sessão por data.", session_manager.find),
-    ("Iniciar sessão atual.", current_session_manager.start),
-    ("Registrar novo paciente.", patient_manager.register),
-    ("Agendar sessão para paciente.", patient_manager.book_schedule),
-    ("Listar sessões agendadas para paciente.", patient_manager.list_bookings),
+    ("Registrar nova sessão", session_manager.register),
+    ("Listar sessões registradas", session_manager.list_all),
+    ("Procurar sessão por data", session_manager.find),
+    ("Iniciar sessão atual", current_session_manager.start),
+    ("Registrar novo paciente", patient_manager.register),
+    ("Agendar sessão para paciente", patient_manager.book_schedule),
+    ("Listar sessões agendadas para paciente", patient_manager.list_bookings),
     (
-        "Verificar agendamento para sessão atual.",
+        "Verificar agendamento para sessão atual",
         current_session_manager.check_current_booking,
     ),
     (
-        "Enviar paciente para fila de espera.",
+        "Enviar paciente para fila de espera",
         current_session_manager.send_to_waiting_queue,
     ),
-    ("Mostrar próximo paciente.", current_session_manager.show_next_patient),
+    ("Mostrar próximo paciente", current_session_manager.show_next_patient),
 ]
 
 def current_session(clinic: Clinic) -> str:
     if clinic.current_session:
         return f"Sessão atual: {clinic.current_session.date} - {clinic.current_session.status}"
     else:
-        return "Sessão atual não configurada."
+        return "Sessão atual não configurada"
 
 def start(clinic: Clinic):
     reception = MainMenu(clinic, options, status_func=current_session)

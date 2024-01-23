@@ -22,7 +22,7 @@ class MainMenu:
         self.status = status_func
 
         self._descriptions = options = [desc for desc, func in self._options]
-        self._descriptions.append("Sair.")
+        self._descriptions.append("Sair")
 
     def add_option(self, option: Callable, description: str):
         self._options.append((option, description))

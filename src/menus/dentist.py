@@ -21,19 +21,19 @@ from .use_cases import session_manager
 __all__ = ["start"]
 
 options = [
-    ("Procurar sessão por data.", session_manager.find),
-    ("Iniciar sessão atual.", current_session_manager.start),
-    ("Atender próximo paciente.", current_session_manager.attend_next_patient),
-    ("Ler prontuário médico.", patient_manager.read_full_medical_records),
+    ("Procurar sessão por data", session_manager.find),
+    ("Iniciar sessão atual", current_session_manager.start),
+    ("Atender próximo paciente", current_session_manager.attend_next_patient),
+    ("Ler prontuário médico", patient_manager.read_full_medical_records),
     (
-        "Ler primeira anotação do prontuário.",
+        "Ler primeira anotação do prontuário",
         patient_manager.read_first_medical_annotation,
     ),
     (
-        "Ler última anotação do prontuário.",
+        "Ler última anotação do prontuário",
         patient_manager.read_last_medical_annotation,
     ),
-    ("Fazer anotação no prontuário.", patient_manager.annotate_medical_records),
+    ("Fazer anotação no prontuário", patient_manager.annotate_medical_records),
 ]
 
 def current_patient(clinic: Clinic) -> str:

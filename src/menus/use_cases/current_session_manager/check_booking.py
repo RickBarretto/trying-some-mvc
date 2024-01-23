@@ -54,6 +54,6 @@ def check_current_booking(clinic: Clinic):
 
 def show_checking_feedback(patient: Patient, is_booked: bool):
     message_start = patient.name + " " + ("" if is_booked else "não")
-    message_end = "está marcado para a sessão atual."
+    message_end = "está marcado para a sessão atual"
 
     tui.info(f"{message_start} {message_end}")

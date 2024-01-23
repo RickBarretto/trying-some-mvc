@@ -34,7 +34,7 @@ def register(clinic: Clinic, patient_cpf: str | None = None):
         patient_cpf = request.patient_cpf()
 
     if clinic.patient_by_cpf(patient_cpf):
-        tui.warn("Paciente já foi registrado.")
+        tui.warn("Paciente já foi registrado!")
         return
 
     # ============= Adiciona dados extras =============

@@ -25,5 +25,5 @@ def has_active_current_session(clinic: Clinic) -> bool:
 
 def has_patient_being_attended(clinic: Clinic) -> bool:
     if not (res := clinic.current_patient):
-        tui.warn("Nenhum paciente sendo atendido.")
+        tui.warn("Nenhum paciente sendo atendido!")
     return bool(res)

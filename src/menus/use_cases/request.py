@@ -6,19 +6,19 @@ __all__ = ["patient_cpf", "session_date"]
 
 
 def patient_cpf() -> str:
-    question = "Insira o CPF do paciente."
+    question = "Insira o CPF do paciente:"
     format = "XXX.XXX.XXX-XX"
     suggestion = f"Formato: {format}"
-    warning = "CPF inválido"
+    warning = "CPF inválido!"
 
     return _request(question, suggestion, warning, format, _is_valid_cpf)
 
 
 def session_date() -> str:
-    question = "Insira uma data."
+    question = "Insira uma data:"
     format = "DD/MM/YYYY"
     suggestion = f"Formato: {format}"
-    warning = "Formato de data inválido."
+    warning = "Formato de data inválido!"
 
     return _request(question, suggestion, warning, format, _is_valid_date)
 
@@ -31,7 +31,7 @@ def _request(
     validator: Callable[[str], bool],
 ) -> str:
     while not validator(value := tui.prompt(question, suggestion)):
-        tui.warn([warning, f"Verifique se o formato condiz com {format}"])
+        tui.warn([warning, f"Verifique se o formato condiz com '{format}'."])
 
     return value
 

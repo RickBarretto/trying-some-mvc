@@ -39,7 +39,7 @@ def prompt(ask: str, suggestion: str = "") -> str:
 # TODO: atualizar para um Prompt full screen
 def multiline(message: str) -> list[str]:
     print(message)
-    print("(Linha vazia para finalizar.)")
+    print("[Linha vazia para finalizar]")
 
     result = []
     while inp := input(">>> ").strip():

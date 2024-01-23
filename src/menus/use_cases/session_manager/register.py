@@ -46,13 +46,13 @@ def register(
         return
     
     if session:
-        tui.warn("Sessão já foi registrada.")
+        tui.warn("Sessão já foi registrada!")
         return
 
     # ============= Registro da sessão =============
 
     session = register_session(clinic, date)
-    tui.info(f"Sessão registrada na data {session.date}.")
+    tui.info(f"Sessão registrada na data {session.date}")
 
 
 def register_session(clinic: Clinic, date: str) -> Session:

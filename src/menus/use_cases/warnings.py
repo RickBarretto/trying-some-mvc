@@ -3,11 +3,11 @@ import tui
 
 
 def patient_not_registered(patient_cpf: str):
-    tui.warn(f"Não há paciente registrado para CPF {patient_cpf}.")
+    tui.warn(f"Não há paciente registrado para CPF {patient_cpf}!")
 
 
 def session_not_registered(session_date: str):
-    tui.warn(f"Não há sessão registrada para o dia {session_date}")
+    tui.warn(f"Não há sessão registrada para o dia {session_date}!")
 
 
 def session_has_already_started(session: Session):

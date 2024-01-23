@@ -32,7 +32,7 @@ def show_next_patient(clinic: Clinic):
     # ============= Feedback =============
 
     if not clinic.waiting_queue:
-        tui.warn("Não há pacientes na fila de espera.")
+        tui.warn("Não há pacientes na fila de espera!")
     else:
         tui.info(["Próximo paciente:", next_patient(clinic)])
 

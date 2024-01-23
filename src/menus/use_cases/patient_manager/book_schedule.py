@@ -64,7 +64,7 @@ def book_schedule(
     if session.uid in patient.scheduled_sessions:
         message = (
             f"Paciente {patient.name} já está "
-            f"registrado para a sessão {session.date}."
+            f"registrado para a sessão {session.date}!"
         )
         tui.warn(message)
     else:
