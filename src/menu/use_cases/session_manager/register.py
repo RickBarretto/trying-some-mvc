@@ -1,5 +1,4 @@
 import entity
-from menu.use_cases import current_session_manager
 from menu.use_cases.commons import request
 import tui
 
