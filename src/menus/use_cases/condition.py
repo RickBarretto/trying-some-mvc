@@ -31,8 +31,8 @@ def has_active_current_session(clinic: Clinic) -> bool:
     
     Warnings                        Proposes
     --------                        --------
-    * Sessão nunca fora iniciada    * Propõe iniciá-la
-    * Sessão já finalizada
+    Sessão nunca fora iniciada      Iniciar sessão
+    Sessão já finalizada
 
     """
 
@@ -55,7 +55,7 @@ def has_patient_being_attended(clinic: Clinic) -> bool:
     
     Warnings
     --------
-    * Nenhum paciente sendo atendido
+    Nenhum paciente sendo atendido
     """
     if not (res := clinic.current_patient):
         tui.warn("Nenhum paciente sendo atendido!")
