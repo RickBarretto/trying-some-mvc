@@ -4,7 +4,7 @@ from menu.use_cases.commons import propose, request
 
 
 def find(clinic: entity.Clinic):
-    """Registra uma nova sessão no banco de dados.
+    """Procura uma sessão no banco de dados.
 
     Questions
     ---------
