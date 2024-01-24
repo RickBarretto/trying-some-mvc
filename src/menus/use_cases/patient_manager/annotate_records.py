@@ -6,15 +6,19 @@ import tui
 def annotate_medical_records(clinic: entities.Clinic):
     """Faz anotação no prontuário do paciente atual.
 
+    Questions
+    ---------
+    Anotação
+
     Feedbacks
     ---------
-    * Ação concluída
+    Ação concluída
 
     Warnings                            Proposes
     --------                            --------
-    * Sessão não iniciada               * Propõe iniciar sessão
-    * Sessão já finalizada
-    * Nenhum paciente sendo atendido
+    Sessão atual não iniciada           Iniciar sessão atual
+    Sessão atual já finalizada
+    Nenhum paciente sendo atendido
 
     """
 

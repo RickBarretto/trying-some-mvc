@@ -11,20 +11,20 @@ def register(clinic: Clinic, patient_cpf: str | None = None):
 
     Questions
     ---------
-    * CPF do paciente
-    * Nome do paciente
-    * Informações extras
+    CPF do paciente
+    Nome do paciente
+    Informações extras
 
     Feedbacks
     ---------
-    * Registro foi um sucesso
+    Registro foi um sucesso
 
     Warnings
     --------
-    * Formato de CPF inválido
-    * TODO: Nome não deve conter números ou símbolos
-    * TODO: Nome deve conter pelo menos nome e sobrenome
-    * Paciente já registrado
+    Formato de CPF inválido
+    TODO: Nome não deve conter números ou símbolos
+    TODO: Nome deve conter pelo menos nome e sobrenome
+    Paciente já registrado
 
     """
 

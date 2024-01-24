@@ -10,21 +10,21 @@ def book_schedule(
 
     Questions
     ---------
-    * CPF do paciente
-    * Data da sessão
+    CPF do paciente
+    Data da sessão
 
     Feedbacks
     ---------
-    * Status do agendamento
+    Status do agendamento
 
     Warnings                        Proposes
     --------                        --------
-    * Formato de data inválido
-    * Formato de CPF inválido
-    * Paciente não registrado       * Propõe registrar paciente
-    * Sessão não registrada         * Propõe registrar sessão
-    * Sessão já finalizada
-    * Paciente já estava agendado
+    Formato de data inválido
+    Formato de CPF inválido
+    Paciente não registrado         Registrar paciente
+    Sessão não registrada           Registrar sessão
+    Sessão já finalizada
+    Paciente já estava agendado
 
     """
 

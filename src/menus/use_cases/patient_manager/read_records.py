@@ -14,14 +14,14 @@ def read_full_medical_records(clinic: Clinic):
 
     Feedbacks
     ---------
-    * Listagem das anotações
-    * Se há anotações
+    Listagem das anotações
+    Se há anotações
 
-    Warnings
-    --------
-    * Sessão não iniciada   : Propõe a iniciar
-    * Sessão já finalizada
-    * Nenhum paciente sendo atendido
+    Warnings                        Proposes
+    --------                        --------
+    Sessão atual não iniciada       Iniciar sessão atual
+    Sessão atual já finalizada
+    Nenhum paciente sendo atendido
 
     """
 
@@ -51,14 +51,14 @@ def read_first_medical_annotation(clinic: Clinic):
 
     Feedbacks
     ---------
-    * Primeira anotação
-    * Se não há anotações
+    Primeira anotação
+    Se não há anotações
 
-    Warnings
-    --------
-    * Sessão não iniciada   : Propõe a iniciar
-    * Sessão já finalizada
-    * Nenhum paciente sendo atendido
+    Warnings                        Proposes
+    --------                        --------
+    Sessão atual não iniciada       Iniciar sessão atual
+    Sessão atual já finalizada
+    Nenhum paciente sendo atendido
 
     """
 
@@ -89,14 +89,14 @@ def read_last_medical_annotation(clinic: Clinic):
 
     Feedbacks
     ---------
-    * Primeira anotação
-    * Se não há anotações
+    Primeira anotação
+    Se não há anotações
 
-    Warnings
-    --------
-    * Sessão não iniciada   : Propõe a iniciar
-    * Sessão já finalizada
-    * Nenhum paciente sendo atendido
+    Warnings                        Proposes
+    --------                        --------
+    Sessão atual não iniciada       Iniciar sessão atual
+    Sessão atual já finalizada
+    Nenhum paciente sendo atendido
 
     """
 

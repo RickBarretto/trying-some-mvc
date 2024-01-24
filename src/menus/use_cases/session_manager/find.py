@@ -10,16 +10,16 @@ def find(clinic: Clinic):
 
     Questions
     ---------
-    * Data da sessão
+    Data da sessão
 
     Feedbacks
     ---------
-    * Informações básicas da sessão
+    Informações básicas da sessão
 
     Warnings                        Proposes
     --------                        --------
-    * Formato de data inválido  
-    * Sessão não registrada         Propõe registrar sessão
+    Formato de data inválido  
+    Sessão não registrada           Registrar sessão
 
     """
 

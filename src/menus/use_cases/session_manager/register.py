@@ -10,27 +10,18 @@ def register(
 ):
     """Registra uma nova sessão no banco de dados.
 
-    Arguments
-    ---------
-    dry_run: bool = False
-        Não emite mensagem de erro em caso de sessão já existente.
-
-    date: str | None = None
-        Define a data que será registrada.
-        Caso seja vazia, será requisitado a entrada ao usuário.
-
     Questions
     ---------
-    * Data da sessão
+    Data da sessão
 
     Feedbacks
     ---------
-    * Status do registro
+    Status do registro
 
     Warnings
     --------
-    * Formato de data inválido
-    * Sessão já registrada
+    Formato de data inválido
+    Sessão já registrada
 
     """
 

@@ -7,8 +7,8 @@ def list_all(clinic: Clinic):
 
     Feedbacks
     ---------
-    * Lista de sessões. (data, id e status)
-    * Se há ou não alguma registrada.
+    Lista de sessões
+    Se há ou não alguma registrada
 
     """
 

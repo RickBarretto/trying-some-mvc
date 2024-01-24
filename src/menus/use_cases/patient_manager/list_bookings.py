@@ -8,12 +8,12 @@ def list_bookings(clinic: entities.Clinic):
 
     Questions
     ---------
-    * CPF do paciente
+    CPF do paciente
 
     Feedbacks
     ---------
-    * Lista de agendamentos
-    * Nenhum agendamento
+    Lista de agendamentos
+    Nenhum agendamento
 
     Warnings                    Proposes
     --------                    --------
