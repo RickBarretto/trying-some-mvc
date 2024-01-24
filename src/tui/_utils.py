@@ -19,7 +19,7 @@ def terminal_size() -> tuple[int, int]:
     return size.columns, size.lines
 
 
-def render_rule(inner_width: int, position: int = 0):
+def render_rule(width: int, position: int = 0):
     """Renderiza uma régua horizontal
 
     Arguments
@@ -41,7 +41,7 @@ def render_rule(inner_width: int, position: int = 0):
         1: ("├", "┤"),  # unicode: (251C, 2524)
         2: ("╰", "╯"),  # unicode: (2570, 256F)
     }
-    print(corners[position][0], (dash * inner_width), corners[position][1], sep="")
+    print(corners[position][0], (dash * (width - 2)), corners[position][1], sep="")
 
 
 def render_default_content(content: str):
@@ -50,7 +50,7 @@ def render_default_content(content: str):
     print(vertical_bar, content, vertical_bar, sep="")
 
 
-def render_content(content: str, inner_width: int, center: bool = False):
+def render_content(content: str, width: int, center: bool = False):
     """Renderiza o conteúdo alinhando-o.
 
     Arguments
@@ -72,7 +72,7 @@ def render_content(content: str, inner_width: int, center: bool = False):
         # Imprime "|<conteúdo>              |" para ``center = False``
         line = line.rstrip()
         prefix = " " * tab
-        render_default_content(f"{prefix}{line:{pos}{inner_width - tab}}")
+        render_default_content(f"{prefix}{line:{pos}{width - 2 - tab}}")
 
 
 def left_align_width() -> int:
@@ -80,7 +80,7 @@ def left_align_width() -> int:
     return int(os.get_terminal_size().columns * 0.2)
 
 
-def render_vertical_space(inner_width: int, height: int):
+def render_vertical_space(width: int, height: int):
     """Renderiza um espaço vertical.
 
     Arguments
@@ -92,4 +92,4 @@ def render_vertical_space(inner_width: int, height: int):
     """
     for _ in range(height - 1):
         # Imprime "|        <espaço em branco>      |"
-        render_default_content(" " * inner_width)
+        render_default_content(" " * (width - 2))

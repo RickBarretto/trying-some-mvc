@@ -22,29 +22,13 @@ class Screen:
         """Retorna a altura do terminal"""
         return os.get_terminal_size().lines
 
-    @property
-    def inner_width(self) -> int:
-        """Retorna a largura interna da tela.
-
-        Isto é, removendo o tamanho das bordas.
-        """
-        return self.width - 2
-
-    @property
-    def inner_height(self) -> int:
-        """Retorna a altura interna da tela.
-
-        Isto é, removendo o tamanho das bordas.
-        """
-        return self.height - 2
-
     def vertical_align(self, content_height: int) -> int:
         """Basicamente é o espaço necessário para alinhar o texto dado um conteúdo"""
         # Remove-se as alturas das bordas e conteúdo, e divide por 2,
         # já que deverá ser impresso antes e após o conteúdo.
         #
         # ``>> 1`` é apenas uma micro-optimização equivalente a ``// 2``.
-        return (self.inner_height - content_height) >> 1
+        return ((self.height - 2) - content_height) >> 1
 
     def clear_screen(self):
         """Limpa a tela"""
@@ -71,8 +55,9 @@ class Screen:
         ``position`` deve estar entre 0 e 2.
         """
         assert 0 <= position <= 2
+        if width is None:
+            width = self.width
 
-        width = width - 2 if width is not None else self.inner_width
         render_rule(width, position)
 
     def render_content(self, content: list[str], center: bool = False):
@@ -85,7 +70,7 @@ class Screen:
         center: bool = False
             Se será renderizado horizontalmente ao centro.
         """
-        render_content(content, self.inner_width, center)
+        render_content(content, self.width, center)
 
     def render_vertical_space(
         self, content_height: int | None = None, fixed_height: int | None = None
@@ -122,7 +107,7 @@ class Screen:
             if fixed_height is not None
             else self.vertical_align(content_height)
         )
-        render_vertical_space(self.inner_width, spaces)
+        render_vertical_space(self.width, spaces)
 
     def render_full_screen(
         self, content: list[str], status_bar: str = "", center: bool = False
@@ -145,7 +130,7 @@ class Screen:
         self.render_rule(position=0)
         if status_bar:
             status_bar = f"{status_bar}   "
-            render_default_content(f"{status_bar:>{self.inner_width}}")
+            render_default_content(f"{status_bar:>{self.width - 2}}")
         self.render_vertical_space(content_height=vertical_space)
         self.render_content(content, center)
         self.render_vertical_space(content_height=content_height)
