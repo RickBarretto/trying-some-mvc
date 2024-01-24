@@ -16,16 +16,6 @@ from menus.use_cases import propose, warnings
 import tui
 
 
-def is_able_to_read_records(clinic: Clinic) -> bool:
-    """Retorna se o médico é capaz de ler o prontuário.
-    
-    Um médico é capaz de ler o prontuário se e somente se:
-        1. A sessão já foi iniciada
-        2. Tem um paciente sendo atendido.
-    """
-    return has_patient_being_attended(clinic) and has_active_current_session_or_activate_it(clinic)
-
-
 def has_active_current_session_or_activate_it(clinic: Clinic) -> bool:
     """Retorna se a sessão atual está ativa ou não, ou propõe a ativar.
     
