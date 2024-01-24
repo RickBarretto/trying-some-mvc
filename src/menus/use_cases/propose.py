@@ -7,13 +7,6 @@ from menus.use_cases import current_session_manager, patient_manager, session_ma
 import tui
 
 
-def add_to_waiting_queue(clinic: Clinic, patient: Patient) -> bool:
-    question = f"Desejas adicionar {patient.name} à fila de espera?"
-    use_case = current_session_manager.send_to_waiting_queue
-
-    return _propose(question, use_case, clinic, patient)
-
-
 def send_patient_to_waiting_queue(clinic: Clinic, patient: Patient) -> bool:
     question = f"Desejas encaminhar {patient.name} para fila de espera?"
     use_case = current_session_manager.send_to_waiting_queue
