@@ -4,8 +4,18 @@ from tui._utils import left_align_width
 __all__ = ["bullet_list"]
 
 
-def bullet_list(title: str, items: list, additional_margin: int = 0):
+def bullet_list(title: str, items: list[str], additional_margin: int = 0):
     """Renderiza uma lista de ``items`` do tipo bullet point.
+
+    Arguments
+    ---------
+    title: str
+        O título da tela
+    items: list[str]
+        Os elementos a serem impressos
+    additional_maring: int = 0
+        Margem adicional, caso necessário. 
+        Útil quando há quebra de linhas.
 
     Example
     -------
@@ -43,11 +53,25 @@ def bullet_list(title: str, items: list, additional_margin: int = 0):
 
 
 def add_bullets(
-    content: list[list[str]],
-    bullet="*",
+    content: list[str],
+    bullet: str = "*",
     max_length: int = 20,
     additional_margin: int = 0,
 ) -> list[str]:
+    """Adiciona os bullet points no conteúdo.
+    
+    Arguments
+    ---------
+    content: list[str]
+        Os items a serem impressos
+    bullet: str = "*"
+        O símbolo a ser usado como bullet point
+    max_length: int = 20
+        O tamanho máximo que uma string pode possuir
+    additional_margin: int = 0
+        Margem adicional caso necessário.
+        Útil para alinhar a quebra de linha.
+    """
     result = []
 
     bullet_prefix = f" {bullet}  "
@@ -64,7 +88,18 @@ def add_bullets(
     return result
 
 
-def break_line(content: str, max_length=20, additional_margin=0) -> list[str]:
+def break_line(content: str, max_length: int = 20, additional_margin: int = 0) -> list[str]:
+    """Algoritmo que quebra a linha por espaços em branco.
+    
+    Arguments
+    ---------
+    content: str
+        O item
+    max_length: int = 20
+        O tamanho máximo que a string pode possuir
+    additional_margin: int = 0
+        Margem adicional da linha.
+    """
     result = []
 
     line_start = 0
