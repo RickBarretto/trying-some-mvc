@@ -1,6 +1,6 @@
 """Todas as telas disponíveis para uso.
 
-As telas serão usadas pelas classes de ``src.singleton``.
+As telas serão usadas pelas classes de ``src.menus``.
 """
 
 from .choice import choice
