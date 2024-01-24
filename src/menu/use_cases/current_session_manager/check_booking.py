@@ -2,6 +2,7 @@ import entity
 from menu.use_cases.commons import fetch, propose
 import tui
 
+__all__ = ["check_current_booking"]
 
 def check_current_booking(clinic: entity.Clinic):
     """Verifica se paciente está agendado para a sessão atual.

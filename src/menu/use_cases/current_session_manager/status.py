@@ -2,6 +2,7 @@ import entity
 from menu.use_cases.commons import warnings
 import tui
 
+__all__ = ["start", "finish"]
 
 def start(clinic: entity.Clinic):
     """Inicia a sessão atual.
