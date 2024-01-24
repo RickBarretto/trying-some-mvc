@@ -24,7 +24,7 @@ def annotate_medical_records(clinic: entity.Clinic):
 
     # ============= Verifica se é possível ler o prontuário =============
 
-    is_able_to_read = condition.has_patient_being_attended and \
+    is_able_to_read = condition.has_patient_being_attended(clinic) and \
         condition.has_active_current_session_or_activate_it(clinic)
     
     if not is_able_to_read:
