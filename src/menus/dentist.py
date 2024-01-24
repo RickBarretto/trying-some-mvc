@@ -16,11 +16,12 @@ from .use_cases import current_session_manager
 from .use_cases import patient_manager
 from .use_cases import session_manager
 
-# Todas as opções disponíveis para a dentist
-
 __all__ = ["start"]
 
-options = [
+# ============= Definição de variáveis internas =============
+
+# Define as opções do menu do dentista
+menu_options = [
     ("Procurar sessão por data", session_manager.find),
     ("Iniciar sessão atual", current_session_manager.start),
     ("Atender próximo paciente", current_session_manager.attend_next_patient),
@@ -36,13 +37,21 @@ options = [
     ("Fazer anotação no prontuário", patient_manager.annotate_medical_records),
 ]
 
-def current_patient(clinic: Clinic) -> str:
+
+# ============= Definição de funções internas =============
+
+def current_patient_status(clinic: Clinic) -> str:
+    """Função que atualiza o status que será impresso ao topo do menu."""
+
     if clinic.current_patient:
-        return f"Paciente atual: {clinic.current_patient.name} - CPF {clinic.current_patient.cpf}"
+        return f"Paciente atual: {clinic.current_patient}"
     else:
         return "Nenhum paciente sendo atendido!"
 
 
+# ============= Definição de funções principais =============
+
 def start(clinic: Clinic):
-    dentist = MainMenu(clinic, options, status_func=current_patient)
+    """Função responsável por iniciar o menu do dentista."""
+    dentist = MainMenu(clinic, menu_options, status_func=current_patient_status)
     dentist.run()
