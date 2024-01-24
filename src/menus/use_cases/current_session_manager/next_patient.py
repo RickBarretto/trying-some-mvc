@@ -10,16 +10,16 @@ def show_next_patient(clinic: entities.Clinic):
 
     Questions
     ---------
-    * Nenhuma
+    Nenhuma
 
     Feedbacks
     ---------
-    * Informações básicas do paciente
+    Informações básicas do paciente
 
-    Warnings
-    --------
-    * Sessão nunca foi inicializada : Propõe a iniciar
-    * Não há pacientes na fila
+    Warnings                        Propose
+    --------                        -------
+    Sessão nunca foi inicializada   Iniciar sessão atual
+    Não há pacientes na fila
 
     """
 
@@ -32,8 +32,9 @@ def show_next_patient(clinic: entities.Clinic):
 
     if not clinic.waiting_queue:
         tui.warn("Não há pacientes na fila de espera!")
-    else:
-        tui.info(["Próximo paciente:", next_patient(clinic)])
+        return
+        
+    tui.info(["Próximo paciente:", next_patient(clinic)])
 
 
 def attend_next_patient(clinic: entities.Clinic):
@@ -41,8 +42,8 @@ def attend_next_patient(clinic: entities.Clinic):
 
     Feedbacks
     ---------
-    * Fila de espera vazia
-    * Novo paciente chamado
+    Fila de espera vazia
+    Novo paciente chamado
 
     """
 
@@ -51,13 +52,15 @@ def attend_next_patient(clinic: entities.Clinic):
     if not condition.has_active_current_session(clinic):
         return
 
-    # ============= Feedback =============
+    # ============= Verifica a fila de espera =============
 
     if not clinic.waiting_queue:
         tui.warn("Não há pacientes na fila de espera.")
-    else:
-        _attend_next_patient(clinic)
-        tui.info(["Paciente atual:", str(clinic.current_patient)])
+        return
+    
+    # ============= Atende próximo paciente =============
+    
+    _attend_next_patient(clinic)
 
 
 def next_patient(clinic: entities.Clinic) -> str:
@@ -70,3 +73,4 @@ def next_patient(clinic: entities.Clinic) -> str:
 def _attend_next_patient(clinic: entities.Clinic):
     patient_id = clinic.waiting_queue.pop(0)
     clinic.current_patient = clinic.patient_by_id(patient_id)
+    tui.info(["Paciente atual:", str(clinic.current_patient)])
