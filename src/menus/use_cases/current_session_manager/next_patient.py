@@ -35,7 +35,7 @@ def show_next_patient(clinic: entities.Clinic):
         tui.warn("Não há pacientes na fila de espera!")
         return
         
-    tui.info(["Próximo paciente:", next_patient(clinic)])
+    _show_next_patient(clinic)
 
 
 def attend_next_patient(clinic: entities.Clinic):
@@ -69,14 +69,25 @@ def attend_next_patient(clinic: entities.Clinic):
     _attend_next_patient(clinic)
 
 
-def next_patient(clinic: entities.Clinic) -> str:
+def _show_next_patient(clinic: entities.Clinic) -> entities.Patient:
+    """Retorna o próximo paciente
+    
+    Assertions
+    ----------
+    ``clinic.waiting_queue`` tem pacientes
+    """
     assert clinic.waiting_queue
 
     next_patient_id = clinic.waiting_queue[0]
-    return str(clinic.patient_by_id(next_patient_id))
+    patient = clinic.patient_by_id(next_patient_id)
+    tui.info(["Próximo paciente:", str(patient)])
 
 
 def _attend_next_patient(clinic: entities.Clinic):
+    """Atende próximo paciente
+    
+    Coloca o primeiro paciente da fila como paciente atual.
+    """
     patient_id = clinic.waiting_queue.pop(0)
     clinic.current_patient = clinic.patient_by_id(patient_id)
     tui.info(["Paciente atual:", str(clinic.current_patient)])
