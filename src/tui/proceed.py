@@ -2,6 +2,20 @@ from ._screen import Screen
 
 
 def proceed(question: list[str] | str) -> bool:
+    """
+    Example
+    -------
+    >>> proceed("Desejas registrar?")
+    +-------------------------------------------------------+
+    |                                                       |
+    |                                                       |
+    |                 Desejas registrar?                    |
+    |                                                       |
+    |                  [Enter] |  [Sim]                     |
+    |                                                       |
+    |                                                       |
+    +-------------------------------------------------------+
+    """
     def answer() -> bool:
         return "S" == input(">>> ").strip().upper()
 
