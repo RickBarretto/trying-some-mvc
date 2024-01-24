@@ -18,6 +18,8 @@ def _hint(symbol: str, content: str | list[str] | Exception) -> None:
 
     Arguments
     ---------
+    symbol: str
+        O símbolo que será usado na primeira linha do conteúdo.
     content: str | list[str] | Exception
         Recebe ``content`` para imprimí-lo na tela.
         Esse argumento é automaticamente convertido para o tipo ``list[str]``.
@@ -28,7 +30,7 @@ def _hint(symbol: str, content: str | list[str] | Exception) -> None:
         +-------------------------------------------------------+
         |                                                       |
         |                                                       |
-        |        [*] - Paciente não pode ser registrado!        |
+        |        [*] Paciente não pode ser registrado! [*]      |
         |                                                       |
         |           Pressione [Enter] para continuar.           |
         |                                                       |
