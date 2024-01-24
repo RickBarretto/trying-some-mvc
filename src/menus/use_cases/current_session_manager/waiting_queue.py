@@ -1,6 +1,6 @@
 import entities
 import tui
-from menus.use_cases import commons, condition, propose, warnings
+from menus.use_cases import condition, fetch, propose, warnings
 
 
 def send_to_waiting_queue(
@@ -36,7 +36,7 @@ def send_to_waiting_queue(
     # ============= Pega input do usuário =============
 
     if not patient:
-        patient = commons.get_patient_or_register(clinic)
+        patient = fetch.patient_or_register(clinic)
 
     # ============= Verifica agendamento do paciente =============
 

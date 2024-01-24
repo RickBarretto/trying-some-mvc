@@ -1,6 +1,6 @@
 import entities
 import tui
-from menus.use_cases import commons
+from menus.use_cases import fetch
 
 
 def list_bookings(clinic: entities.Clinic):
@@ -24,7 +24,7 @@ def list_bookings(clinic: entities.Clinic):
 
     # ============= Verifica registro do paciente =============
 
-    if not (patient := commons.get_patient_or_register(clinic)):
+    if not (patient := fetch.patient_or_register(clinic)):
         return
 
     # ============= Lista agendamentos =============

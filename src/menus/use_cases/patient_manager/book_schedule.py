@@ -1,5 +1,5 @@
 import entities
-from menus.use_cases import commons, propose, request, warnings
+from menus.use_cases import fetch, propose, request, warnings
 import tui
 
 
@@ -31,10 +31,10 @@ def book_schedule(
     # ============= Verifica registro do paciente e sessão =============
 
     if not patient:
-        patient = commons.get_patient_or_register(clinic)
+        patient = fetch.patient_or_register(clinic)
 
     if not session:
-        session = commons.get_sesssion_or_register(clinic)
+        session = fetch.sesssion_or_register(clinic)
 
     # ============= Agenda paciente  =============
 

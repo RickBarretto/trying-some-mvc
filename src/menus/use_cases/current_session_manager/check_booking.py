@@ -1,5 +1,5 @@
 import entities
-from menus.use_cases import commons, propose
+from menus.use_cases import fetch, propose
 import tui
 
 
@@ -25,7 +25,7 @@ def check_current_booking(clinic: entities.Clinic):
 
     # ============= Verificação do paciente no banco de dados =============
 
-    if not (patient := commons.get_patient_or_register(clinic)):
+    if not (patient := fetch.patient_or_register(clinic)):
         return
 
     # ============= Verificação do agendamento =============
