@@ -37,6 +37,22 @@ def prompt(ask: str, suggestion: str = "") -> str:
 
 
 def multiline(message: str) -> list[str]:
+    """Pede input do usuário em múltiplas linhas.
+
+    Example
+    -------
+    >>> multiline("Insira informações extra paciente.")
+    +-------------------------------------------------------+
+    |        Insira informações extra do paciente           |
+    |            [linha vazia para finalizar]               |
+    +-------------------------------------------------------+
+    /   >>>|                                                /
+    /                                                       /
+    /                                                       /
+    /                                                       /
+    /~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
+    
+    """
     content = [message]
     content.append("")
     content.append("[Linha vazia para finalizar]")
