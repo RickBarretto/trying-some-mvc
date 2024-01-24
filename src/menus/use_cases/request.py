@@ -1,3 +1,5 @@
+"""Define os casos de uso de prompts comuns que pedem e validam entradas do usuário"""
+
 from typing import Callable
 import tui
 
@@ -7,6 +9,7 @@ __all__ = ["patient_cpf", "session_date"]
 # ============= Prompts =============
 
 def patient_cpf() -> str:
+    """Pede ao usuário o CPF do paciente até que este seja válido."""
     question = "Insira o CPF do paciente:"
     format = "XXX.XXX.XXX-XX"
     suggestion = f"Formato: {format}"
@@ -16,6 +19,7 @@ def patient_cpf() -> str:
 
 
 def session_date() -> str:
+    """Pede ao usuário uma data até que esta seja válida."""
     question = "Insira uma data:"
     format = "DD/MM/YYYY"
     suggestion = f"Formato: {format}"
@@ -27,6 +31,7 @@ def session_date() -> str:
 # ============= Validadores de entradas =============
 
 def _is_valid_cpf(entry: str) -> bool:
+    """Valida se uma entrada é um CPF válido."""
     fields = entry.replace("-", ".").split(".")
 
     # Verifica os separadores
@@ -65,6 +70,7 @@ def _is_valid_cpf(entry: str) -> bool:
 
 
 def _is_valid_date(entry: str) -> bool:
+    """Valida se uma entrada é uma data válida."""
     fields = entry.split("/")
 
     # Verifica os campos de preenchimento
@@ -103,6 +109,21 @@ def _request(
     format: str,
     validator: Callable[[str], bool],
 ) -> str:
+    """Função abstrata usada para fazer a requisição ao usuário.
+    
+    Arguments
+    ---------
+    question: str
+        A pergunta ou requisição.
+    suggestion: str
+        Sugestão relacionada à entrada.
+    warning: str
+        O aviso, caso o usuáiro insira dados inválidos.
+    format: str
+        Um template ou exemplo de entrada válida.
+    validator: Callable[[str], bool]
+        Uma função validadora da entrada.
+    """
     while not validator(value := tui.prompt(question, suggestion)):
         tui.warn([warning, f"Verifique se o formato condiz com '{format}'."])
 
