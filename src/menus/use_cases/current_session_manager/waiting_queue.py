@@ -59,7 +59,7 @@ def send_to_waiting_queue(
     _send_patient_to_queue(clinic, patient)
 
 
-def _send_patient_to_queue(clinic: entities.Clinic, patient: entities.Patien):
+def _send_patient_to_queue(clinic: entities.Clinic, patient: entities.Patient):
     clinic.waiting_queue.append(patient.uid)
     
     message = [

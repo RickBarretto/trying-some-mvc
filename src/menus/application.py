@@ -2,7 +2,7 @@ import entities
 import menus
 import tui
 
-from .use_cases import current_session_manager
+from .use_cases import current_session_manager, session_manager
 
 __all__ = ["start_application"]
 
@@ -33,7 +33,7 @@ def start_application(clinic: entities.Clinic):
     )
 
     # Atualiza a sessão
-    current_session_manager.update(clinic)
+    session_manager.register(clinic)
 
     # Redirecionamento
     main_menu(clinic)

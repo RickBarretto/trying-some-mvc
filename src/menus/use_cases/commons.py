@@ -22,4 +22,4 @@ def get_patient(clinic: entities.Clinic) -> entities.Patient | None:
         if not propose.register_patient(clinic, cpf):
             return
 
-        patient = clinic.patient_by_cpf(cpf)
+    return clinic.patient_by_cpf(cpf)

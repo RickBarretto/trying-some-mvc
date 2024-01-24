@@ -6,7 +6,6 @@ import tui
 
 def register(
     clinic: entities.Clinic,
-    suppress_warnings: bool = False,
     date: str = "",
 ):
     """Registra uma nova sessão no banco de dados.
@@ -37,9 +36,12 @@ def register(
 
     # ============= Verifica registro da sessão =============
 
-    session = find_session(clinic, date)
+    if not date:
+        date = request.session_date()
+    
+    session = clinic.session_by_date(date)
 
-    if session and not suppress_warnings:
+    if session:
         tui.warn("Sessão já foi registrada!")
         return
 
@@ -48,12 +50,6 @@ def register(
     session = register_session(clinic, date)
     tui.info(f"Sessão registrada na data {date}")
 
-
-def find_session(clinic: entities.Clinic, date: str = "") -> entities.Session:
-    """Procura sessão de acordo com ``date``"""
-    if not date:
-        date = request.session_date()
-    return clinic.session_by_date()
 
 def register_session(clinic: entities.Clinic, date: str) -> entities.Session:
     """Registra em ``clinic`` uma sessão na data ``date``"""

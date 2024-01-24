@@ -25,7 +25,6 @@ def update(clinic: entities.Clinic):
     # ============= Registra a sessão, caso necessário =============
 
     date = request.session_date()
-    session_manager.register(clinic, date=date, suppress_warnings=True)
     session = clinic.session_by_date(date)
 
     # ============= Warnings =============
@@ -49,7 +48,10 @@ def update(clinic: entities.Clinic):
             current_session_manager.finish(clinic, suppress_warnings=True)
 
     # ============= Atualiza sessão atual =============
-            
+
+    if not session:
+        session_manager.register(clinic, date=date)
+
     _update_current_session_to_date(clinic, date)
 
 
@@ -60,4 +62,4 @@ def _update_current_session_to_date(clinic: entities.Clinic, date: str):
 
 
 def warn_returning_to_the_same_session():
-    tui.warn(["Retornando à mesma sessão atual!", "Sessão atual não atualizada!"])
+    tui.warn(["Retornando à mesma sessão!", "Operação cancelada!"])
