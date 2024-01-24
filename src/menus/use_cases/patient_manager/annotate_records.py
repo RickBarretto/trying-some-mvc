@@ -1,11 +1,9 @@
 import entities
-from entities.clinic import Clinic
-
 from menus.use_cases import condition
 import tui
 
 
-def annotate_medical_records(clinic: Clinic):
+def annotate_medical_records(clinic: entities.Clinic):
     """Faz anotação no prontuário do paciente atual.
 
     Feedbacks
