@@ -1,5 +1,5 @@
 import entity
-from menus.use_cases.commons import fetch, propose
+from menu.use_cases.commons import fetch, propose
 import tui
 
 

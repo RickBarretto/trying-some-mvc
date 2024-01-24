@@ -1,5 +1,5 @@
 import entity
-from menus.use_cases.commons import condition
+from menu.use_cases.commons import condition
 import tui
 
 __all__ = ["attend_next_patient", "show_next_patient"]

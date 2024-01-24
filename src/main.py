@@ -7,7 +7,7 @@ Para rodar a aplicação execute
 """
 
 import entity
-from menus.application import start_application
+from menu.application import start_application
 
 
 if __name__ == "__main__":

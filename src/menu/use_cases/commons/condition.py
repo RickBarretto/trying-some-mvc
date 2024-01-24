@@ -9,7 +9,7 @@ See Also
 """
 
 import entity
-from menus.use_cases.commons import propose, warnings
+from menu.use_cases.commons import propose, warnings
 import tui
 
 

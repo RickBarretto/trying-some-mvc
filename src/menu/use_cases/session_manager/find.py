@@ -1,6 +1,6 @@
 import entity
 import tui
-from menus.use_cases.commons import propose, request
+from menu.use_cases.commons import propose, request
 
 
 def find(clinic: entity.Clinic):

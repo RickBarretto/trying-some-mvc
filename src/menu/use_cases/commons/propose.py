@@ -1,7 +1,7 @@
 from typing import Callable
 
 import entity
-from menus.use_cases import current_session_manager, patient_manager, session_manager
+from menu.use_cases import current_session_manager, patient_manager, session_manager
 import tui
 
 

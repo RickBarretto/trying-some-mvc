@@ -1,7 +1,7 @@
 """Define o menu do dentista"""
 
 
-import menus
+import menu
 from entity.clinic import Clinic
 
 from .use_cases import current_session_manager
@@ -47,4 +47,4 @@ def current_patient_status(clinic: Clinic) -> str:
 
 def start(clinic: Clinic):
     """Função responsável por iniciar o menu do dentista."""
-    menus.menu_loop(clinic, menu_options, status_func=current_patient_status)
+    menu.menu_loop(clinic, menu_options, status_func=current_patient_status)

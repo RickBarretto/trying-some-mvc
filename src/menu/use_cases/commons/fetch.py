@@ -1,5 +1,5 @@
 import entity
-from menus.use_cases.commons import request, propose, warnings
+from menu.use_cases.commons import request, propose, warnings
 
 
 def patient_or_register(clinic: entity.Clinic) -> entity.Patient | None:
