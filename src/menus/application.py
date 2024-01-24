@@ -1,14 +1,15 @@
-from entities.clinic import Clinic
+import entities
 import menus
-from menus.use_cases import current_session_manager
 import tui
+
+from .use_cases import current_session_manager
 
 __all__ = ["start_application"]
 
 # ============= Menu Inicial =============
 
 
-def start_application(clinic: Clinic):
+def start_application(clinic: entities.Clinic):
     """Menu inicial da aplicação.
 
     Esse menu é apresentado uma única vez ao usuário,
@@ -41,7 +42,7 @@ def start_application(clinic: Clinic):
 # ============= Menu Principal =============
 
 
-def main_menu(clinic: Clinic):
+def main_menu(clinic: entities.Clinic):
     """Menu principal do usuário.
 
     Onde o usuário poderá gerir a sessão atual (Finalizar ou Atualizar),
@@ -55,4 +56,4 @@ def main_menu(clinic: Clinic):
         ("Finalizar sessão atual", current_session_manager.finish),
     ]
 
-    menus.main_loop(clinic, options)
+    menus.menu_loop(clinic, options)

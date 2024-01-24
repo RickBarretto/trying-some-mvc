@@ -9,7 +9,8 @@ podendo assim ser usado por outros módulos.
 """
 
 from entities.clinic import Clinic
-from menus.interface import main_loop
+import menus
+
 from .use_cases import current_session_manager
 from .use_cases import patient_manager
 from .use_cases import session_manager
@@ -57,4 +58,4 @@ def current_session_status(clinic: Clinic) -> str:
 
 def start(clinic: Clinic):
     """Função responsável por iniciar o menu da recepção."""
-    main_loop(clinic, menu_options, status_func=current_session_status)
+    menus.menu_loop(clinic, menu_options, status_func=current_session_status)
