@@ -1,5 +1,5 @@
 from entities.clinic import Clinic
-from menus.start import start_application
+from menus.application import start_application
 
 
 if __name__ == "__main__":
