@@ -10,12 +10,12 @@ def send_to_waiting_queue(
 
     Questions
     ---------
-    * CPF do paciente
+    CPF do paciente
 
     Feedbacks
     ---------
-    * Paciente posto na fila de espera
-    * Posição na fila de espera
+    Paciente posto na fila de espera
+    Posição na fila de espera
 
     Warnings                                Proposes
     --------                                --------
