@@ -4,12 +4,6 @@ from tui._screen import Screen
 def splash(content: list[str] | str):
     """Renderiza uma tela com mensagens centralizadas.
 
-    Arguments
-    ---------
-    content: list[str] | str
-        O conteúdo a ser impresso.
-        É automaticamente convertido para `list[str]`
-
     Example
     -------
     >>> splash("Bem vindo!")
