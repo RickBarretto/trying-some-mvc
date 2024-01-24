@@ -4,6 +4,7 @@ import tui
 
 __all__ = ["patient_cpf", "session_date"]
 
+# ============= Prompts =============
 
 def patient_cpf() -> str:
     question = "Insira o CPF do paciente:"
@@ -23,18 +24,7 @@ def session_date() -> str:
     return _request(question, suggestion, warning, format, _is_valid_date)
 
 
-def _request(
-    question: str,
-    suggestion: str,
-    warning: str,
-    format: str,
-    validator: Callable[[str], bool],
-) -> str:
-    while not validator(value := tui.prompt(question, suggestion)):
-        tui.warn([warning, f"Verifique se o formato condiz com '{format}'."])
-
-    return value
-
+# ============= Validadores de entradas =============
 
 def _is_valid_cpf(entry: str) -> bool:
     fields = entry.replace("-", ".").split(".")
@@ -102,3 +92,18 @@ def _is_valid_date(entry: str) -> bool:
             year_has_four_digits,
         )
     )
+
+
+# ============= Função interna =============
+
+def _request(
+    question: str,
+    suggestion: str,
+    warning: str,
+    format: str,
+    validator: Callable[[str], bool],
+) -> str:
+    while not validator(value := tui.prompt(question, suggestion)):
+        tui.warn([warning, f"Verifique se o formato condiz com '{format}'."])
+
+    return value
