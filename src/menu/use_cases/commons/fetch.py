@@ -22,7 +22,7 @@ def patient_or_register(clinic: entity.Clinic) -> entity.Patient | None:
     if not patient:
         warnings.patient_not_registered(cpf)
         if not propose.register_patient(clinic, cpf):
-            return
+            return None
 
     return clinic.patient_by_cpf(cpf)
 
@@ -45,6 +45,6 @@ def sesssion_or_register(clinic: entity.Clinic) -> entity.Clinic | None:
     if not session:
         warnings.session_not_registered(session_date)
         if propose.register_session(clinic, session_date):
-            return
+            return None
 
     return clinic.session_by_date(session_date)
