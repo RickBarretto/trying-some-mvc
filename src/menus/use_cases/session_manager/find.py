@@ -1,11 +1,9 @@
-from entities.clinic import Clinic
-
+import entities
 import tui
+from menus.use_cases.commons import propose, request
 
-from menus.use_cases import propose, request
 
-
-def find(clinic: Clinic):
+def find(clinic: entities.Clinic):
     """Registra uma nova sessão no banco de dados.
 
     Questions

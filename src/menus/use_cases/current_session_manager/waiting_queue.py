@@ -1,6 +1,6 @@
 import entities
 import tui
-from menus.use_cases import condition, fetch, propose, warnings
+from menus.use_cases.commons import condition, fetch, propose
 
 
 def send_to_waiting_queue(

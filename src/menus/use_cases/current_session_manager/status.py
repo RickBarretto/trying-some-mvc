@@ -1,5 +1,5 @@
 import entities
-from menus.use_cases import warnings
+from menus.use_cases.commons import warnings
 import tui
 
 

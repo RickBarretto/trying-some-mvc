@@ -1,5 +1,5 @@
-from entities.clinic import Clinic
-from menus.use_cases import condition
+import entities
+from menus.use_cases.commons import condition
 import tui
 
 __all__ = [
@@ -9,7 +9,7 @@ __all__ = [
 ]
 
 
-def read_full_medical_records(clinic: Clinic):
+def read_full_medical_records(clinic: entities.Clinic):
     """Lê o prontuário médico completo do paciente atual.
 
     Feedbacks
@@ -46,7 +46,7 @@ def read_full_medical_records(clinic: Clinic):
     )
 
 
-def read_first_medical_annotation(clinic: Clinic):
+def read_first_medical_annotation(clinic: entities.Clinic):
     """Lê a primeira anotação do prontuário médico do paciente atual.
 
     Feedbacks
@@ -84,7 +84,7 @@ def read_first_medical_annotation(clinic: Clinic):
     )
 
 
-def read_last_medical_annotation(clinic: Clinic):
+def read_last_medical_annotation(clinic: entities.Clinic):
     """Lê a primeira anotação do prontuário médico do paciente atual.
 
     Feedbacks

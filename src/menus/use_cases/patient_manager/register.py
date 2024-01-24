@@ -1,12 +1,10 @@
-from entities.clinic import Clinic
-from entities.patient import Patient
-
+import entities
+from menus.use_cases.commons import request
 import tui
 
-from menus.use_cases import request
 
 
-def register(clinic: Clinic, patient_cpf: str | None = None):
+def register(clinic: entities.Clinic, patient_cpf: str | None = None):
     """Registra paciente no banco de dados.
 
     Questions
@@ -48,9 +46,9 @@ def register(clinic: Clinic, patient_cpf: str | None = None):
     tui.info(f"{patient.name} registrado com sucesso!")
 
 
-def register_patient(clinic: Clinic, cpf: str, name: str, extra: list[str]) -> Patient:
+def register_patient(clinic: entities.Clinic, cpf: str, name: str, extra: list[str]) -> entities.Patient:
     new_id: int = clinic.new_patient_id()
-    patient = Patient(uid=new_id, cpf=cpf, name=name, extra_info=extra)
+    patient = entities.Patient(uid=new_id, cpf=cpf, name=name, extra_info=extra)
 
     clinic.patients.append(patient)
     clinic.last_patient_id_id = new_id

@@ -1,6 +1,6 @@
 import entities
 import tui
-from menus.use_cases import fetch
+from menus.use_cases.commons import fetch
 
 
 def list_bookings(clinic: entities.Clinic):

@@ -8,15 +8,12 @@ See Also
 ``menus.use_cases.proposes`` para mais informações dessas propostas.
 """
 
-from entities.clinic import Clinic
-from entities.session import SessionStatus
-
-from menus.use_cases import propose, warnings
-
+import entities
+from menus.use_cases.commons import propose, warnings
 import tui
 
 
-def has_active_current_session_or_activate_it(clinic: Clinic) -> bool:
+def has_active_current_session_or_activate_it(clinic: entities.Clinic) -> bool:
     """Retorna se a sessão atual está ativa ou não, ou propõe a ativar.
     
     Warnings                        Proposes
@@ -27,20 +24,20 @@ def has_active_current_session_or_activate_it(clinic: Clinic) -> bool:
     """
 
     # Caso a sessão não tenha sido iniciada ainda, propõe iniciá-la.
-    if clinic.current_session.status == SessionStatus.UNBEGUN:
+    if clinic.current_session.status == entities.SessionStatus.UNBEGUN:
         warnings.session_has_never_started(clinic.current_session)
         if not propose.start_current_session(clinic):
             return False
 
     # Caso a sessão esteja finalizada, a leitura não pode ser mais feita.
-    if clinic.current_session.status == SessionStatus.FINISHED:
+    if clinic.current_session.status == entities.SessionStatus.FINISHED:
         warnings.session_has_already_been_finished(clinic.current_session)
         return False
 
     return True
 
 
-def has_patient_being_attended(clinic: Clinic) -> bool:
+def has_patient_being_attended(clinic: entities.Clinic) -> bool:
     """Retorna se há um paciente sendo atendido.
     
     Warnings

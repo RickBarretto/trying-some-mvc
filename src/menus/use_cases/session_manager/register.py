@@ -1,6 +1,5 @@
 import entities
-from menus.use_cases import request
-
+from menus.use_cases.commons import request
 import tui
 
 

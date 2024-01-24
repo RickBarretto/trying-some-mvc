@@ -1,5 +1,5 @@
 import entities
-from menus.use_cases import condition
+from menus.use_cases.commons import condition
 import tui
 
 
