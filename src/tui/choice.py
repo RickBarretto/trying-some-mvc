@@ -4,16 +4,21 @@ from ._screen import Screen
 def choice(options: list[str], status_bar: str = "") -> int:
     """Renderiza tela de escolha do usuário e retorna a escolha.
 
+    Note
+    ----
+    Se nenhuma ``status_bar`` for passada, a mesma não será renderizada.
+
     Example
     -------
-    >>> choice(["Opção 1", "Opção 2", "Opção 3", "Opção 4"])
+    >>> choice(["Opção 1", "Opção 2", "Opção 3", "Opção 4"], 
+    ...     status_bar = "Running Menu")
     +-------------------------------------------------------+
+    |                                         Running Menu  |
     |                                                       |
     |    1 - Opção 1                                        |
     |    2 - Opção 2                                        |
     |    3 - Opção 3                                        |
     |    4 - Opção 4                                        |
-    |                                                       |
     |                                                       |
     +-------------------------------------------------------+
     """
@@ -21,7 +26,7 @@ def choice(options: list[str], status_bar: str = "") -> int:
     # Declaração de funções internas
 
     def prefix_option(index: int, content: str) -> str:
-        """Prefixa cada linha do conteúdo com uma numeração."""
+        """Prefixa linha com ``index`` dado um ``content``."""
         TEMPLATE = "{index:<2} - {content}"
 
         return TEMPLATE.format(
@@ -35,6 +40,11 @@ def choice(options: list[str], status_bar: str = "") -> int:
 
     def user_choice(stop_index: int) -> int:
         """Escolhe uma opção.
+
+        Arguments
+        ---------
+        stop_index: int
+            O valor máximo que pode ser escolhido pelo usuário. 
 
         Raises
         ------
