@@ -30,7 +30,7 @@ def send_to_waiting_queue(
 
     # ============= Verifica status da sessão atual =============
 
-    if not condition.has_active_current_session(clinic):
+    if not condition.has_active_current_session_or_activate_it(clinic):
         return
 
     # ============= Pega input do usuário =============

@@ -23,11 +23,11 @@ def is_able_to_read_records(clinic: Clinic) -> bool:
         1. A sessão já foi iniciada
         2. Tem um paciente sendo atendido.
     """
-    return has_patient_being_attended(clinic) and has_active_current_session(clinic)
+    return has_patient_being_attended(clinic) and has_active_current_session_or_activate_it(clinic)
 
 
-def has_active_current_session(clinic: Clinic) -> bool:
-    """Retorna se a sessão atual está ativa ou não.
+def has_active_current_session_or_activate_it(clinic: Clinic) -> bool:
+    """Retorna se a sessão atual está ativa ou não, ou propõe a ativar.
     
     Warnings                        Proposes
     --------                        --------

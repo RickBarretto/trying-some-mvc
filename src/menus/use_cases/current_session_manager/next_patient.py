@@ -26,7 +26,7 @@ def show_next_patient(clinic: entities.Clinic):
 
     # ============= Verificação do status da sessão atual =============
 
-    if not condition.has_active_current_session(clinic):
+    if not condition.has_active_current_session_or_activate_it(clinic):
         return
 
     # ============= Feedback =============
@@ -55,7 +55,7 @@ def attend_next_patient(clinic: entities.Clinic):
 
     # ============= Verificação do status da sessão atual =============
 
-    if not condition.has_active_current_session(clinic):
+    if not condition.has_active_current_session_or_activate_it(clinic):
         return
 
     # ============= Verifica a fila de espera =============
