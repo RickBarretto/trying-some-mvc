@@ -1,13 +1,11 @@
 from typing import Callable
 
-from entities.clinic import Clinic
-from entities.patient import Patient
-from entities.session import Session
+import entities
 from menus.use_cases import current_session_manager, patient_manager, session_manager
 import tui
 
 
-def send_patient_to_waiting_queue(clinic: Clinic, patient: Patient) -> bool:
+def send_patient_to_waiting_queue(clinic: entities.Clinic, patient: entities.Patient) -> bool:
     """Propõe enviar o paciente para a fila de espera"""
     question = f"Desejas encaminhar {patient.name} para fila de espera?"
     use_case = current_session_manager.send_to_waiting_queue
@@ -15,7 +13,7 @@ def send_patient_to_waiting_queue(clinic: Clinic, patient: Patient) -> bool:
     return _propose(question, use_case, clinic, patient)
 
 
-def start_current_session(clinic: Clinic) -> bool:
+def start_current_session(clinic: entities.Clinic) -> bool:
     """Propõe iniciar a sessão atual"""
     question = "Desejas iniciar sessão atual?"
     use_case = current_session_manager.start
@@ -23,7 +21,7 @@ def start_current_session(clinic: Clinic) -> bool:
     return _propose(question, use_case, clinic)
 
 
-def register_patient(clinic: Clinic, patient_cpf: str) -> bool:
+def register_patient(clinic: entities.Clinic, patient_cpf: str) -> bool:
     """Propõe registrar o paciente"""
     question = f"Desejas registar paciente do CPF {patient_cpf}?"
     use_case = patient_manager.register
@@ -31,7 +29,7 @@ def register_patient(clinic: Clinic, patient_cpf: str) -> bool:
     return _propose(question, use_case, clinic, patient_cpf)
 
 
-def book_session(clinic: Clinic, patient: Patient, session: Session) -> bool:
+def book_session(clinic: entities.Clinic, patient: entities.Patient, session: entities.Session) -> bool:
     """Propõe agendar uma sessão"""
     question = f"Desejas agendar {patient.name} para {session.date}?"
     use_case = patient_manager.book_schedule
@@ -39,7 +37,7 @@ def book_session(clinic: Clinic, patient: Patient, session: Session) -> bool:
     return _propose(question, use_case, clinic, patient, session)
 
 
-def register_session(clinic: Clinic, session_date: str) -> bool:
+def register_session(clinic: entities.Clinic, session_date: str) -> bool:
     """Propõe registar uma sessão"""
     question = f"Desejas registar sessão na data {session_date}?"
     use_case = session_manager.register
