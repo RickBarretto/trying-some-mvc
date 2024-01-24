@@ -33,7 +33,7 @@ def default_status(model: Model) -> str:
 # ============= Definição de função principal =============
 
 
-def main_menu_loop(
+def main_loop(
     model: Model,
     options: list[tuple[str, MenuOption]],
     status_func: Callable[[Model], str] = default_status,

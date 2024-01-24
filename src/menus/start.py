@@ -1,7 +1,6 @@
 from entities.clinic import Clinic
-from menus.interface import main_menu_loop
+import menus
 from menus.use_cases import current_session_manager
-from menus import dentist, reception
 import tui
 
 __all__ = ["start_application"]
@@ -50,10 +49,10 @@ def main_menu(clinic: Clinic):
     """
 
     options = [
-        ("Iniciar como recepção", reception.start),
-        ("Iniciar como dentista", dentist.start),
+        ("Iniciar como recepção", menus.reception.start),
+        ("Iniciar como dentista", menus.dentist.start),
         ("Atualizar sessão atual", current_session_manager.update),
         ("Finalizar sessão atual", current_session_manager.finish),
     ]
 
-    main_menu_loop(clinic, options)
+    menus.main_loop(clinic, options)
