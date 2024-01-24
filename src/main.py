@@ -6,10 +6,10 @@ Para rodar a aplicação execute
         $ python src/main.py    # linux
 """
 
-from entities.clinic import Clinic
+import entity
 from menus.application import start_application
 
 
 if __name__ == "__main__":
-    clinic_singleton = Clinic()
+    clinic_singleton = entity.Clinic()
     start_application(clinic_singleton)

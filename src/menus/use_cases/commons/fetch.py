@@ -1,8 +1,8 @@
-import entities
+import entity
 from menus.use_cases.commons import request, propose, warnings
 
 
-def patient_or_register(clinic: entities.Clinic) -> entities.Patient | None:
+def patient_or_register(clinic: entity.Clinic) -> entity.Patient | None:
     """Retorna um paciente
     
     Questions
@@ -25,7 +25,7 @@ def patient_or_register(clinic: entities.Clinic) -> entities.Patient | None:
     return clinic.patient_by_cpf(cpf)
 
 
-def sesssion_or_register(clinic: entities.Clinic) -> entities.Clinic | None:
+def sesssion_or_register(clinic: entity.Clinic) -> entity.Clinic | None:
     """Retorna um paciente
     
     Questions

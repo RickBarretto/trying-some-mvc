@@ -1,8 +1,8 @@
-import entities
+import entity
 import tui
 
 
-def list_all(clinic: entities.Clinic):
+def list_all(clinic: entity.Clinic):
     """Lista todas as sessões registradas na clínica.
 
     Feedbacks

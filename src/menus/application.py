@@ -1,6 +1,6 @@
 """Define os menus de início e principal da aplicação"""
 
-import entities
+import entity
 import menus
 import tui
 
@@ -11,7 +11,7 @@ __all__ = ["start_application"]
 # ============= Menu Inicial =============
 
 
-def start_application(clinic: entities.Clinic):
+def start_application(clinic: entity.Clinic):
     """Menu inicial da aplicação.
 
     Esse menu é apresentado uma única vez ao usuário,
@@ -44,7 +44,7 @@ def start_application(clinic: entities.Clinic):
 # ============= Menu Principal =============
 
 
-def main_menu(clinic: entities.Clinic):
+def main_menu(clinic: entity.Clinic):
     """Menu principal do usuário.
 
     Onde o usuário poderá gerir a sessão atual (Finalizar ou Atualizar),

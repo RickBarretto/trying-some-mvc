@@ -1,6 +1,6 @@
 """Casos de uso de avisos que se repetem durante o códugo."""
 
-from entities.session import Session
+from entity.session import Session
 import tui
 
 

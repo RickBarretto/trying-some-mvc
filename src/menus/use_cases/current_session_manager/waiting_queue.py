@@ -1,10 +1,10 @@
-import entities
+import entity
 import tui
 from menus.use_cases.commons import condition, fetch, propose
 
 
 def send_to_waiting_queue(
-    clinic: entities.Clinic, patient: entities.Patient | None = None
+    clinic: entity.Clinic, patient: entity.Patient | None = None
 ):
     """Envia um paciente para a fila de espera.
 
@@ -55,7 +55,7 @@ def send_to_waiting_queue(
     _send_patient_to_queue(clinic, patient)
 
 
-def _send_patient_to_queue(clinic: entities.Clinic, patient: entities.Patient):
+def _send_patient_to_queue(clinic: entity.Clinic, patient: entity.Patient):
     clinic.waiting_queue.append(patient.uid)
     
     message = [

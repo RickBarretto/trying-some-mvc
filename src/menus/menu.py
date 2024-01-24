@@ -2,7 +2,7 @@
 
 from typing import Callable, Protocol
 
-import entities
+import entity
 import tui
 
 # ============= Definição de protocolos =============
@@ -17,7 +17,7 @@ class Model(Protocol):
 class MenuOption(Protocol):
     """Apenas um placeholder para a tipagem"""
 
-    def __call__(clinic: entities.Clinic, *args, **kwargs):
+    def __call__(clinic: entity.Clinic, *args, **kwargs):
         pass
 
 

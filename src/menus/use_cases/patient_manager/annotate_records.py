@@ -1,9 +1,9 @@
-import entities
+import entity
 from menus.use_cases.commons import condition
 import tui
 
 
-def annotate_medical_records(clinic: entities.Clinic):
+def annotate_medical_records(clinic: entity.Clinic):
     """Faz anotação no prontuário do paciente atual.
 
     Questions
@@ -41,7 +41,7 @@ def annotate_medical_records(clinic: entities.Clinic):
     tui.info("Anotação feita!")
 
 
-def save_annotation(clinic: entities.Clinic, note: str):
+def save_annotation(clinic: entity.Clinic, note: str):
     """Formata e salva a anotação no prontuário."""
     formated_note = f"{clinic.current_session.date}: {note}"
     clinic.current_patient.medical_records.append(formated_note)

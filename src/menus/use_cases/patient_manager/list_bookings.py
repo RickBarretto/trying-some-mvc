@@ -1,9 +1,9 @@
-import entities
+import entity
 import tui
 from menus.use_cases.commons import fetch
 
 
-def list_bookings(clinic: entities.Clinic):
+def list_bookings(clinic: entity.Clinic):
     """Lista os agendamentos de um paciente.
 
     Questions
@@ -34,7 +34,7 @@ def list_bookings(clinic: entities.Clinic):
     )
 
 
-def find_bookings(clinic: entities.Clinic, patient: entities.Patient) -> list[str]:
+def find_bookings(clinic: entity.Clinic, patient: entity.Patient) -> list[str]:
     sessions_ids = patient.scheduled_sessions
     sessions = [
         str(session) for session in clinic.sessions if session.uid in sessions_ids

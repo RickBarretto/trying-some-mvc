@@ -2,7 +2,7 @@
 
 
 import menus
-from entities.clinic import Clinic
+from entity.clinic import Clinic
 
 from .use_cases import current_session_manager
 from .use_cases import patient_manager

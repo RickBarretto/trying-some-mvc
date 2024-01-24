@@ -1,7 +1,7 @@
 """Define o menu da recepção"""
 
 
-from entities.clinic import Clinic
+from entity.clinic import Clinic
 import menus
 
 from .use_cases import current_session_manager

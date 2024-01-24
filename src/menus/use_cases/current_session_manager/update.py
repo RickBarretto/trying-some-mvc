@@ -1,10 +1,10 @@
-import entities
+import entity
 from menus.use_cases import current_session_manager, session_manager, request
 from menus.use_cases.commons import request
 import tui
 
 
-def update(clinic: entities.Clinic):
+def update(clinic: entity.Clinic):
     """Atualiza a sessão atual.
 
     Note
@@ -37,7 +37,7 @@ def update(clinic: entities.Clinic):
         return
 
     if clinic.current_session:
-        has_been_finished = clinic.current_session.status != entities.SessionStatus.FINISHED
+        has_been_finished = clinic.current_session.status != entity.SessionStatus.FINISHED
 
         if has_been_finished:
             tui.warn(["A sessão atual não foi finalizada ainda!"])
@@ -56,7 +56,7 @@ def update(clinic: entities.Clinic):
     _update_current_session_to_date(clinic, date)
 
 
-def _update_current_session_to_date(clinic: entities.Clinic, date: str):
+def _update_current_session_to_date(clinic: entity.Clinic, date: str):
     session = clinic.session_by_date(date)
     clinic.current_session = session
     tui.info(f"Sessão atual atualizada para o dia {session.date}!")

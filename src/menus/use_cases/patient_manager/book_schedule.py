@@ -1,10 +1,10 @@
-import entities
+import entity
 from menus.use_cases.commons import fetch
 import tui
 
 
 def book_schedule(
-    clinic: entities.Clinic, patient: entities.Patient | None = None, session: entities.Session | None = None
+    clinic: entity.Clinic, patient: entity.Patient | None = None, session: entity.Session | None = None
 ):
     """Agenda uma sessão para um paciente.
 
@@ -45,13 +45,13 @@ def book_schedule(
     _book_session(patient, session)
 
 
-def _book_session(patient: entities.Patient, session: entities.Session):
+def _book_session(patient: entity.Patient, session: entity.Session):
     """Propriamente agenda paciente na sessão."""
     patient.scheduled_sessions.append(session.uid)
     tui.info(f"{patient.name} agendado para o dia {session.date}!")
 
 
-def warn_already_scheduled(patient: entities.Patient, session: entities.Session):
+def warn_already_scheduled(patient: entity.Patient, session: entity.Session):
     """Avisa que paciente já fora registrado."""
     message = (
         f"Paciente {patient.name} já está "

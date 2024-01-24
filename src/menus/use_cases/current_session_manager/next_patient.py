@@ -1,11 +1,11 @@
-import entities
+import entity
 from menus.use_cases.commons import condition
 import tui
 
 __all__ = ["attend_next_patient", "show_next_patient"]
 
 
-def show_next_patient(clinic: entities.Clinic):
+def show_next_patient(clinic: entity.Clinic):
     """Mostra novo paciente
 
     Questions
@@ -38,7 +38,7 @@ def show_next_patient(clinic: entities.Clinic):
     _show_next_patient(clinic)
 
 
-def attend_next_patient(clinic: entities.Clinic):
+def attend_next_patient(clinic: entity.Clinic):
     """Atende o próximo paciente da fila de espera.
 
     Feedbacks
@@ -71,7 +71,7 @@ def attend_next_patient(clinic: entities.Clinic):
 def _warn_empty_queue():
         tui.warn("Não há pacientes na fila de espera.")
 
-def _show_next_patient(clinic: entities.Clinic) -> entities.Patient:
+def _show_next_patient(clinic: entity.Clinic) -> entity.Patient:
     """Retorna o próximo paciente
     
     Assertions
@@ -85,7 +85,7 @@ def _show_next_patient(clinic: entities.Clinic) -> entities.Patient:
     tui.info(["Próximo paciente:", str(patient)])
 
 
-def _attend_next_patient(clinic: entities.Clinic):
+def _attend_next_patient(clinic: entity.Clinic):
     """Atende próximo paciente
     
     Coloca o primeiro paciente da fila como paciente atual.

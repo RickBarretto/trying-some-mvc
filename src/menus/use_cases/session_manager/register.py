@@ -1,10 +1,10 @@
-import entities
+import entity
 from menus.use_cases.commons import request
 import tui
 
 
 def register(
-    clinic: entities.Clinic,
+    clinic: entity.Clinic,
     date: str = "",
 ):
     """Registra uma nova sessão no banco de dados.
@@ -41,10 +41,10 @@ def register(
     tui.info(f"Sessão registrada na data {date}")
 
 
-def register_session(clinic: entities.Clinic, date: str) -> entities.Session:
+def register_session(clinic: entity.Clinic, date: str) -> entity.Session:
     """Registra em ``clinic`` uma sessão na data ``date``"""
     new_id: int = clinic.new_session_id()
-    session = entities.Session(uid=new_id, date=date)
+    session = entity.Session(uid=new_id, date=date)
 
     clinic.sessions.append(session)
     clinic.last_session_id = new_id

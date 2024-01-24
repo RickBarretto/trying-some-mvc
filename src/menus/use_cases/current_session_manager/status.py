@@ -1,9 +1,9 @@
-import entities
+import entity
 from menus.use_cases.commons import warnings
 import tui
 
 
-def start(clinic: entities.Clinic):
+def start(clinic: entity.Clinic):
     """Inicia a sessão atual.
 
     Feedbacks
@@ -20,8 +20,8 @@ def start(clinic: entities.Clinic):
     # ============= Verifica status da sessão atual =============
 
     session_status = clinic.current_session.status
-    has_already_begun = session_status == entities.SessionStatus.BEGUN
-    has_been_finished = session_status == entities.SessionStatus.FINISHED
+    has_already_begun = session_status == entity.SessionStatus.BEGUN
+    has_been_finished = session_status == entity.SessionStatus.FINISHED
 
     if has_already_begun:
         warnings.session_has_already_started(clinic.current_session)
@@ -36,7 +36,7 @@ def start(clinic: entities.Clinic):
     _start_current_session(clinic)
 
 
-def finish(clinic: entities.Clinic, suppress_warnings: bool = False):
+def finish(clinic: entity.Clinic, suppress_warnings: bool = False):
     """Finaliza a sessão atual.
 
     Feedbacks
@@ -53,8 +53,8 @@ def finish(clinic: entities.Clinic, suppress_warnings: bool = False):
     # ============= Verifica status da sessão atual =============
 
     session_status    = clinic.current_session.status
-    has_not_begun     = session_status == entities.SessionStatus.UNBEGUN
-    has_been_finished = session_status == entities.SessionStatus.FINISHED
+    has_not_begun     = session_status == entity.SessionStatus.UNBEGUN
+    has_been_finished = session_status == entity.SessionStatus.FINISHED
 
     if not suppress_warnings:
         if has_not_begun:
@@ -71,11 +71,11 @@ def finish(clinic: entities.Clinic, suppress_warnings: bool = False):
     _finish_current_session(clinic)
 
 
-def _start_current_session(clinic: entities.Clinic):
-    clinic.current_session.status = entities.SessionStatus.BEGUN
+def _start_current_session(clinic: entity.Clinic):
+    clinic.current_session.status = entity.SessionStatus.BEGUN
     tui.info(f"Sessão {clinic.current_session.date} iniciada!")
 
-def _finish_current_session(clinic: entities.Clinic):
+def _finish_current_session(clinic: entity.Clinic):
     """Finaliza a sessão atual"""
-    clinic.current_session.status = entities.SessionStatus.FINISHED
+    clinic.current_session.status = entity.SessionStatus.FINISHED
     tui.info(f"Sessão {clinic.current_session.date} finalizada!")

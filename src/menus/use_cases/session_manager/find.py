@@ -1,9 +1,9 @@
-import entities
+import entity
 import tui
 from menus.use_cases.commons import propose, request
 
 
-def find(clinic: entities.Clinic):
+def find(clinic: entity.Clinic):
     """Registra uma nova sessão no banco de dados.
 
     Questions
