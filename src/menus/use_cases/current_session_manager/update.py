@@ -18,7 +18,7 @@ def update(clinic: entities.Clinic):
     Warnings                        Proposes
     --------                        --------
     Retornando à mesma sessão
-    Sessão não finalizada           Finalizar sessão atual
+    Sessão atual não finalizada     Forçar finalização
 
     """
 
