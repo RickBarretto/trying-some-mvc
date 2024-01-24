@@ -38,8 +38,8 @@ def current_patient_status(clinic: Clinic) -> str:
 
     if clinic.current_patient:
         return f"Paciente atual: {clinic.current_patient}"
-    else:
-        return "Nenhum paciente sendo atendido!"
+    
+    return "Nenhum paciente sendo atendido!"
 
 
 # ============= Definição de funções principais =============
