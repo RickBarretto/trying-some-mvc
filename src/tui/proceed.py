@@ -1,7 +1,7 @@
 from ._screen import Screen
 
 
-def progress(question: list[str] | str) -> bool:
+def proceed(question: list[str] | str) -> bool:
     def answer() -> bool:
         return "S" == input(">>> ").strip().upper()
 

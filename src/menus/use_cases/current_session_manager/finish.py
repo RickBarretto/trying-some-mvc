@@ -24,7 +24,7 @@ def finish(clinic: entities.Clinic, suppress_warnings: bool = False):
     if not suppress_warnings:
         if session_status == entities.SessionStatus.UNBEGUN:
             warnings.session_has_never_started(clinic.current_session)
-            if not tui.progress("Desejas finalizar mesmo assim?"):
+            if not tui.proceed("Desejas finalizar mesmo assim?"):
                 return
 
         if session_status == entities.SessionStatus.FINISHED:
