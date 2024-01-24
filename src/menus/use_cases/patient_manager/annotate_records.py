@@ -12,9 +12,9 @@ def annotate_medical_records(clinic: Clinic):
     ---------
     * Ação concluída
 
-    Warnings
-    --------
-    * Sessão não iniciada   : Propõe a iniciar
+    Warnings                            Proposes
+    --------                            --------
+    * Sessão não iniciada               * Propõe iniciar sessão
     * Sessão já finalizada
     * Nenhum paciente sendo atendido
 
