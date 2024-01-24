@@ -40,17 +40,7 @@ def send_to_waiting_queue(
     # ============= Pega input do usuário =============
 
     if not patient:
-        cpf = request.patient_cpf()
-        patient = clinic.patient_by_cpf(cpf)
-
-    # ============= Verifica registro do paciente =============
-
-    if not patient:
-        warnings.patient_not_registered(cpf)
-        if not propose.register_patient(clinic, cpf):
-            return
-
-        patient = clinic.patient_by_cpf(cpf)
+        patient = commons.get_patient(clinic)
 
     # ============= Verifica agendamento do paciente =============
 
