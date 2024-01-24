@@ -12,21 +12,21 @@ __all__ = ["patient_cpf", "session_date"]
 def patient_cpf() -> str:
     """Pede ao usuário o CPF do paciente até que este seja válido."""
     question = "Insira o CPF do paciente:"
-    format = "XXX.XXX.XXX-XX"
-    suggestion = f"Formato: {format}"
+    cpf_format = "XXX.XXX.XXX-XX"
+    suggestion = f"Formato: {cpf_format}"
     warning = "CPF inválido!"
 
-    return _request(question, suggestion, warning, format, _is_valid_cpf)
+    return _request(question, suggestion, warning, cpf_format, _is_valid_cpf)
 
 
 def session_date() -> str:
     """Pede ao usuário uma data até que esta seja válida."""
     question = "Insira uma data:"
-    format = "DD/MM/YYYY"
-    suggestion = f"Formato: {format}"
+    date_format = "DD/MM/YYYY"
+    suggestion = f"Formato: {date_format}"
     warning = "Formato de data inválido!"
 
-    return _request(question, suggestion, warning, format, _is_valid_date)
+    return _request(question, suggestion, warning, date_format, _is_valid_date)
 
 
 # ============= Validadores de entradas =============
@@ -109,7 +109,7 @@ def _request(
     question: str,
     suggestion: str,
     warning: str,
-    format: str,
+    data_format: str,
     validator: Callable[[str], bool],
 ) -> str:
     """Função abstrata usada para fazer a requisição ao usuário.
@@ -128,6 +128,6 @@ def _request(
         Uma função validadora da entrada.
     """
     while not validator(value := tui.prompt(question, suggestion)):
-        tui.warn([warning, f"Verifique se o formato condiz com '{format}'."])
+        tui.warn([warning, f"Verifique se o formato condiz com '{data_format}'."])
 
     return value
