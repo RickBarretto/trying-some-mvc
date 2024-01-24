@@ -8,16 +8,18 @@ def check_current_booking(clinic: entities.Clinic):
 
     Questions
     ---------
-    * CPF do paciente
+    CPF do paciente
 
     Feedbacks
     ---------
-    * Status do agendamento
+    Status do agendamento
 
     Warnings                    Proposes
     --------                    --------
     CPF inválido
     Paciente não registrado     Registrar paciente
+    [ok]                        Agendar sessão
+    [ok]                        Enviar paciente para fila de espera
 
     """
 
