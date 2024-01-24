@@ -20,19 +20,22 @@ def start(clinic: entities.Clinic):
     # ============= Verifica status da sessão atual =============
 
     session_status = clinic.current_session.status
+    has_already_begun = session_status == entities.SessionStatus.BEGUN
+    has_been_finished = session_status == entities.SessionStatus.FINISHED
 
-    if session_status == entities.SessionStatus.BEGUN:
+    if has_already_begun:
         warnings.session_has_already_started(clinic.current_session)
         return
 
-    if session_status == entities.SessionStatus.FINISHED:
+    if has_been_finished:
         warnings.session_has_already_been_finished(clinic.current_session)
         return
 
     # ============= Ativa sessão atual =============
 
+    _start_current_session(clinic)
+
+
+def _start_current_session(clinic: entities.Clinic):
     clinic.current_session.status = entities.SessionStatus.BEGUN
-
-    # ============= Feedback =============
-
     tui.info(f"Sessão {clinic.current_session.date} iniciada!")
