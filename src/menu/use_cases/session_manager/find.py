@@ -12,7 +12,7 @@ def find(clinic: entity.Clinic):
 
     Feedbacks
     ---------
-    Informações básicas da sessão
+    Status da operação
 
     Warnings                        Proposes
     --------                        --------
