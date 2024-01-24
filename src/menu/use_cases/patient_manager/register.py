@@ -2,6 +2,7 @@ import entity
 from menu.use_cases.commons import request
 import tui
 
+__all__ = ["register"]
 
 def register(clinic: entity.Clinic, patient_cpf: str | None = None):
     """Registra paciente no banco de dados.

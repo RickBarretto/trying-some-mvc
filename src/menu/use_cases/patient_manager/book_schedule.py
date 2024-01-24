@@ -2,6 +2,7 @@ import entity
 from menu.use_cases.commons import fetch
 import tui
 
+__all__ = ["book_schedule"]
 
 def book_schedule(
     clinic: entity.Clinic,
