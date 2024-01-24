@@ -1,12 +1,4 @@
-"""Define um Singleton para `reception`
-
-Basicamente só pode existir uma única instância de `reception`,
-e por consequência do controlador (model e view) que o mesmo possui.
-
-Assim, é exposto uma única instância `reception`, 
-ao invés da declaração de classe,
-podendo assim ser usado por outros módulos.
-"""
+"""Define o menu do dentista"""
 
 
 import menus

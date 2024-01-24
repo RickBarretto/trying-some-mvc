@@ -20,7 +20,8 @@ def terminal_size() -> tuple[int, int]:
 
 
 def render_rule(inner_width: int, position: int = 0):
-    """
+    """Renderiza uma régua horizontal
+    
     Arguments
     ---------
     position: int = 0

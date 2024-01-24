@@ -1,3 +1,5 @@
+"""Define um menu genérico base."""
+
 from typing import Callable, Protocol
 
 import entities

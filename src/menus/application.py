@@ -1,3 +1,5 @@
+"""Define os menus de início e principal da aplicação"""
+
 import entities
 import menus
 import tui

@@ -53,6 +53,8 @@ class Screen:
     def render_rule(self, width: int | None = None, position: int = 0):
         """Renderiza uma linha horizontal
 
+        Arguments
+        ---------
         width: int | None = None
             O tamanho total da largura.
             Se nada for passado, será usado a
