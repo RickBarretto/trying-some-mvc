@@ -16,7 +16,7 @@ def find(clinic: entity.Clinic):
 
     Warnings                        Proposes
     --------                        --------
-    Formato de data inválido  
+    Formato de data inválido
     Sessão não registrada           Registrar sessão
 
     """

@@ -34,7 +34,7 @@ def show_next_patient(clinic: entity.Clinic):
     if not clinic.waiting_queue:
         _warn_empty_queue()
         return
-        
+
     _show_next_patient(clinic)
 
 
@@ -47,7 +47,7 @@ def attend_next_patient(clinic: entity.Clinic):
     Novo paciente chamado
 
     Warnings                Proposes
-    --------                --------    
+    --------                --------
     Sessão não iniciada     Iniciar sessão
     Sessão já finalizada
 
@@ -64,17 +64,19 @@ def attend_next_patient(clinic: entity.Clinic):
         _warn_empty_queue()
         clinic.current_patient = None
         return
-    
+
     # ============= Atende próximo paciente =============
-    
+
     _attend_next_patient(clinic)
 
+
 def _warn_empty_queue():
-        tui.warn("Não há pacientes na fila de espera.")
+    tui.warn("Não há pacientes na fila de espera.")
+
 
 def _show_next_patient(clinic: entity.Clinic) -> entity.Patient:
     """Retorna o próximo paciente
-    
+
     Assertions
     ----------
     ``clinic.waiting_queue`` tem pacientes
@@ -88,7 +90,7 @@ def _show_next_patient(clinic: entity.Clinic) -> entity.Patient:
 
 def _attend_next_patient(clinic: entity.Clinic):
     """Atende próximo paciente
-    
+
     Coloca o primeiro paciente da fila como paciente atual.
     """
     patient_id = clinic.waiting_queue.pop(0)

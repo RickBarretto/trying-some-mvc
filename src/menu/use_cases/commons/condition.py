@@ -15,7 +15,7 @@ import tui
 
 def has_active_current_session_or_activate_it(clinic: entity.Clinic) -> bool:
     """Retorna se a sessão atual está ativa ou não, ou propõe a ativar.
-    
+
     Warnings                        Proposes
     --------                        --------
     Sessão nunca fora iniciada      Iniciar sessão
@@ -39,7 +39,7 @@ def has_active_current_session_or_activate_it(clinic: entity.Clinic) -> bool:
 
 def has_patient_being_attended(clinic: entity.Clinic) -> bool:
     """Retorna se há um paciente sendo atendido.
-    
+
     Warnings
     --------
     Nenhum paciente sendo atendido

@@ -51,7 +51,7 @@ def multiline(message: str) -> list[str]:
     /                                                       /
     /                                                       /
     /~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~/
-    
+
     """
     content = [message]
     content.append("")

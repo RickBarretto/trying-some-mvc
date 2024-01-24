@@ -7,7 +7,10 @@ import tui
 
 # ============= Gerencia sessão atual =============
 
-def send_patient_to_waiting_queue(clinic: entity.Clinic, patient: entity.Patient) -> bool:
+
+def send_patient_to_waiting_queue(
+    clinic: entity.Clinic, patient: entity.Patient
+) -> bool:
     """Propõe enviar o paciente para a fila de espera"""
     question = f"Desejas encaminhar {patient.name} para fila de espera?"
     use_case = current_session_manager.send_to_waiting_queue
@@ -25,6 +28,7 @@ def start_current_session(clinic: entity.Clinic) -> bool:
 
 # ============= Gerencia pacientes =============
 
+
 def register_patient(clinic: entity.Clinic, patient_cpf: str) -> bool:
     """Propõe registrar o paciente"""
     question = f"Desejas registar paciente do CPF {patient_cpf}?"
@@ -33,7 +37,9 @@ def register_patient(clinic: entity.Clinic, patient_cpf: str) -> bool:
     return _propose(question, use_case, clinic, patient_cpf)
 
 
-def book_session(clinic: entity.Clinic, patient: entity.Patient, session: entity.Session) -> bool:
+def book_session(
+    clinic: entity.Clinic, patient: entity.Patient, session: entity.Session
+) -> bool:
     """Propõe agendar uma sessão"""
     question = f"Desejas agendar {patient.name} para {session.date}?"
     use_case = patient_manager.book_schedule
@@ -42,6 +48,7 @@ def book_session(clinic: entity.Clinic, patient: entity.Patient, session: entity
 
 
 # ============= Gerencia sessões gerais =============
+
 
 def register_session(clinic: entity.Clinic, session_date: str) -> bool:
     """Propõe registar uma sessão"""
@@ -53,9 +60,10 @@ def register_session(clinic: entity.Clinic, session_date: str) -> bool:
 
 # ============= Função interna =============
 
+
 def _propose(question: str, use_case: Callable, *args, **kwargs) -> bool:
     """Função que faz a interface para as propostas deste módulo.
-    
+
     Arguments
     ---------
     question: str

@@ -3,7 +3,6 @@ from menu.use_cases.commons import request
 import tui
 
 
-
 def register(clinic: entity.Clinic, patient_cpf: str | None = None):
     """Registra paciente no banco de dados.
 
@@ -46,7 +45,9 @@ def register(clinic: entity.Clinic, patient_cpf: str | None = None):
     tui.info(f"{patient.name} registrado com sucesso!")
 
 
-def register_patient(clinic: entity.Clinic, cpf: str, name: str, extra: list[str]) -> entity.Patient:
+def register_patient(
+    clinic: entity.Clinic, cpf: str, name: str, extra: list[str]
+) -> entity.Patient:
     new_id: int = clinic.new_patient_id()
     patient = entity.Patient(uid=new_id, cpf=cpf, name=name, extra_info=extra)
 

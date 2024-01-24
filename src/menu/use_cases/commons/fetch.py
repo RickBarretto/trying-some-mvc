@@ -4,7 +4,7 @@ from menu.use_cases.commons import request, propose, warnings
 
 def patient_or_register(clinic: entity.Clinic) -> entity.Patient | None:
     """Retorna um paciente
-    
+
     Questions
     ---------
     CPF do paciente
@@ -27,7 +27,7 @@ def patient_or_register(clinic: entity.Clinic) -> entity.Patient | None:
 
 def sesssion_or_register(clinic: entity.Clinic) -> entity.Clinic | None:
     """Retorna um paciente
-    
+
     Questions
     ---------
     Data da sessão

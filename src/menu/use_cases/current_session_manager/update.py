@@ -29,7 +29,7 @@ def update(clinic: entity.Clinic, first_time: bool = False):
     session = clinic.session_by_date(date)
 
     # ============= Warnings =============
-    
+
     is_same_current_session = clinic.current_session == session
 
     if is_same_current_session and not first_time:
@@ -37,7 +37,9 @@ def update(clinic: entity.Clinic, first_time: bool = False):
         return
 
     if clinic.current_session and not first_time:
-        has_been_finished = clinic.current_session.status != entity.SessionStatus.FINISHED
+        has_been_finished = (
+            clinic.current_session.status != entity.SessionStatus.FINISHED
+        )
 
         if has_been_finished:
             tui.warn(["A sessão atual não foi finalizada ainda!"])

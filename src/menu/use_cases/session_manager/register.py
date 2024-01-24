@@ -4,10 +4,7 @@ from menu.use_cases.commons import request
 import tui
 
 
-def register(
-    clinic: entity.Clinic,
-    date: str = ""
-):
+def register(clinic: entity.Clinic, date: str = ""):
     """Registra uma nova sessão no banco de dados.
 
     Questions
@@ -29,7 +26,7 @@ def register(
 
     if not date:
         date = request.session_date()
-    
+
     session = clinic.session_by_date(date)
 
     if session:

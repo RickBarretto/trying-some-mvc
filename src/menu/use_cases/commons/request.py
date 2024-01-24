@@ -8,6 +8,7 @@ __all__ = ["patient_cpf", "session_date"]
 
 # ============= Prompts =============
 
+
 def patient_cpf() -> str:
     """Pede ao usuário o CPF do paciente até que este seja válido."""
     question = "Insira o CPF do paciente:"
@@ -29,6 +30,7 @@ def session_date() -> str:
 
 
 # ============= Validadores de entradas =============
+
 
 def _is_valid_cpf(entry: str) -> bool:
     """Valida se uma entrada é um CPF válido."""
@@ -102,6 +104,7 @@ def _is_valid_date(entry: str) -> bool:
 
 # ============= Função interna =============
 
+
 def _request(
     question: str,
     suggestion: str,
@@ -110,7 +113,7 @@ def _request(
     validator: Callable[[str], bool],
 ) -> str:
     """Função abstrata usada para fazer a requisição ao usuário.
-    
+
     Arguments
     ---------
     question: str
