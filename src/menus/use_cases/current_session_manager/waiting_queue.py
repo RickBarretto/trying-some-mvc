@@ -17,14 +17,14 @@ def send_to_waiting_queue(
     * Paciente posto na fila de espera
     * Posição na fila de espera
 
-    Warnings
-    --------
-    * Sessão não inicializada   : Propõe a inicializar
-    * Sessão já foi finalizada
-    * Formato de CPF inválido
-    * Paciente não registrado   : Propõe o registrar
-    * Paciente não agendado     : Propõe o agendar para a sessão atual
-    * Paciente já está na fila de espera
+    Warnings                                Proposes
+    --------                                --------
+    Sessão não inicializada                 Iniciar sessão atual
+    Sessão já foi finalizada
+    CPF inválido
+    Paciente não registrado                 Registrar paciente
+    Paciente não agendado                   Agendar paciente para a sessão atual
+    Paciente já está na fila de espera
 
     """
 
