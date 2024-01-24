@@ -5,6 +5,8 @@ from menus.use_cases import current_session_manager, patient_manager, session_ma
 import tui
 
 
+# ============= Gerencia sessão atual =============
+
 def send_patient_to_waiting_queue(clinic: entities.Clinic, patient: entities.Patient) -> bool:
     """Propõe enviar o paciente para a fila de espera"""
     question = f"Desejas encaminhar {patient.name} para fila de espera?"
@@ -20,6 +22,8 @@ def start_current_session(clinic: entities.Clinic) -> bool:
 
     return _propose(question, use_case, clinic)
 
+
+# ============= Gerencia pacientes =============
 
 def register_patient(clinic: entities.Clinic, patient_cpf: str) -> bool:
     """Propõe registrar o paciente"""
@@ -37,6 +41,8 @@ def book_session(clinic: entities.Clinic, patient: entities.Patient, session: en
     return _propose(question, use_case, clinic, patient, session)
 
 
+# ============= Gerencia sessões gerais =============
+
 def register_session(clinic: entities.Clinic, session_date: str) -> bool:
     """Propõe registar uma sessão"""
     question = f"Desejas registar sessão na data {session_date}?"
@@ -44,6 +50,8 @@ def register_session(clinic: entities.Clinic, session_date: str) -> bool:
 
     return _propose(question, use_case, clinic, date=session_date)
 
+
+# ============= Função interna =============
 
 def _propose(question: str, use_case: Callable, *args, **kwargs) -> bool:
     """Função que faz a interface para as propostas deste módulo.
