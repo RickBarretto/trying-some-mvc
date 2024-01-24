@@ -1,6 +1,6 @@
 import entities
 import tui
-from menus.use_cases import commons, propose, warnings
+from menus.use_cases import commons, condition, propose, warnings
 
 
 def send_to_waiting_queue(
@@ -30,11 +30,7 @@ def send_to_waiting_queue(
 
     # ============= Verifica status da sessão atual =============
 
-    if session_has_never_begun(clinic.current_session):
-        if not propose.start_current_session(clinic):
-            return
-
-    if session_has_already_finished(clinic.current_session):
+    if not condition.has_active_current_session(clinic):
         return
 
     # ============= Pega input do usuário =============
@@ -68,17 +64,3 @@ def _send_patient_to_queue(clinic: entities.Clinic, patient: entities.Patient):
     ]
 
     tui.info(message)
-
-
-def session_has_already_finished(session: entities.Session):
-    if res := (session.status == entities.SessionStatus.FINISHED):
-        warnings.session_has_already_been_finished(session)
-
-    return res
-
-
-def session_has_never_begun(session: entities.Session) -> bool:
-    if res := (session.status == entities.SessionStatus.UNBEGUN):
-        warnings.session_has_never_started(session)
-
-    return res
