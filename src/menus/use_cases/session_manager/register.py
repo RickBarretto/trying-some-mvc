@@ -8,7 +8,7 @@ import tui
 def register(
     clinic: Clinic,
     suppress_warnings: bool = False,
-    date: str | None = None,
+    date: str = "",
 ):
     """Registra uma nova sessão no banco de dados.
 
@@ -17,8 +17,9 @@ def register(
     dry_run: bool = False
         Não emite mensagem de erro em caso de sessão já existente.
 
-    should_update: bool = False
-        Define se a função deve atualizar a sessão atual.
+    date: str | None = None
+        Define a data que será registrada.
+        Caso seja vazia, será requisitado a entrada ao usuário.
 
     Questions
     ---------
