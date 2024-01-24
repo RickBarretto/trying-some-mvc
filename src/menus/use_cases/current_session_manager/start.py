@@ -8,12 +8,12 @@ def start(clinic: entities.Clinic):
 
     Feedbacks
     ---------
-    * Sessão inicializada
+    Sessão inicializada
 
     Warnings
     --------
-    * Sessão já inicializada
-    * Sessão já finalizada
+    Sessão já inicializada
+    Sessão já finalizada
 
     """
 
