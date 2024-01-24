@@ -11,8 +11,6 @@ import tui
 class Model(Protocol):
     """Apenas um placeholder para a tipagem."""
 
-    pass
-
 
 class MenuOption(Protocol):
     """Apenas um placeholder para a tipagem"""
