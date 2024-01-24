@@ -15,10 +15,10 @@ def list_bookings(clinic: entities.Clinic):
     * Lista de agendamentos
     * Nenhum agendamento
 
-    Warnings
-    --------
-    * Formato de CPF inválido
-    * Paciente não registrado   : Propõe o registrar
+    Warnings                    Proposes
+    --------                    --------
+    Formato de CPF inválido
+    Paciente não registrado     Registrar paciente
 
     """
 
