@@ -2,7 +2,7 @@ from ._screen import Screen
 
 
 def prompt(ask: str, suggestion: str = "") -> str:
-    """
+    """Imprime uma pergunta ao usuário. Podendo ser passada uma sugestão.
 
     Example
     -------
