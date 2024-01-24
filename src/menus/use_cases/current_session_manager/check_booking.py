@@ -1,5 +1,5 @@
 import entities
-from menus.use_cases import propose, request, warnings
+from menus.use_cases import commons, propose
 import tui
 
 
@@ -22,22 +22,12 @@ def check_current_booking(clinic: entities.Clinic):
 
     # ============= Verificação do paciente no banco de dados =============
 
-    cpf = request.patient_cpf()
-
-    if not (patient := clinic.patient_by_cpf(cpf)):
-        warnings.patient_not_registered(cpf)
-
-        if propose.register_patient(clinic, cpf):
-            patient = clinic.patient_by_cpf(cpf)
-        else:
-            return
+    if not (patient := commons.get_patient(clinic)):
+        return
 
     # ============= Verificação do agendamento =============
 
     is_booked = clinic.current_session.uid in patient.scheduled_sessions
-
-    # ============= Impressão do feedback =============
-
     show_checking_feedback(patient, is_booked)
 
     # ============= Proposta de agendamento =============
@@ -46,7 +36,7 @@ def check_current_booking(clinic: entities.Clinic):
         if not propose.book_session(clinic, patient, clinic.current_session):
             return
 
-    # ============= Enfileiramento do paciente =============
+    # ============= Proposta de enfileiramento do paciente =============
 
     propose.send_patient_to_waiting_queue(clinic, patient)
 
