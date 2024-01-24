@@ -106,13 +106,12 @@ def break_line(
 
     line_start = 0
     last_whitespace = 0
+    secondary_lines_max = max_length - additional_margin
 
     for i, el in enumerate(content):
         is_whitespace = el == " "
         reached_line_limit = (i - line_start) >= max_length
-
-        if len(result) == 1:
-            max_length -= additional_margin
+ 
 
         if is_whitespace:
             last_whitespace = i
@@ -120,6 +119,7 @@ def break_line(
         if is_whitespace and reached_line_limit:
             result.append(content[line_start:last_whitespace])
             line_start = i + 1
+            max_length = secondary_lines_max
 
     result.append(content[line_start:])
 
