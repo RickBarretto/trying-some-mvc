@@ -19,6 +19,7 @@ def show_next_patient(clinic: entities.Clinic):
     Warnings                        Propose
     --------                        -------
     Sessão nunca foi inicializada   Iniciar sessão atual
+    Sessão finalizada
     Não há pacientes na fila
 
     """
@@ -44,6 +45,11 @@ def attend_next_patient(clinic: entities.Clinic):
     ---------
     Fila de espera vazia
     Novo paciente chamado
+
+    Warnings                Proposes
+    --------                --------    
+    Sessão não iniciada     Iniciar sessão
+    Sessão já finalizada
 
     """
 
