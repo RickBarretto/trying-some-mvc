@@ -32,7 +32,7 @@ def show_next_patient(clinic: entities.Clinic):
     # ============= Feedback =============
 
     if not clinic.waiting_queue:
-        tui.warn("Não há pacientes na fila de espera!")
+        _warn_empty_queue()
         return
         
     _show_next_patient(clinic)
@@ -61,13 +61,15 @@ def attend_next_patient(clinic: entities.Clinic):
     # ============= Verifica a fila de espera =============
 
     if not clinic.waiting_queue:
-        tui.warn("Não há pacientes na fila de espera.")
+        _warn_empty_queue()
         return
     
     # ============= Atende próximo paciente =============
     
     _attend_next_patient(clinic)
 
+def _warn_empty_queue():
+        tui.warn("Não há pacientes na fila de espera.")
 
 def _show_next_patient(clinic: entities.Clinic) -> entities.Patient:
     """Retorna o próximo paciente
