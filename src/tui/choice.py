@@ -60,10 +60,10 @@ def choice(options: list[str], status_bar: str = "") -> int:
 
         if start_index <= choosen <= stop_index:
             return choosen
-        else:
-            raise IndexError(
-                f"O valor escolhido deve estar entre {start_index} e {stop_index}."
-            )
+        
+        raise IndexError(
+            f"O valor escolhido deve estar entre {start_index} e {stop_index}."
+        )
 
     # Início da função principal
     screen = Screen()
