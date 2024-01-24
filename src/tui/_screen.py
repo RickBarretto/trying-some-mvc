@@ -51,17 +51,67 @@ class Screen:
         clear_screen()
 
     def render_rule(self, width: int | None = None, position: int = 0):
-        """Renderiza uma linha horizontal"""
+        """Renderiza uma linha horizontal
+        
+        width: int | None = None
+            O tamanho total da largura. 
+            Se nada for passado, será usado a 
+            largura atual do terminal do usuário.
+
+        position: int = 0
+            Define qual será o contorno usado nos vértices.
+            0: Voltado para baixo. (régua do topo)
+            1: Voltado para o centro. (régua central)
+            2: Voltado para cima. (régua de baixo)
+
+        Assertions
+        ----------
+        ``position`` deve estar entre 0 e 2.
+        """
+        assert 0 <= position <= 2
+        
         width = width - 2 if width is not None else self.inner_width
         render_rule(width, position)
 
     def render_content(self, content: list[str], center: bool = False):
-        """Renderiza o conteúdo em si"""
+        """Renderiza o conteúdo em si.
+        
+        Arguments
+        ---------
+        content: list[str]
+            O conteúdo a ser impresso
+        center: bool = False
+            Se será renderizado horizontalmente ao centro.
+        """
         render_content(content, self.inner_width, center)
 
     def render_vertical_space(
         self, content_height: int | None = None, fixed_height: int | None = None
     ):
+        """Renderiza um espaço vertical.
+        
+        Arguments
+        ---------
+        content_height: int | None = None
+            Refere-se à altura total do conteúdo, 
+            o que implica que o espaço renderizado será o equivalente
+            ao necessário para centralizá-lo verticalmente na tela.
+
+        fixed_height: int | None = None
+            Refere-se à quantidade fixa de linhas em branco 
+            que serão impressas.
+
+        Notes
+        -----
+        Em certos casos, convém chamar essa função duas vezes.
+        Uma antes e outra após a renderização do conteúdo.
+            
+        Assertions
+        ----------
+        ``content_height`` e ``height`` devem ser passados como argumentos,
+        mas nunca ambos ao mesmo tempo.
+
+        """
         assert content_height or fixed_height
         assert not (content_height and fixed_height)
 
