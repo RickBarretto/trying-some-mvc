@@ -1,3 +1,5 @@
+"""Define o modelo da entidade Clínica"""
+
 from .session import Session
 from .patient import Patient
 

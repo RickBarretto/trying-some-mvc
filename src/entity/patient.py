@@ -1,3 +1,5 @@
+"""Define o modelo da entidade Paciente"""
+
 from dataclasses import dataclass
 
 

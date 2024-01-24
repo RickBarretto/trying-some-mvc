@@ -1,3 +1,5 @@
+"""Define o modelo da entidade Sessão e Status da Sessão"""
+
 import enum
 from dataclasses import dataclass
 
