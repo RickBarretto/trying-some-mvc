@@ -16,10 +16,10 @@ def find(clinic: Clinic):
     ---------
     * Informações básicas da sessão
 
-    Warnings
-    --------
-    * Formato de data inválido
-    * Sessão não registrada     : Propõe a registrar
+    Warnings                        Proposes
+    --------                        --------
+    * Formato de data inválido  
+    * Sessão não registrada         Propõe registrar sessão
 
     """
 
