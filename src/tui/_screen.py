@@ -60,13 +60,12 @@ class Screen:
         render_content(content, self.inner_width, center)
 
     def render_vertical_space(
-        self, content_height: int | None = None, height: int | None = None
+        self, content_height: int | None = None, fixed_height: int | None = None
     ):
-        """Renderiza um espaço vertical"""
-        assert content_height or height
-        assert not (content_height and height)
+        assert content_height or fixed_height
+        assert not (content_height and fixed_height)
 
-        spaces = height if height is not None else self.vertical_align(content_height)
+        spaces = fixed_height if fixed_height is not None else self.vertical_align(content_height)
         render_vertical_space(self.inner_width, spaces)
 
     def render_full_screen(

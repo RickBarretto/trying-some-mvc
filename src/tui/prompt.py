@@ -29,9 +29,9 @@ def prompt(ask: str, suggestion: str = "") -> str:
 
     screen.clear_screen()
     screen.render_rule(position=0)
-    screen.render_vertical_space(height=content_height)
+    screen.render_vertical_space(fixed_height=content_height)
     screen.render_content(content, center=True)
-    screen.render_vertical_space(height=content_height)
+    screen.render_vertical_space(fixed_height=content_height)
     screen.render_rule(position=2)
     return input(" >>> ").strip()
 
@@ -45,9 +45,9 @@ def multiline(message: str) -> list[str]:
 
     screen.clear_screen()
     screen.render_rule()
-    screen.render_vertical_space(height=3)
+    screen.render_vertical_space(fixed_height=3)
     screen.render_content(content, center=True)
-    screen.render_vertical_space(height=3)
+    screen.render_vertical_space(fixed_height=3)
     screen.render_rule(position=2)
 
     result = []
