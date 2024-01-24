@@ -42,8 +42,8 @@ def current_session_status(clinic: Clinic) -> str:
     """Função que atualiza o status que será impresso ao topo do menu."""
     if clinic.current_session:
         return f"Sessão atual: {clinic.current_session}"
-    else:
-        return "Sessão atual não configurada"
+    
+    return "Sessão atual não configurada"
 
 
 # ============= Definição de funções principais =============
