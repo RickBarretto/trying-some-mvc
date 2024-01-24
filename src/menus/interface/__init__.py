@@ -3,58 +3,63 @@ from typing import Callable, Protocol
 import entities
 import tui
 
+# ============= Definição de protocolos =============
 
 class Model(Protocol):
+    """Apenas um placeholder para a tipagem."""
     pass
 
 
 class MenuOption(Protocol):
+    """Apenas um placeholder para a tipagem"""
     def __call__(clinic: entities.Clinic, *args, **kwargs):
         pass
 
+# ============= Definição de função default =============
 
 def default_status(model: Model) -> str:
+    """Retorna uma string vazia.
+    
+    Suprimi a impressão do status no menu por padrão.
+    """
     return ""
 
 
-class MainMenu:
-    def __init__(
-        self,
+# ============= Definição de função principal =============
+
+def main_menu_loop(
         model: Model,
         options: list[tuple[str, MenuOption]],
         status_func: Callable[[Model], str] = default_status,
     ) -> None:
-        self.model = model
-        self._options = options
-        self.status = status_func
+    
+    # Filtro de informações
 
-        self._descriptions = options = [desc for desc, func in self._options]
-        self._descriptions.append("Sair")
+    use_cases = [use_case for _, use_case in options] # As ações do menu
+    descriptions = [desc for desc, _ in options] # As descrições de cada ação
+    
+    # Adiciona a descrição para a ação virtual 'sair'
+    descriptions.append("Sair")
 
-    def add_option(self, option: Callable, description: str):
-        self._options.append((option, description))
+    # Declarações de constantes de escolha
 
-    def run(self):
-        QUIT_OPTION = len(self._options) + 1
-        user_choice = 0
+    QUIT_OPTION = len(options) + 1  # Índice da ação virtual de 'sair'
+    INVALID_CHOICE = -1 # Caso a escolha seja inválida
 
-        while True:
-            try:
-                user_choice = tui.choice(self._descriptions, self.status(self.model))
-            except (ValueError, IndexError) as e:
-                tui.warn(e)
-                user_choice = -1
+    while True:
 
-            if user_choice == -1:
-                continue
+        # Validação da entrada do usuário
+        try:
+            user_choice = tui.choice(descriptions, status_func(model))
+        except (ValueError, IndexError) as e:
+            tui.warn(e)
+            user_choice = INVALID_CHOICE
 
-            if user_choice == QUIT_OPTION:
-                break
+        if user_choice == INVALID_CHOICE:
+            continue
 
-            desc, func = self._options[user_choice - 1]
-            func(self.model)
+        if user_choice == QUIT_OPTION:
+            break
 
-            # try:
-            #     func(self.model)
-            # except:
-            #     tui.warn("Função não implementada")
+        # Chama a ação correspondente à escolha do usuário
+        use_cases[user_choice - 1](model)

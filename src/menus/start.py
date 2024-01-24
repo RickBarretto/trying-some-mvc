@@ -1,5 +1,5 @@
 from entities.clinic import Clinic
-from menus.interface import MainMenu
+from menus.interface import main_menu_loop
 from menus.use_cases import current_session_manager
 from menus import dentist, reception
 import tui
@@ -56,4 +56,4 @@ def main_menu(clinic: Clinic):
         ("Finalizar sessão atual", current_session_manager.finish),
     ]
 
-    MainMenu(clinic, options).run()
+    main_menu_loop(clinic, options)
