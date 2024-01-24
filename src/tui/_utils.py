@@ -54,6 +54,7 @@ def render_content(content: str, inner_width: int, center: bool = False):
         prefix = " " * tab
         render_default_content(f"{prefix}{line:{pos}{inner_width - tab}}")
 
+
 def left_align_width():
     return int(os.get_terminal_size().columns * 0.2)
 

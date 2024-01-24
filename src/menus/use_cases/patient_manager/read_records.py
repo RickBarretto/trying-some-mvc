@@ -39,7 +39,7 @@ def read_full_medical_records(clinic: Clinic):
     tui.bullet_list(
         f"Prontuário médico de {clinic.current_patient.name}:",
         clinic.current_patient.medical_records,
-        additional_margin=12
+        additional_margin=12,
     )
 
 

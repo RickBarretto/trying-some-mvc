@@ -4,7 +4,7 @@ from .patient import Patient
 
 class Clinic:
     """Define o modelo da Clínica
-    
+
     Attributes
     ----------
     current_session: Session | None = None
@@ -21,10 +21,11 @@ class Clinic:
 
     last_session_id: int = 0
     last_patient_id: int = 0
-        Armazena o último ID gerado para o banco de dados 
+        Armazena o último ID gerado para o banco de dados
         das sessões e pacientes, respectivamente
 
     """
+
     def __init__(self) -> None:
         self.current_session: Session | None = None
         self.current_patient: Patient | None = None

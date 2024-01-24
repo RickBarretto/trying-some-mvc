@@ -1,10 +1,10 @@
-
 from tui._screen import Screen
 
 
 def info(content: str | list[str] | Exception) -> None:
     symbol = "⌾"  # unicode: 233E
     _hint(symbol, content)
+
 
 def warn(content: str | list[str] | Exception) -> None:
     symbol = "⚠"  # unicode: 26A0

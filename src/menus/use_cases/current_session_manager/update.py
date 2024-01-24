@@ -32,13 +32,12 @@ def update(clinic: entities.Clinic):
     if clinic.current_session:
         if clinic.current_session.status != entities.SessionStatus.FINISHED:
             tui.warn(["A sessão atual não foi finalizada ainda!"])
-            
+
             if not tui.proceed("Desejas finalizá-la?"):
                 warn_returning_to_the_same_session()
                 return
 
             current_session_manager.finish(clinic, suppress_warnings=True)
-
 
     # ============= Atualiza sessão atual =============
 

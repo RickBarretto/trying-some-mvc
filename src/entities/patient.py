@@ -4,7 +4,7 @@ from dataclasses import dataclass
 @dataclass
 class Patient:
     """Define o modelo do Paciente
-    
+
     Attributes
     ----------
     uid: int
@@ -19,17 +19,18 @@ class Patient:
     scheduled_sessions: list[int]
         Contém os IDs das sessões agendadas pelo paciente.
     medical_records: list[str]
-        Contém o prontuário médico do paciente. 
+        Contém o prontuário médico do paciente.
         Que nada mais é que uma lista de anotações médicas.
 
     """
+
     uid: int
     cpf: str
     name: str
     extra_info: list[str]
 
     def __post_init__(self):
-        # Como no Python 3.10 é impossível usar um valor padrão 
+        # Como no Python 3.10 é impossível usar um valor padrão
         # sem usar o default_factory,
         # decidi usar o post-init.
         # Para mais informações leia: https://docs.python.org/3.10/library/dataclasses.html
@@ -39,7 +40,7 @@ class Patient:
 
     def __str__(self) -> str:
         """Dunder método que converte a classe atual em string.
-        
+
         Example
         -------
         >>> p = Patient(1, '000.000.000-00', 'Meu Nome', [])

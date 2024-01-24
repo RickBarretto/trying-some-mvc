@@ -46,6 +46,8 @@ def list_bookings(clinic: Clinic):
 
 def find_bookings(clinic: Clinic, patient: Patient) -> list[str]:
     sessions_ids = patient.scheduled_sessions
-    sessions = [str(session) for session in clinic.sessions if session.uid in sessions_ids]
+    sessions = [
+        str(session) for session in clinic.sessions if session.uid in sessions_ids
+    ]
 
     return sessions if sessions else ["Nenhuma sessão agendada"]

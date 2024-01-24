@@ -3,7 +3,9 @@ import tui
 from menus.use_cases import propose, request, warnings
 
 
-def send_to_waiting_queue(clinic: entities.Clinic, patient: entities.Patient | None = None):
+def send_to_waiting_queue(
+    clinic: entities.Clinic, patient: entities.Patient | None = None
+):
     """Envia um paciente para a fila de espera.
 
     Questions

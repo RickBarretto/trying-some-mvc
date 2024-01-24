@@ -40,6 +40,7 @@ menu_options = [
 
 # ============= Definição de funções internas =============
 
+
 def current_patient_status(clinic: Clinic) -> str:
     """Função que atualiza o status que será impresso ao topo do menu."""
 
@@ -50,6 +51,7 @@ def current_patient_status(clinic: Clinic) -> str:
 
 
 # ============= Definição de funções principais =============
+
 
 def start(clinic: Clinic):
     """Função responsável por iniciar o menu do dentista."""

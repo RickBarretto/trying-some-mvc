@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 class SessionStatus(enum.Enum):
     """Enumeração para o status de ``Session``
-    
+
     Uma sessão pode estar em três estados:
     * Não inicializada
     * Inicializada
@@ -12,9 +12,10 @@ class SessionStatus(enum.Enum):
 
     Note
     ----
-    A escolha de ``Enum`` foi devido a manter as 
+    A escolha de ``Enum`` foi devido a manter as
     boas práticas quanto mudança de estados.
     """
+
     UNBEGUN = 0
     BEGUN = 1
     FINISHED = 2
@@ -29,7 +30,7 @@ class SessionStatus(enum.Enum):
 @dataclass
 class Session:
     """Definição de uma sessão
-    
+
     Attributes
     ----------
     uid: int
@@ -39,13 +40,14 @@ class Session:
     status: SessionStatus = SessionStatus.UNBEGUN
         Status da sessão. Iniciado como não-inicializado.
     """
+
     uid: int
     date: str
     status: SessionStatus = SessionStatus.UNBEGUN
 
     def __str__(self) -> str:
         """Converte a classe para uma string.
-        
+
         Example
         -------
         >>> s = Session(1, "01/01/2024")

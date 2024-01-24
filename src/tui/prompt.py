@@ -40,7 +40,7 @@ def multiline(message: str) -> list[str]:
     content = [message]
     content.append("")
     content.append("[Linha vazia para finalizar]")
-    
+
     screen = Screen()
 
     screen.clear_screen()

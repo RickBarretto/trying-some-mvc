@@ -43,6 +43,7 @@ menu_options = [
 
 # ============= Definição de funções internas =============
 
+
 def current_session_status(clinic: Clinic) -> str:
     """Função que atualiza o status que será impresso ao topo do menu."""
     if clinic.current_session:
@@ -52,6 +53,7 @@ def current_session_status(clinic: Clinic) -> str:
 
 
 # ============= Definição de funções principais =============
+
 
 def start(clinic: Clinic):
     """Função responsável por iniciar o menu da recepção."""

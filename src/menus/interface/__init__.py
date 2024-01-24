@@ -12,11 +12,18 @@ class MenuOption(Protocol):
     def __call__(clinic: entities.Clinic, *args, **kwargs):
         pass
 
+
 def default_status(model: Model) -> str:
     return ""
 
+
 class MainMenu:
-    def __init__(self, model: Model, options: list[tuple[str, MenuOption]], status_func: Callable[[Model], str] = default_status) -> None:
+    def __init__(
+        self,
+        model: Model,
+        options: list[tuple[str, MenuOption]],
+        status_func: Callable[[Model], str] = default_status,
+    ) -> None:
         self.model = model
         self._options = options
         self.status = status_func

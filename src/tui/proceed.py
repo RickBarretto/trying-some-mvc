@@ -12,10 +12,7 @@ def proceed(question: list[str] | str) -> bool:
     confirm_message = "[S] Sim"
     confirm_message = f"{confirm_message:>{len(cancel_message)}}"
 
-    question += [
-        "",
-         f"{confirm_message} | {cancel_message}"
-    ]
+    question += ["", f"{confirm_message} | {cancel_message}"]
 
     screen = Screen()
     screen.render_full_screen(question, center=True)

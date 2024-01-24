@@ -44,7 +44,7 @@ def register(
 
     if session and suppress_warnings:
         return
-    
+
     if session:
         tui.warn("Sessão já foi registrada!")
         return
