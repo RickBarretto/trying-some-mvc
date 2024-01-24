@@ -15,7 +15,7 @@ class Model(Protocol):
 class MenuOption(Protocol):
     """Apenas um placeholder para a tipagem"""
 
-    def __call__(clinic: entity.Clinic, *args, **kwargs):
+    def __call__(self, clinic: entity.Clinic, *args, **kwargs):
         pass
 
 
