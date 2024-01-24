@@ -1,12 +1,11 @@
-from entities.clinic import Clinic
-from entities.session import Session
+import entities
 from menus.use_cases import request
 
 import tui
 
 
 def register(
-    clinic: Clinic,
+    clinic: entities.Clinic,
     suppress_warnings: bool = False,
     date: str = "",
 ):
@@ -38,27 +37,28 @@ def register(
 
     # ============= Verifica registro da sessão =============
 
-    if not date:
-        date = request.session_date()
+    session = find_session(clinic, date)
 
-    session = clinic.session_by_date(date)
-
-    if session and suppress_warnings:
-        return
-
-    if session:
+    if session and not suppress_warnings:
         tui.warn("Sessão já foi registrada!")
         return
 
     # ============= Registro da sessão =============
 
     session = register_session(clinic, date)
-    tui.info(f"Sessão registrada na data {session.date}")
+    tui.info(f"Sessão registrada na data {date}")
 
 
-def register_session(clinic: Clinic, date: str) -> Session:
+def find_session(clinic: entities.Clinic, date: str = "") -> entities.Session:
+    """Procura sessão de acordo com ``date``"""
+    if not date:
+        date = request.session_date()
+    return clinic.session_by_date()
+
+def register_session(clinic: entities.Clinic, date: str) -> entities.Session:
+    """Registra em ``clinic`` uma sessão na data ``date``"""
     new_id: int = clinic.new_session_id()
-    session: Session = Session(uid=new_id, date=date)
+    session = entities.Session(uid=new_id, date=date)
 
     clinic.sessions.append(session)
     clinic.last_session_id = new_id
