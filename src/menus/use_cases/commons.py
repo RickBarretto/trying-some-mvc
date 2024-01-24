@@ -2,7 +2,7 @@ import entities
 from menus.use_cases import request, propose, warnings
 
 
-def get_patient_use_case(clinic: entities.Clinic) -> entities.Patient | None:
+def get_patient(clinic: entities.Clinic) -> entities.Patient | None:
     """Retorna um paciente
     
     Questions
