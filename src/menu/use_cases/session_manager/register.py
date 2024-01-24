@@ -3,6 +3,7 @@ from menu.use_cases import current_session_manager
 from menu.use_cases.commons import request
 import tui
 
+__all__ = ["register"]
 
 def register(clinic: entity.Clinic, date: str = ""):
     """Registra uma nova sessão no banco de dados.
