@@ -14,7 +14,7 @@ def bullet_list(title: str, items: list[str], additional_margin: int = 0):
     items: list[str]
         Os elementos a serem impressos
     additional_maring: int = 0
-        Margem adicional, caso necessário. 
+        Margem adicional, caso necessário.
         Útil quando há quebra de linhas.
 
     Example
@@ -59,7 +59,7 @@ def add_bullets(
     additional_margin: int = 0,
 ) -> list[str]:
     """Adiciona os bullet points no conteúdo.
-    
+
     Arguments
     ---------
     content: list[str]
@@ -88,9 +88,11 @@ def add_bullets(
     return result
 
 
-def break_line(content: str, max_length: int = 20, additional_margin: int = 0) -> list[str]:
+def break_line(
+    content: str, max_length: int = 20, additional_margin: int = 0
+) -> list[str]:
     """Algoritmo que quebra a linha por espaços em branco.
-    
+
     Arguments
     ---------
     content: str

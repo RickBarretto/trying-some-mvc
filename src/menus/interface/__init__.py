@@ -5,21 +5,26 @@ import tui
 
 # ============= Definição de protocolos =============
 
+
 class Model(Protocol):
     """Apenas um placeholder para a tipagem."""
+
     pass
 
 
 class MenuOption(Protocol):
     """Apenas um placeholder para a tipagem"""
+
     def __call__(clinic: entities.Clinic, *args, **kwargs):
         pass
 
+
 # ============= Definição de função default =============
+
 
 def default_status(model: Model) -> str:
     """Retorna uma string vazia.
-    
+
     Suprimi a impressão do status no menu por padrão.
     """
     return ""
@@ -27,27 +32,26 @@ def default_status(model: Model) -> str:
 
 # ============= Definição de função principal =============
 
+
 def main_menu_loop(
-        model: Model,
-        options: list[tuple[str, MenuOption]],
-        status_func: Callable[[Model], str] = default_status,
-    ) -> None:
-    
+    model: Model,
+    options: list[tuple[str, MenuOption]],
+    status_func: Callable[[Model], str] = default_status,
+) -> None:
     # Filtro de informações
 
-    use_cases = [use_case for _, use_case in options] # As ações do menu
-    descriptions = [desc for desc, _ in options] # As descrições de cada ação
-    
+    use_cases = [use_case for _, use_case in options]  # As ações do menu
+    descriptions = [desc for desc, _ in options]  # As descrições de cada ação
+
     # Adiciona a descrição para a ação virtual 'sair'
     descriptions.append("Sair")
 
     # Declarações de constantes de escolha
 
     QUIT_OPTION = len(options) + 1  # Índice da ação virtual de 'sair'
-    INVALID_CHOICE = -1 # Caso a escolha seja inválida
+    INVALID_CHOICE = -1  # Caso a escolha seja inválida
 
     while True:
-
         # Validação da entrada do usuário
         try:
             user_choice = tui.choice(descriptions, status_func(model))

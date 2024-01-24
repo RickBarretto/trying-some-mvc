@@ -25,7 +25,7 @@ class Screen:
     @property
     def inner_width(self) -> int:
         """Retorna a largura interna da tela.
-        
+
         Isto é, removendo o tamanho das bordas.
         """
         return self.width - 2
@@ -33,7 +33,7 @@ class Screen:
     @property
     def inner_height(self) -> int:
         """Retorna a altura interna da tela.
-        
+
         Isto é, removendo o tamanho das bordas.
         """
         return self.height - 2
@@ -52,10 +52,10 @@ class Screen:
 
     def render_rule(self, width: int | None = None, position: int = 0):
         """Renderiza uma linha horizontal
-        
+
         width: int | None = None
-            O tamanho total da largura. 
-            Se nada for passado, será usado a 
+            O tamanho total da largura.
+            Se nada for passado, será usado a
             largura atual do terminal do usuário.
 
         position: int = 0
@@ -69,13 +69,13 @@ class Screen:
         ``position`` deve estar entre 0 e 2.
         """
         assert 0 <= position <= 2
-        
+
         width = width - 2 if width is not None else self.inner_width
         render_rule(width, position)
 
     def render_content(self, content: list[str], center: bool = False):
         """Renderiza o conteúdo em si.
-        
+
         Arguments
         ---------
         content: list[str]
@@ -89,23 +89,23 @@ class Screen:
         self, content_height: int | None = None, fixed_height: int | None = None
     ):
         """Renderiza um espaço vertical.
-        
+
         Arguments
         ---------
         content_height: int | None = None
-            Refere-se à altura total do conteúdo, 
+            Refere-se à altura total do conteúdo,
             o que implica que o espaço renderizado será o equivalente
             ao necessário para centralizá-lo verticalmente na tela.
 
         fixed_height: int | None = None
-            Refere-se à quantidade fixa de linhas em branco 
+            Refere-se à quantidade fixa de linhas em branco
             que serão impressas.
 
         Notes
         -----
         Em certos casos, convém chamar essa função duas vezes.
         Uma antes e outra após a renderização do conteúdo.
-            
+
         Assertions
         ----------
         ``content_height`` e ``height`` devem ser passados como argumentos,
@@ -115,14 +115,18 @@ class Screen:
         assert content_height or fixed_height
         assert not (content_height and fixed_height)
 
-        spaces = fixed_height if fixed_height is not None else self.vertical_align(content_height)
+        spaces = (
+            fixed_height
+            if fixed_height is not None
+            else self.vertical_align(content_height)
+        )
         render_vertical_space(self.inner_width, spaces)
 
     def render_full_screen(
         self, content: list[str], status_bar: str = "", center: bool = False
     ):
         """Renderiza em tela cheia.
-        
+
         Arguments
         ---------
         content: list[str]
@@ -142,12 +146,12 @@ class Screen:
             render_default_content(f"{status_bar:>{self.inner_width}}")
         self.render_vertical_space(content_height=vertical_space)
         self.render_content(content, center)
-        self.render_vertical_space(content_height=content_height)        
+        self.render_vertical_space(content_height=content_height)
         self.render_rule(position=2)
 
     def wait(self):
         """Espera por uma resposta do usuário.
-        
+
         Impede que a tela seja atualizada logo em seguida, após chamada.
         """
         _ = input(">>> ")

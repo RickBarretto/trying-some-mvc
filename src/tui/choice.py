@@ -10,7 +10,7 @@ def choice(options: list[str], status_bar: str = "") -> int:
 
     Example
     -------
-    >>> choice(["Opção 1", "Opção 2", "Opção 3", "Opção 4"], 
+    >>> choice(["Opção 1", "Opção 2", "Opção 3", "Opção 4"],
     ...     status_bar = "Running Menu")
     +-------------------------------------------------------+
     |                                         Running Menu  |
@@ -44,7 +44,7 @@ def choice(options: list[str], status_bar: str = "") -> int:
         Arguments
         ---------
         stop_index: int
-            O valor máximo que pode ser escolhido pelo usuário. 
+            O valor máximo que pode ser escolhido pelo usuário.
 
         Raises
         ------

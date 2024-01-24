@@ -51,7 +51,7 @@ def render_default_content(content: str):
 
 def render_content(content: str, inner_width: int, center: bool = False):
     """Renderiza o conteúdo alinhando-o.
-    
+
     Arguments
     ---------
     content: str
@@ -81,7 +81,7 @@ def left_align_width() -> int:
 
 def render_vertical_space(inner_width: int, height: int):
     """Renderiza um espaço vertical.
-    
+
     Arguments
     ---------
     inner_width: int
