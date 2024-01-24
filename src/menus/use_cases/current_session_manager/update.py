@@ -13,7 +13,12 @@ def update(clinic: entities.Clinic):
 
     Feedbacks
     ---------
-    * Sessão atual atualizada
+    Sessão atual atualizada
+
+    Warnings                        Proposes
+    --------                        --------
+    Retornando à mesma sessão
+    Sessão não finalizada           Finalizar sessão atual
 
     """
 
@@ -24,13 +29,17 @@ def update(clinic: entities.Clinic):
     session = clinic.session_by_date(date)
 
     # ============= Warnings =============
+    
+    is_same_current_session = clinic.current_session == session
 
-    if clinic.current_session == session:
+    if is_same_current_session:
         warn_returning_to_the_same_session()
         return
 
     if clinic.current_session:
-        if clinic.current_session.status != entities.SessionStatus.FINISHED:
+        has_been_finished = clinic.current_session.status != entities.SessionStatus.FINISHED
+
+        if has_been_finished:
             tui.warn(["A sessão atual não foi finalizada ainda!"])
 
             if not tui.proceed("Desejas finalizá-la?"):
@@ -40,12 +49,13 @@ def update(clinic: entities.Clinic):
             current_session_manager.finish(clinic, suppress_warnings=True)
 
     # ============= Atualiza sessão atual =============
+            
+    _update_current_session_to_date(clinic, date)
 
+
+def _update_current_session_to_date(clinic: entities.Clinic, date: str):
     session = clinic.session_by_date(date)
     clinic.current_session = session
-
-    # ============= Feedback =============
-
     tui.info(f"Sessão atual atualizada para o dia {session.date}!")
 
 
