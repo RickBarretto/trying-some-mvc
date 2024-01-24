@@ -4,6 +4,7 @@ from menu.use_cases.commons import condition, fetch, propose
 
 __all__ = ["send_to_waiting_queue"]
 
+
 def send_to_waiting_queue(clinic: entity.Clinic, patient: entity.Patient | None = None):
     """Envia um paciente para a fila de espera.
 

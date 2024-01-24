@@ -4,6 +4,7 @@ import tui
 
 __all__ = ["register"]
 
+
 def register(clinic: entity.Clinic, patient_cpf: str | None = None):
     """Registra paciente no banco de dados.
 

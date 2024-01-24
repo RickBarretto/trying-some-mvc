@@ -4,6 +4,7 @@ import tui
 
 __all__ = ["book_schedule"]
 
+
 def book_schedule(
     clinic: entity.Clinic,
     patient: entity.Patient | None = None,

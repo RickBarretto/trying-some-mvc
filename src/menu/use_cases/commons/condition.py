@@ -14,6 +14,7 @@ import tui
 
 __all__ = ["has_active_current_session_or_activate_it", "has_patient_being_attended"]
 
+
 def has_active_current_session_or_activate_it(clinic: entity.Clinic) -> bool:
     """Retorna se a sessão atual está ativa ou não, ou propõe a ativar.
 

@@ -5,6 +5,7 @@ import tui
 
 __all__ = ["register"]
 
+
 def register(clinic: entity.Clinic, date: str = ""):
     """Registra uma nova sessão no banco de dados.
 

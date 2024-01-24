@@ -3,7 +3,14 @@
 from entity.session import Session
 import tui
 
-__all__ = ["patient_not_registered", "session_not_registered", "session_has_already_started", "session_has_never_started", "session_has_already_been_finished"]
+__all__ = [
+    "patient_not_registered",
+    "session_not_registered",
+    "session_has_already_started",
+    "session_has_never_started",
+    "session_has_already_been_finished",
+]
+
 
 def patient_not_registered(patient_cpf: str):
     """Avisa que paciente não está registrado."""

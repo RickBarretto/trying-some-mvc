@@ -5,6 +5,7 @@ import tui
 
 __all__ = ["update"]
 
+
 def update(clinic: entity.Clinic, first_time: bool = False):
     """Atualiza a sessão atual.
 

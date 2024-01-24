@@ -4,6 +4,7 @@ from menu.use_cases.commons import fetch
 
 __all__ = ["list_bookings"]
 
+
 def list_bookings(clinic: entity.Clinic):
     """Lista os agendamentos de um paciente.
 

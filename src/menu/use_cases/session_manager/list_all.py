@@ -3,6 +3,7 @@ import tui
 
 __all__ = ["list_all"]
 
+
 def list_all(clinic: entity.Clinic):
     """Lista todas as sessões registradas na clínica.
 

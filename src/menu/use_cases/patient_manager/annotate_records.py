@@ -4,6 +4,7 @@ import tui
 
 __all__ = ["annotate_medical_records"]
 
+
 def annotate_medical_records(clinic: entity.Clinic):
     """Faz anotação no prontuário do paciente atual.
 

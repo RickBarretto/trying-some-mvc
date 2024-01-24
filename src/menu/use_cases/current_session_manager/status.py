@@ -4,6 +4,7 @@ import tui
 
 __all__ = ["start", "finish"]
 
+
 def start(clinic: entity.Clinic):
     """Inicia a sessão atual.
 

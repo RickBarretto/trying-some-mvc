@@ -4,7 +4,13 @@ import entity
 from menu.use_cases import current_session_manager, patient_manager, session_manager
 import tui
 
-__all__ = ["send_patient_to_waiting_queue", "start_current_session", "register_patient", "book_session", "register_session"]
+__all__ = [
+    "send_patient_to_waiting_queue",
+    "start_current_session",
+    "register_patient",
+    "book_session",
+    "register_session",
+]
 
 # ============= Gerencia sessão atual =============
 
