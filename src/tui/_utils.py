@@ -27,7 +27,13 @@ def render_rule(inner_width: int, position: int = 0):
         0: para topo
         1: para meio
         2: para baixo
+
+    Assertions
+    ----------
+    ``position`` deve estar entre 0 e 2
     """
+    assert 0 <= position <= 2
+
     dash = "─"  # unicode: 2500
     corners = {
         0: ("╭", "╮"),  # unicode: (256D, 256E)
