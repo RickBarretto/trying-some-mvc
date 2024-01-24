@@ -28,25 +28,15 @@ def book_schedule(
 
     """
 
-    # ============= Verifica registro do paciente =============
+    # ============= Verifica registro do paciente e sessão =============
 
     if not patient:
         patient = commons.get_patient(clinic)
 
-    # ============= Verifica registro da sessão =============
-
     if not session:
-        session_date = request.session_date()
-        session = clinic.session_by_date(session_date)
+        session = commons.get_sesssion(clinic)
 
-    if not session:
-        warnings.session_not_registered(session_date)
-        if propose.register_session(clinic, session_date):
-            return
-
-        session = clinic.session_by_date(session_date)
-
-    # ============= Agenda paciente + Feedback  =============
+    # ============= Agenda paciente  =============
 
     if session.uid in patient.scheduled_sessions:
         warn_already_scheduled(patient, session)
