@@ -14,9 +14,10 @@ def check_current_booking(clinic: entities.Clinic):
     ---------
     * Status do agendamento
 
-    Warnings
-    --------
-    * Paciente não registrado   : Propõe o registrar.
+    Warnings                    Proposes
+    --------                    --------
+    CPF inválido
+    Paciente não registrado     Registrar paciente
 
     """
 
