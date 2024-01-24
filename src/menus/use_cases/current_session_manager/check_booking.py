@@ -25,7 +25,7 @@ def check_current_booking(clinic: entities.Clinic):
 
     # ============= Verificação do paciente no banco de dados =============
 
-    if not (patient := commons.get_patient(clinic)):
+    if not (patient := commons.get_patient_or_register(clinic)):
         return
 
     # ============= Verificação do agendamento =============

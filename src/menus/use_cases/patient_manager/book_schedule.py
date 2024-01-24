@@ -31,10 +31,10 @@ def book_schedule(
     # ============= Verifica registro do paciente e sessão =============
 
     if not patient:
-        patient = commons.get_patient(clinic)
+        patient = commons.get_patient_or_register(clinic)
 
     if not session:
-        session = commons.get_sesssion(clinic)
+        session = commons.get_sesssion_or_register(clinic)
 
     # ============= Agenda paciente  =============
 

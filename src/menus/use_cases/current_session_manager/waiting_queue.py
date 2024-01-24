@@ -36,7 +36,7 @@ def send_to_waiting_queue(
     # ============= Pega input do usuário =============
 
     if not patient:
-        patient = commons.get_patient(clinic)
+        patient = commons.get_patient_or_register(clinic)
 
     # ============= Verifica agendamento do paciente =============
 

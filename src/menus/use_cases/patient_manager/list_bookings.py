@@ -24,7 +24,7 @@ def list_bookings(clinic: entities.Clinic):
 
     # ============= Verifica registro do paciente =============
 
-    if not (patient := commons.get_patient(clinic)):
+    if not (patient := commons.get_patient_or_register(clinic)):
         return
 
     # ============= Lista agendamentos =============

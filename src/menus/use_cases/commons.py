@@ -2,7 +2,7 @@ import entities
 from menus.use_cases import request, propose, warnings
 
 
-def get_patient(clinic: entities.Clinic) -> entities.Patient | None:
+def get_patient_or_register(clinic: entities.Clinic) -> entities.Patient | None:
     """Retorna um paciente
     
     Questions
@@ -25,7 +25,7 @@ def get_patient(clinic: entities.Clinic) -> entities.Patient | None:
     return clinic.patient_by_cpf(cpf)
 
 
-def get_sesssion(clinic: entities.Clinic) -> entities.Clinic | None:
+def get_sesssion_or_register(clinic: entities.Clinic) -> entities.Clinic | None:
     """Retorna um paciente
     
     Questions
