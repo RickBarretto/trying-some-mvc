@@ -36,7 +36,8 @@ def send_to_waiting_queue(
     # ============= Pega input do usuário =============
 
     if not patient:
-        patient = fetch.patient_or_register(clinic)
+        if not (patient := fetch.patient_or_register(clinic)):
+            return
 
     # ============= Verifica agendamento do paciente =============
 

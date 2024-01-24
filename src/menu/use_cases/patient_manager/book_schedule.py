@@ -31,10 +31,12 @@ def book_schedule(
     # ============= Verifica registro do paciente e sessão =============
 
     if not patient:
-        patient = fetch.patient_or_register(clinic)
+        if not (patient := fetch.patient_or_register(clinic)):
+            return
 
     if not session:
-        session = fetch.sesssion_or_register(clinic)
+        if (session := fetch.sesssion_or_register(clinic)):
+            return
 
     # ============= Agenda paciente  =============
 

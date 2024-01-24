@@ -1,11 +1,12 @@
 import entity
+from menu.use_cases import current_session_manager
 from menu.use_cases.commons import request
 import tui
 
 
 def register(
     clinic: entity.Clinic,
-    date: str = "",
+    date: str = ""
 ):
     """Registra uma nova sessão no banco de dados.
 

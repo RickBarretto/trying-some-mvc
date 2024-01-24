@@ -1,10 +1,10 @@
 import entity
-from menu.use_cases import current_session_manager, session_manager, request
+from menu.use_cases import current_session_manager, session_manager
 from menu.use_cases.commons import request
 import tui
 
 
-def update(clinic: entity.Clinic):
+def update(clinic: entity.Clinic, first_time: bool = False):
     """Atualiza a sessão atual.
 
     Note
@@ -32,11 +32,11 @@ def update(clinic: entity.Clinic):
     
     is_same_current_session = clinic.current_session == session
 
-    if is_same_current_session:
+    if is_same_current_session and not first_time:
         warn_returning_to_the_same_session()
         return
 
-    if clinic.current_session:
+    if clinic.current_session and not first_time:
         has_been_finished = clinic.current_session.status != entity.SessionStatus.FINISHED
 
         if has_been_finished:
