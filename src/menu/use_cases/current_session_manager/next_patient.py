@@ -62,6 +62,7 @@ def attend_next_patient(clinic: entity.Clinic):
 
     if not clinic.waiting_queue:
         _warn_empty_queue()
+        clinic.current_patient = None
         return
     
     # ============= Atende próximo paciente =============
