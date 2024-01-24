@@ -2,6 +2,10 @@
 
 Algumas dessas condições incluem propostas ao usuário para contornar
 o problema lidado.
+
+See Also
+--------
+``menus.use_cases.proposes`` para mais informações dessas propostas.
 """
 
 from entities.clinic import Clinic
