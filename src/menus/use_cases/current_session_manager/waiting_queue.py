@@ -1,6 +1,6 @@
 import entities
 import tui
-from menus.use_cases import propose, request, warnings
+from menus.use_cases import commons, propose, warnings
 
 
 def send_to_waiting_queue(
@@ -56,11 +56,12 @@ def send_to_waiting_queue(
         return
 
     # ============= Põe paciente na fila =============
+    _send_patient_to_queue(clinic, patient)
 
+
+def _send_patient_to_queue(clinic: entities.Clinic, patient: entities.Patien):
     clinic.waiting_queue.append(patient.uid)
-
-    # ============= Feedback =============
-
+    
     message = [
         f"{patient.name} colocado na fila de espera",
         f"O mesmo se encontra na posição {len(clinic.waiting_queue)}.",
