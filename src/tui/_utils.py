@@ -50,7 +50,7 @@ def render_default_content(content: str):
     print(vertical_bar, content, vertical_bar, sep="")
 
 
-def render_content(content: str, width: int, center: bool = False):
+def render_content(content: list[str], width: int, center: bool = False):
     """Renderiza o conteúdo alinhando-o.
 
     Arguments
@@ -93,3 +93,52 @@ def render_vertical_space(width: int, height: int):
     for _ in range(height - 1):
         # Imprime "|        <espaço em branco>      |"
         render_default_content(" " * (width - 2))
+
+
+def normalize_lines(content: list[str], max_length: int) -> list[str]:
+    """Quebra as linhas do conteúdo para encaixar em ``max_length``."""
+    result = []
+
+    for item in content:
+        lines: list[str] = break_line(item, max_length)
+        result += lines
+
+    return result
+
+
+def break_line(
+    content: str, max_length: int = 20, additional_margin: int = 0
+) -> list[str]:
+    """Algoritmo que quebra a linha por espaços em branco.
+
+    Arguments
+    ---------
+    content: str
+        O item
+    max_length: int = 20
+        O tamanho máximo que a string pode possuir
+    additional_margin: int = 0
+        Margem adicional da linha.
+    """
+    result = []
+
+    line_start = 0
+    last_whitespace = 0
+    secondary_lines_max = max_length - additional_margin
+
+    for i, el in enumerate(content):
+        is_whitespace = el == " "
+        reached_line_limit = (i - line_start) >= max_length
+ 
+
+        if is_whitespace:
+            last_whitespace = i
+
+        if is_whitespace and reached_line_limit:
+            result.append(content[line_start:last_whitespace])
+            line_start = i + 1
+            max_length = secondary_lines_max
+
+    result.append(content[line_start:])
+
+    return result

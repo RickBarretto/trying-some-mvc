@@ -1,4 +1,5 @@
 from tui._screen import Screen
+from tui._utils import normalize_lines
 
 
 def info(content: str | list[str] | Exception) -> None:
@@ -62,6 +63,8 @@ def _hint(symbol: str, content: str | list[str] | Exception) -> None:
 
     # Adiciona mensagem para continuar ao fim
     content += ["", "Pressione [Enter] para continuar"]
+
+    content = normalize_lines(content, screen.width - 4)
 
     # Renderiza a tela e espera por entrada.
     screen.render_full_screen(content, center=True)

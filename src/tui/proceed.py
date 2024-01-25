@@ -1,4 +1,5 @@
 from ._screen import Screen
+from ._utils import normalize_lines
 
 
 def proceed(question: list[str] | str) -> bool:
@@ -23,6 +24,8 @@ def proceed(question: list[str] | str) -> bool:
     if isinstance(question, str):
         question = [question]
 
+    screen = Screen()
+
     cancel_message = "[Enter] Cancelar"
     confirm_message = "[S] Sim"
     max_side_size = max(len(cancel_message), len(confirm_message))
@@ -32,7 +35,7 @@ def proceed(question: list[str] | str) -> bool:
         f"{confirm_message:<{max_side_size}} | {cancel_message:>{max_side_size}}",
     ]
 
-    screen = Screen()
+    question = normalize_lines(question, screen.width - 4)
     screen.render_full_screen(question, center=True)
 
     return answer()

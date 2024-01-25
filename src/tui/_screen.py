@@ -5,7 +5,7 @@ from tui._utils import (
     render_content,
     render_rule,
     render_vertical_space,
-    render_default_content,
+    render_default_content
 )
 
 

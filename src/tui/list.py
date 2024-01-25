@@ -1,5 +1,5 @@
 from tui._screen import Screen
-from tui._utils import left_align_width
+from tui._utils import left_align_width, break_line
 
 __all__ = ["bullet_list"]
 
@@ -84,43 +84,5 @@ def add_bullets(
             lines[i] = align_prefix + lines[i]
 
         result += lines
-
-    return result
-
-
-def break_line(
-    content: str, max_length: int = 20, additional_margin: int = 0
-) -> list[str]:
-    """Algoritmo que quebra a linha por espaços em branco.
-
-    Arguments
-    ---------
-    content: str
-        O item
-    max_length: int = 20
-        O tamanho máximo que a string pode possuir
-    additional_margin: int = 0
-        Margem adicional da linha.
-    """
-    result = []
-
-    line_start = 0
-    last_whitespace = 0
-    secondary_lines_max = max_length - additional_margin
-
-    for i, el in enumerate(content):
-        is_whitespace = el == " "
-        reached_line_limit = (i - line_start) >= max_length
- 
-
-        if is_whitespace:
-            last_whitespace = i
-
-        if is_whitespace and reached_line_limit:
-            result.append(content[line_start:last_whitespace])
-            line_start = i + 1
-            max_length = secondary_lines_max
-
-    result.append(content[line_start:])
 
     return result
