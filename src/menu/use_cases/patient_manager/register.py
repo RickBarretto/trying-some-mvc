@@ -21,8 +21,7 @@ def register(clinic: entity.Clinic, patient_cpf: str | None = None):
     Warnings
     --------
     Formato de CPF inválido
-    TODO: Nome não deve conter números ou símbolos
-    TODO: Nome deve conter pelo menos nome e sobrenome
+    Formato de nome inválido
     Paciente já registrado
 
     """
@@ -38,7 +37,7 @@ def register(clinic: entity.Clinic, patient_cpf: str | None = None):
 
     # ============= Adiciona dados extras =============
 
-    patient_name: str = tui.prompt("Insira o nome do paciente.")
+    patient_name: str = request.patient_name()
     extra_information: str = tui.multiline("Insira informações extra.")
 
     # ============= Registra paciente =============

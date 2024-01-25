@@ -18,6 +18,7 @@ def prompt(ask: str, suggestion: str = "") -> str:
     """
 
     content = [ask]
+    content.append("")
     content.append(suggestion)
 
     screen = Screen()
