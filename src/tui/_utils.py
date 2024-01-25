@@ -1,6 +1,23 @@
 import os
 
 
+# ============= Funções de alinhamento =============
+
+
+def terminal_size() -> tuple[int, int]:
+    """Retorna o tamanho do terminal em formato de ``tuple[int, int]``"""
+    size = os.get_terminal_size()
+    return size.columns, size.lines
+
+
+def left_align_width() -> int:
+    """Retorna o espaço necessário para a margem esquerda."""
+    return int(os.get_terminal_size().columns * 0.2)
+
+
+# ============= Funções de impressão de conteúdo =============
+
+
 def clear_screen():
     """Limpa a tela do usuário.
 
@@ -11,12 +28,6 @@ def clear_screen():
             os.system("cls")
         case _:
             os.system("clear")
-
-
-def terminal_size() -> tuple[int, int]:
-    """Retorna o tamanho do terminal em formato de ``tuple[int, int]``"""
-    size = os.get_terminal_size()
-    return size.columns, size.lines
 
 
 def render_rule(width: int, position: int = 0):
@@ -75,11 +86,6 @@ def render_content(content: list[str], width: int, center: bool = False):
         render_default_content(f"{prefix}{line:{pos}{width - 2 - tab}}")
 
 
-def left_align_width() -> int:
-    """Retorna o espaço necessário para a margem esquerda."""
-    return int(os.get_terminal_size().columns * 0.2)
-
-
 def render_vertical_space(width: int, height: int):
     """Renderiza um espaço vertical.
 
@@ -93,6 +99,9 @@ def render_vertical_space(width: int, height: int):
     for _ in range(height - 1):
         # Imprime "|        <espaço em branco>      |"
         render_default_content(" " * (width - 2))
+
+
+# ============= Funções de manipulação de dados =============
 
 
 def normalize_lines(content: list[str], max_length: int) -> list[str]:
@@ -129,7 +138,6 @@ def break_line(
     for i, el in enumerate(content):
         is_whitespace = el == " "
         reached_line_limit = (i - line_start) >= max_length
- 
 
         if is_whitespace:
             last_whitespace = i

@@ -79,8 +79,8 @@ def add_bullets(
 
     for item in content:
         lines: list[str] = break_line(item, max_length, additional_margin)
-        lines[0] = bullet_prefix + lines[0]
-        for i in range(1, len(lines)):
+        lines[0] = bullet_prefix + lines[0]  # Adiciona o prefixo
+        for i in range(1, len(lines)):  # Alinha o conteúdo
             lines[i] = align_prefix + lines[i]
 
         result += lines

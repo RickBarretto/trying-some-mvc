@@ -23,7 +23,9 @@ def patient_name() -> str:
     """Pede ao usuário um nome válido para o paciente"""
     question = "Insira o Nome do paciente:"
     name_format = "Nome Sobrenome"
-    suggestion = "Deve constar nome e sobrenome, sem símbolos, sem números e até 40 caracteres."
+    suggestion = (
+        "Deve constar nome e sobrenome, sem símbolos, sem números e até 40 caracteres."
+    )
     warning = "Nome inválido!"
 
     return _request(question, suggestion, warning, name_format, _is_valid_name)
@@ -117,11 +119,9 @@ def _is_valid_name(entry: str) -> bool:
     has_only_alpha_characters = entry.replace(" ", "").isalpha()
     has_less_than_41_characters = len(entry) < 41
 
-    return all((
-        has_name_and_surname,
-        has_only_alpha_characters,
-        has_less_than_41_characters
-    ))
+    return all(
+        (has_name_and_surname, has_only_alpha_characters, has_less_than_41_characters)
+    )
 
 
 # ============= Função interna =============
