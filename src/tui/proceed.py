@@ -28,11 +28,10 @@ def proceed(question: list[str] | str) -> bool:
 
     cancel_message = "[Enter] Cancelar"
     confirm_message = "[S] Sim"
-    max_side_size = max(len(cancel_message), len(confirm_message))
 
     question += [
         "",
-        f"{confirm_message:<{max_side_size}} | {cancel_message:>{max_side_size}}",
+        f"{confirm_message} | {cancel_message}",
     ]
 
     question = normalize_lines(question, screen.width - 4)
