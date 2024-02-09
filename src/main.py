@@ -17,7 +17,7 @@ Entity
 e suas entidades: ``Clinic``, ``Patient``s, ``Session``s.
 
 Essas entidades possuem pouca ou nenhuma lógica e foram feitas para serem
-manipuladas pelas funções do ``menu``.
+manipuladas pelas funções do ``app``.
 
 TUI
 ===
