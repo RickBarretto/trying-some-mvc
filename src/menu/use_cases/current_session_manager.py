@@ -13,6 +13,7 @@ __all__ = [
     "update",
 ]
 
+
 def start(clinic: entity.Clinic):
     """Inicia a sessão atual.
 
@@ -44,6 +45,7 @@ def start(clinic: entity.Clinic):
     # ============= Ativa sessão atual =============
 
     _start_current_session(clinic)
+
 
 def update(clinic: entity.Clinic, first_time: bool = False):
     """Atualiza a sessão atual.
@@ -97,6 +99,7 @@ def update(clinic: entity.Clinic, first_time: bool = False):
         session_manager.register(clinic, date=date)
 
     _update_current_session_to_date(clinic, date)
+
 
 def finish(clinic: entity.Clinic, suppress_warnings: bool = False):
     """Finaliza a sessão atual.
@@ -198,7 +201,6 @@ def attend_next_patient(clinic: entity.Clinic):
     _attend_next_patient(clinic)
 
 
-
 def send_to_waiting_queue(clinic: entity.Clinic, patient: entity.Patient | None = None):
     """Envia um paciente para a fila de espera.
 
@@ -293,6 +295,7 @@ def check_current_booking(clinic: entity.Clinic):
 
 # ============= Funções auxiliares =============
 
+
 def _attend_next_patient(clinic: entity.Clinic):
     """Atende próximo paciente
 
@@ -303,14 +306,28 @@ def _attend_next_patient(clinic: entity.Clinic):
     tui.info(["Paciente atual:", str(clinic.current_patient)])
 
 
+def _finish_current_session(clinic: entity.Clinic):
+    """Finaliza a sessão atual"""
+    clinic.current_session.status = entity.SessionStatus.FINISHED
+    tui.info(f"Sessão {clinic.current_session.date} finalizada!")
+
+
+def _send_patient_to_queue(clinic: entity.Clinic, patient: entity.Patient):
+    clinic.waiting_queue.append(patient.uid)
+
+    message = [
+        f"{patient.name} colocado na fila de espera",
+        f"O mesmo se encontra na posição {len(clinic.waiting_queue)}.",
+    ]
+
+    tui.info(message)
+
+
 def _show_checking_feedback(patient: entity.Patient, is_booked: bool):
     message_start = patient.name + " " + ("" if is_booked else "não")
     message_end = "está marcado para a sessão atual"
 
     tui.info(f"{message_start} {message_end}")
-
-def _warn_empty_queue():
-    tui.warn("Não há pacientes na fila de espera.")
 
 
 def _show_next_patient(clinic: entity.Clinic) -> entity.Patient:
@@ -326,15 +343,11 @@ def _show_next_patient(clinic: entity.Clinic) -> entity.Patient:
     patient = clinic.patient_by_id(next_patient_id)
     tui.info(["Próximo paciente:", str(patient)])
 
+
 def _start_current_session(clinic: entity.Clinic):
     clinic.current_session.status = entity.SessionStatus.BEGUN
     tui.info(f"Sessão {clinic.current_session.date} iniciada!")
 
-
-def _finish_current_session(clinic: entity.Clinic):
-    """Finaliza a sessão atual"""
-    clinic.current_session.status = entity.SessionStatus.FINISHED
-    tui.info(f"Sessão {clinic.current_session.date} finalizada!")
 
 def _update_current_session_to_date(clinic: entity.Clinic, date: str):
     session = clinic.session_by_date(date)
@@ -342,15 +355,9 @@ def _update_current_session_to_date(clinic: entity.Clinic, date: str):
     tui.info(f"Sessão atual atualizada para o dia {session.date}!")
 
 
+def _warn_empty_queue():
+    tui.warn("Não há pacientes na fila de espera.")
+
+
 def _warn_returning_to_the_same_session():
     tui.warn(["Retornando à mesma sessão!", "Operação cancelada!"])
-
-def _send_patient_to_queue(clinic: entity.Clinic, patient: entity.Patient):
-    clinic.waiting_queue.append(patient.uid)
-
-    message = [
-        f"{patient.name} colocado na fila de espera",
-        f"O mesmo se encontra na posição {len(clinic.waiting_queue)}.",
-    ]
-
-    tui.info(message)
