@@ -62,9 +62,9 @@ para uma experiência mais fluida do usuário.
 """
 
 import entity
-from app import start_application
+from app import start
 
 
 if __name__ == "__main__":
     clinic_singleton = entity.Clinic()
-    start_application(clinic_singleton)
+    start(clinic_singleton)

@@ -7,12 +7,12 @@ from . import dentist, reception, use_cases
 from .menu import menu_loop
 from .use_cases import current_session_manager
 
-__all__ = ["start_application", "dentist", "reception", "use_cases"]
+__all__ = ["start", "dentist", "reception", "use_cases"]
 
 # ============= Menu Inicial =============
 
 
-def start_application(clinic: entity.Clinic):
+def start(clinic: entity.Clinic):
     """Menu inicial da aplicação.
 
     Esse menu é apresentado uma única vez ao usuário,
