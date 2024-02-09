@@ -34,7 +34,7 @@ APP
 negociar com os pacotes de ``Entity`` e ``TUI``.
 
 Esse pacote é o maior e mais complexo, e é dividido entre alguns módulos
-e um subpacote chamado de ``menu.use_cases``.
+e um subpacote chamado de ``app.use_cases``.
 
 Dentre seus módulos, temos ``app.dentist``, ``app.reception``
 que definem a implementação dos menus de aplicação, dentista e recepção, 
