@@ -62,7 +62,7 @@ para uma experiência mais fluida do usuário.
 """
 
 import entity
-from menu.application import start_application
+from app import start_application
 
 
 if __name__ == "__main__":

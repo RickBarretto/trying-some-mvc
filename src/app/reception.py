@@ -2,7 +2,7 @@
 
 
 from entity.clinic import Clinic
-import menu
+import app
 
 from .use_cases import current_session_manager
 from .use_cases import patient_manager
@@ -51,4 +51,4 @@ def current_session_status(clinic: Clinic) -> str:
 
 def start(clinic: Clinic):
     """Função responsável por iniciar o menu da recepção."""
-    menu.menu_loop(clinic, menu_options, status_func=current_session_status)
+    app.menu_loop(clinic, menu_options, status_func=current_session_status)

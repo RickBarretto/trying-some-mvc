@@ -1,12 +1,13 @@
 """Define os menus de início e principal da aplicação"""
 
 import entity
-import menu
 import tui
 
+from . import dentist, reception, use_cases
+from .menu import menu_loop
 from .use_cases import current_session_manager
 
-__all__ = ["start_application"]
+__all__ = ["start_application", "dentist", "reception", "use_cases"]
 
 # ============= Menu Inicial =============
 
@@ -52,10 +53,10 @@ def main_menu(clinic: entity.Clinic):
     """
 
     options = [
-        ("Iniciar como recepção", menu.reception.start),
-        ("Iniciar como dentista", menu.dentist.start),
+        ("Iniciar como recepção", reception.start),
+        ("Iniciar como dentista", dentist.start),
         ("Atualizar sessão atual", current_session_manager.update),
         ("Finalizar sessão atual", current_session_manager.finish),
     ]
 
-    menu.menu_loop(clinic, options)
+    menu_loop(clinic, options)

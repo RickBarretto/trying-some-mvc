@@ -1,5 +1,5 @@
 import entity
-from menu.use_cases.commons import condition, fetch, request
+from app.use_cases.commons import condition, fetch, request
 import tui
 
 __all__ = [

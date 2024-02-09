@@ -1,6 +1,6 @@
 import entity
-from menu.use_cases import session_manager
-from menu.use_cases.commons import condition, fetch, propose, request, warnings
+from app.use_cases import session_manager
+from app.use_cases.commons import condition, fetch, propose, request, warnings
 import tui
 
 __all__ = [
