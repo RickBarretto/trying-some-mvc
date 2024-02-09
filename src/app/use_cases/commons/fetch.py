@@ -1,5 +1,5 @@
 import entity
-from menu.use_cases.commons import request, propose, warnings
+from app.use_cases.commons import request, propose, warnings
 
 __all__ = ["patient_or_register", "sesssion_or_register"]
 

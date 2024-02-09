@@ -1,6 +1,6 @@
 import entity
 import tui
-from menu.use_cases.commons import propose, request
+from app.use_cases.commons import propose, request
 
 __all__ = ["find"]
 

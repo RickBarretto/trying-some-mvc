@@ -9,7 +9,7 @@ See Also
 """
 
 import entity
-from menu.use_cases.commons import propose, warnings
+from app.use_cases.commons import propose, warnings
 import tui
 
 __all__ = ["has_active_current_session_or_activate_it", "has_patient_being_attended"]
