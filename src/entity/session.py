@@ -46,6 +46,10 @@ class Session:
     uid: int
     date: str
     status: SessionStatus = SessionStatus.UNBEGUN
+    
+    def __post_init__(self):
+        # Salva os pacientes atendidos
+        self.attended: list[int] = []
 
     def __str__(self) -> str:
         """Converte a classe para uma string.

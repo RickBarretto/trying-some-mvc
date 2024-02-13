@@ -303,6 +303,8 @@ def _attend_next_patient(clinic: entity.Clinic):
     """
     patient_id = clinic.waiting_queue.pop(0)
     clinic.current_patient = clinic.patient_by_id(patient_id)
+    clinic.current_session.attended.append(patient_id)
+
     tui.info(["Paciente atual:", str(clinic.current_patient)])
 
 
