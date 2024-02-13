@@ -18,6 +18,7 @@ __all__ = ["start"]
 menu_options = [
     ("Registrar nova sessão", session_manager.register),
     ("Listar sessões registradas", session_manager.list_all),
+    ("Listar pacientes registrados", patient_manager.list_all),
     ("Procurar sessão por data", session_manager.find),
     ("Iniciar sessão atual", current_session_manager.start),
     ("Registrar novo paciente", patient_manager.register),
