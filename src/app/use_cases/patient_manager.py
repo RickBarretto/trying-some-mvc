@@ -5,6 +5,7 @@ import tui
 __all__ = [
     "annotate_medical_records",
     "book_schedule" "list_bookings",
+    "list_all",
     "read_first_medical_annotation",
     "read_full_medical_records",
     "read_last_medical_annotation",
@@ -167,6 +168,25 @@ def annotate_medical_records(clinic: entity.Clinic):
     # ============= Feedback =============
 
     tui.info("Anotação feita!")
+
+
+def list_all(clinic: entity.Clinic):
+    """Lista todos os pacientes registrados na clínica.
+
+    Feedbacks
+    ---------
+    Lista de pacientes
+    Se há ou não algum registrado
+    """
+
+    # ============= Lista sessões =============
+
+    data = (
+        [str(patient) for patient in clinic.patients]
+        if clinic.sessions
+        else ["Não há pacientes registrados."]
+    )
+    tui.bullet_list("Pacientes registrados:", data)
 
 
 def read_full_medical_records(clinic: entity.Clinic):
