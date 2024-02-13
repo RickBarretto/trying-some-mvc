@@ -94,6 +94,22 @@ def list_all(clinic: entity.Clinic):
 
 
 def list_consults(clinic: entity.Clinic):
+    """Lista todas as sessões registradas na clínica.
+
+    Questions
+    ---------
+    Data da sessão
+    
+    Feedbacks
+    ---------
+    Lista de consultas
+
+    Warnings
+    --------
+    Sessão nunca foi registrada
+    Sessão nunca foi iniciada
+    Nenhum paciente atendido para a sessão
+    """
     session_date: str = request.session_date()
     session = clinic.session_by_date(session_date)
 
