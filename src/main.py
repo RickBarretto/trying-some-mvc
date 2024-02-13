@@ -66,5 +66,5 @@ from app import start
 
 
 if __name__ == "__main__":
-    clinic_singleton = entity.Clinic()
-    start(clinic_singleton)
+    clinic = entity.Clinic()
+    start(clinic)
