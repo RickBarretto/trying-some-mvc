@@ -33,6 +33,7 @@ menu_options = [
         current_session_manager.send_to_waiting_queue,
     ),
     ("Mostrar próximo paciente", current_session_manager.show_next_patient),
+    ("Lista consultas de uma sessão", session_manager.list_consults)
 ]
 
 

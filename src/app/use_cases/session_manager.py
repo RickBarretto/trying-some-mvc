@@ -1,8 +1,9 @@
 import entity
 import tui
-from app.use_cases.commons import propose, request
+from app.use_cases.commons import propose, request, warnings
 
-__all__ = ["find"]
+
+__all__ = ["find", "list_all", "list_consults", "register"]
 
 
 def register(clinic: entity.Clinic, date: str = ""):
@@ -90,6 +91,35 @@ def list_all(clinic: entity.Clinic):
         else ["Não há sessões registradas."]
     )
     tui.bullet_list("Sessões registradas:", data)
+
+
+def list_consults(clinic: entity.Clinic):
+    session_date: str = request.session_date()
+    session = clinic.session_by_date(session_date)
+
+    if not session:
+        warnings.session_not_registered(session_date)
+        return
+    
+    if session.status == entity.SessionStatus.UNBEGUN:
+        warnings.session_has_never_started(session)
+        return
+
+    attended_patients = session.attended
+
+    if not attended_patients:
+        tui.warn(f"Nenhum paciente foi atendido para a sessão {session_date}")
+        return
+
+    tui.info(f"Consultas da sessão {session_date}")
+
+    for uid in attended_patients:
+        patient: entity.Patient = clinic.patient_by_id(uid)
+
+        notes = [note for note in patient.medical_records 
+                 if note.startswith(session_date)]
+
+        tui.bullet_list(f"Anotações de {patient.name} do dia {session_date}", notes)
 
 
 # ============= Funções auxiliares =============
