@@ -119,7 +119,7 @@ def book_schedule(
             return
 
     if not session:
-        if session := fetch.sesssion_or_register(clinic):
+        if not (session := fetch.sesssion_or_register(clinic)):
             return
 
     # ============= Agenda paciente  =============
